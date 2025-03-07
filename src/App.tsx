@@ -1,14 +1,11 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer"; // Importe o Footer
+import Home from "./pages/Home"; // Importe a página Home
 
 function App() {
   return (
     <>
-      <Header /> {/* Cabeçalho */}
       <main>
-        {/* Conteúdo principal da sua aplicação pode vir aqui */}
+        <Home /> {/* Renderize a página Home como conteúdo principal */}
       </main>
-      <Footer /> {/* Rodapé */}
     </>
   );
 }

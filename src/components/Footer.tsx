@@ -1,6 +1,8 @@
 import React from "react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer>
       <div className="bg-gray-100 py-8">
@@ -71,15 +73,14 @@ const Footer = () => {
 
           <div className="mt-6 md:mt-0">
             <h3 className="text-lg font-semibold mb-8">ACCEPTED PAYMENTS</h3>
-            <div className="flex gap-8">
+            <div className="flex gap-8 pl-4">
               <img src="/src/assets/Mastercard.png" alt="MasterCard" className="h-6" />
               <img src="/src/assets/Amex.png" alt="Amex" className="h-6" />
               <img src="/src/assets/Visa.png" alt="Visa" className="h-6" />
             </div>
           </div>
         </div>
-        <div className="text-center text-gray-600 mt-30 mb-0">© 2023 DevCut. All rights reserved.</div>
-
+        <div className="text-center text-gray-600 mt-30 mb-0">© {currentYear} DevCut. All rights reserved.</div>
       </div>
     </footer>
   );
