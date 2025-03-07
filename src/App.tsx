@@ -1,9 +1,14 @@
-import Header from "./components/Header"; 
+import Header from "./components/Header";
+import Footer from "./components/Footer"; // Importe o Footer
 
 function App() {
   return (
     <>
-      <Header /> 
+      <Header /> {/* Cabeçalho */}
+      <main>
+        {/* Conteúdo principal da sua aplicação pode vir aqui */}
+      </main>
+      <Footer /> {/* Rodapé */}
     </>
   );
 }

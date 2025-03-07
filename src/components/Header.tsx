@@ -25,20 +25,20 @@ const Header = () => {
         </div>
 
         
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2 ml-[174px]">
           <img src="/src/assets/Logomark.png" alt="Logo" className="h-8" />
           <span className="text-lg font-semibold">Ecommerce</span>
         </div>
 
       
-        <ul className="hidden md:flex gap-6 text-gray-700">
+        <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-start ml-20">
           <li><a href="#" className="hover:text-black">Home</a></li>
           <li><a href="#" className="hover:text-black">Shop</a></li>
           <li><a href="#" className="hover:text-black">About</a></li>
         </ul>
 
        
-        <div className="flex gap-4">
+        <div className="flex gap-4 md:mr-[150px]"> 
           <img src="/src/assets/car.png" alt="Carrinho" className="w-5 h-5 cursor-pointer" /> 
           <img src="/src/assets/perfil.png" alt="Usuário" className="w-5 h-5 cursor-pointer" /> 
         </div>
