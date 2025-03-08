@@ -1,5 +1,6 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer"; 
+import Footer from "../components/Footer";
+import ProductCard from "../components/ProductCard";  
 
 const Home = () => {
   return (
@@ -14,17 +15,12 @@ const Home = () => {
           </button>
         </div>
         <div className="relative w-full lg:w-1/3 mt-10 lg:mt-0">
-         
           <div className="absolute bottom-[10px] left-[-80px] w-[340px] h-[340px] bg-[url('/src/assets/Ellipse.png')] bg-cover bg-center rounded-full z-0 lg:block hidden"></div>
-
-         
           <img 
             src="/src/assets/star.png" 
             alt="Star" 
             className="absolute top-[10px] left-[-60px] w-[38px] h-[38px] z-10 lg:block hidden"
           />
-          
-         
           <img 
             src="/src/assets/imagehero.png" 
             alt="New Arrival" 
@@ -33,9 +29,7 @@ const Home = () => {
         </div>
       </section>
 
-      
       <section className="px-10 lg:ml-[182px] mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
-       
         <div className="flex flex-col items-start">
           <img 
             src="/src/assets/truck.png"
@@ -49,7 +43,6 @@ const Home = () => {
           </p>
         </div>
 
-        
         <div className="flex flex-col items-start">
           <img 
             src="/src/assets/satisfation.png"
@@ -63,7 +56,6 @@ const Home = () => {
           </p>
         </div>
 
-        
         <div className="flex flex-col items-start">
           <img 
             src="/src/assets/security.png"
@@ -78,57 +70,40 @@ const Home = () => {
         </div>
       </section>
 
-      
       <section className="py-20 px-10 text-center mt-16">
         <h2 className="text-[12px] font-bold mb-2">Shop Now</h2>
         <h3 className="text-[24px] font-semibold">Best Selling</h3>
       </section>
 
-      
       <section className="py-10 px-10 flex mt-10 justify-center flex-wrap gap-5">
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/short.png" alt="Camiseta 1" className="max-w-full max-h-full object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$27.00</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/short.png" alt="Camiseta 2" className="max-w-full max-h-full object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$27.00</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/short.png" alt="Camiseta 3" className="max-w-full max-h-full object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$27.00</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/short.png" alt="Camiseta 4" className="max-w-full max-h-full object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$27.00</p>
-          </div>
-        </div>
+        <ProductCard 
+          imageUrl="/src/assets/short.png" 
+          altText="Camiseta 1"
+          title="Classic Monochrome Tees"
+          price="$27.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/short.png" 
+          altText="Camiseta 2"
+          title="Classic Monochrome Tees"
+          price="$27.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/short.png" 
+          altText="Camiseta 3"
+          title="Classic Monochrome Tees"
+          price="$27.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/short.png" 
+          altText="Camiseta 4"
+          title="Classic Monochrome Tees"
+          price="$27.00"
+          status="In Stock"
+        />
       </section>
 
       <section className="py-20 px-10 lg:pl-[174px] lg:pr-[213px] flex items-center justify-between bg-gradient-to-r from-[#F2F2F2] to-white">
@@ -144,60 +119,40 @@ const Home = () => {
           </button>
         </div>
 
-       
         <div className="w-[125px] h-[225px] hidden lg:block">
           <img src="/src/assets/category.png" alt="Fashion Paradise" className="w-full h-full object-cover rounded-lg" />
         </div>
       </section>
 
       <section className="py-10 px-10 flex mt-10 justify-center flex-wrap gap-5">
-       
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/blazer.png" alt="Produto 1" className="max-w-[80%] max-h-[80%] object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$40.00</p>
-          </div>
-        </div>
-
-
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/blazer.png" alt="Produto 2" className="max-w-[80%] max-h-[80%] object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$35.00</p>
-          </div>
-        </div>
-
-        
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/blazer.png" alt="Produto 3" className="max-w-[80%] max-h-[80%] object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$45.00</p>
-          </div>
-        </div>
-
-        
-        <div className="flex flex-col items-start">
-          <div className="w-[248px] h-[312px] bg-[#F6F6F6] flex items-center justify-center">
-            <img src="/src/assets/blazer.png" alt="Produto 4" className="max-w-[80%] max-h-[80%] object-contain" />
-          </div>
-          <p className="text-left text-sm mt-2">Classic Monochrome Tees</p>
-          <div className="flex items-center mt-1">
-            <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">In Stock</p>
-            <p className="ml-4 text-left text-sm font-semibold">$50.00</p>
-          </div>
-        </div>
+        <ProductCard 
+          imageUrl="/src/assets/blazer.png" 
+          altText="Produto 1"
+          title="Classic Monochrome Tees"
+          price="$40.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/blazer.png" 
+          altText="Produto 2"
+          title="Classic Monochrome Tees"
+          price="$35.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/blazer.png" 
+          altText="Produto 3"
+          title="Classic Monochrome Tees"
+          price="$45.00"
+          status="In Stock"
+        />
+        <ProductCard 
+          imageUrl="/src/assets/blazer.png" 
+          altText="Produto 4"
+          title="Classic Monochrome Tees"
+          price="$50.00"
+          status="In Stock"
+        />
       </section>
 
       <Footer /> 
