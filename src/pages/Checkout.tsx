@@ -1,0 +1,188 @@
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+const Checkout: React.FC = () => {
+  return (
+    <div>
+      <Header />
+
+      <h1 
+        className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
+        style={{ lineHeight: 'normal' }}
+      >
+        <span className="inline-block">Checkout</span>
+      </h1>
+
+      <section 
+        className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]"
+      >
+        <div className="flex items-center">
+          <span className="mr-2 font-bold">Ecommerce</span>
+          <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
+          <span>Checkout</span>
+        </div>
+      </section>
+
+      
+      <div className="flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8">
+        
+        <div className="flex-1">
+          <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8">Shipping Address</h2>
+
+          
+          <div className="pl-4 sm:pl-0 mt-8">
+            <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
+              Street Address
+            </label>
+            <input 
+              id="street-address"
+              type="text" 
+              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md" 
+              style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+            />
+          </div>
+
+          
+          <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="city" className="block text-sm font-semibold mb-2">
+                City
+              </label>
+              <input 
+                id="city"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="state" className="block text-sm font-semibold mb-2">
+                State
+              </label>
+              <input 
+                id="state"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+          </div>
+
+          
+          <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
+                Zip Code
+              </label>
+              <input 
+                id="zip-code"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="country" className="block text-sm font-semibold mb-2">
+                Country
+              </label>
+              <input 
+                id="country"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+          </div>
+
+          
+          <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                Email
+              </label>
+              <input 
+                id="email"
+                type="email" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="full-name" className="block text-sm font-semibold mb-2">
+                Full Name
+              </label>
+              <input 
+                id="full-name"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+          </div>
+        </div>
+
+       
+        <div 
+          className="hidden lg:block"
+          style={{
+            width: '1px',
+            height: '504px',
+            backgroundColor: '#E6E7E8',
+            marginLeft: '32px',
+            marginTop: '32px',
+          }}
+        ></div>
+
+        
+        <div className="w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8">
+
+          <h2 className="text-lg font-semibold mb-10">Your Order</h2>
+
+         
+          <div className="w-full flex justify-end mb-22">
+            <div 
+              className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px]"
+            >
+              <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
+                Edit Cart
+              </span>
+            </div>
+          </div>
+
+          <div className="space-y-4 text-sm text-gray-600">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span>$90.00</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Tax</span>
+              <span>$3.00</span>
+            </div>
+            <div className="border-t border-t-[#E6E7E8] pt-4 mb-6 flex justify-between font-medium text-black">
+              <span>Total</span>
+              <span>$100.00</span>
+            </div>
+          </div>
+          <button className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition">
+            Place Order
+          </button>
+        </div>
+      </div>
+
+     
+      <div className="mt-16">
+        <Footer /> 
+      </div>
+    </div>
+  );
+};
+
+export default Checkout;

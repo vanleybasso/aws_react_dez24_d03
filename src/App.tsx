@@ -1,8 +1,10 @@
+// src/App.tsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart"; 
+import Checkout from "./pages/Checkout"; 
 
 const App: React.FC = () => {
   return (
@@ -12,7 +14,8 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/cart" element={<Cart />} /> 
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} /> 
         </Routes>
       </main>
     </Router>
