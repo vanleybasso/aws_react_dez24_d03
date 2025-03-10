@@ -1,8 +1,6 @@
-// src/pages/Home.tsx
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ProductCard from "../components/ProductCard";  // Importando o componente ProductCard
+import ProductCard from "../components/ProductCard";  
 
 const Home = () => {
   return (
