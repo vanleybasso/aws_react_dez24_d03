@@ -5,6 +5,7 @@ import Listing from "./pages/Listing";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart"; 
 import Checkout from "./pages/Checkout"; 
+import AfterPayment from "./pages/AfterPayment"; 
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,8 @@ const App: React.FC = () => {
           <Route path="/listing" element={<Listing />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} /> 
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/afterpayment" element={<AfterPayment />} /> 
         </Routes>
       </main>
     </Router>
