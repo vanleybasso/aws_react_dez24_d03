@@ -1,7 +1,8 @@
-// src/App.tsx
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Listing from "./pages/Listing"; // Importe a nova página Listing
+import Listing from "./pages/Listing";
+import Product from "./pages/Product"; 
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/listing" element={<Listing />} /> {/* Nova rota */}
+          <Route path="/listing" element={<Listing />} />
+          <Route path="/product" element={<Product />} /> 
         </Routes>
       </main>
     </Router>
