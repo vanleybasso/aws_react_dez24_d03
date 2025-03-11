@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// Páginas
+
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Product from "./pages/Product";
@@ -11,7 +11,8 @@ import Orders from "./pages/Orders";
 import AccountDetails from "./pages/AccountDetails";
 import About from "./pages/About";
 import NotFound from "./pages/404";
-import Login from "./pages/Login"; 
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp"; 
 
 const App: React.FC = () => {
   return (
@@ -28,9 +29,8 @@ const App: React.FC = () => {
           <Route path="/account-details" element={<AccountDetails />} />
           <Route path="/about" element={<About />} />
 
-          
           <Route path="/login" element={<Login />} />
-
+          <Route path="/signup" element={<SignUp />} /> 
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
