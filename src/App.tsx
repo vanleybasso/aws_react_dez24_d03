@@ -10,7 +10,8 @@ import AfterPayment from "./pages/AfterPayment";
 import Orders from "./pages/Orders";
 import AccountDetails from "./pages/AccountDetails";
 import About from "./pages/About";
-import NotFound from "./pages/404"; 
+import NotFound from "./pages/404";
+import Login from "./pages/Login"; 
 
 const App: React.FC = () => {
   return (
@@ -27,7 +28,9 @@ const App: React.FC = () => {
           <Route path="/account-details" element={<AccountDetails />} />
           <Route path="/about" element={<About />} />
 
-         
+          
+          <Route path="/login" element={<Login />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
