@@ -17,7 +17,7 @@ const Home = () => {
         <div className="relative w-full lg:w-1/3 mt-10 lg:mt-0">
           <div className="absolute bottom-[10px] left-[-80px] w-[340px] h-[340px] bg-[url('/src/assets/Ellipse.png')] bg-cover bg-center rounded-full z-0 lg:block hidden"></div>
           <img 
-            src="/src/assets/star.png" 
+            src="/src/assets/pucker.png" 
             alt="Star" 
             className="absolute top-[10px] left-[-60px] w-[38px] h-[38px] z-10 lg:block hidden"
           />

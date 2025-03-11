@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa"; // Ícones de contato
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa"; 
 
 const About = () => {
   return (
@@ -8,12 +8,12 @@ const About = () => {
       <Header />
 
       <section className="bg-[#000000] h-[150px] relative">
-        {/* Removi o ícone do raio aqui */}
+      
 
-        {/* Profile image */}
+       
         <div className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2">
           <img
-            src="/src/assets/vanley.jpeg" // Substitua com seu caminho
+            src="/src/assets/vanley.jpeg" 
             alt="Profile"
             className="w-28 h-28 rounded-full object-cover border-4 border-white"
           />
