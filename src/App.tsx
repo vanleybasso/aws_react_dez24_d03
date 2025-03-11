@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Product from "./pages/Product";
@@ -12,7 +11,8 @@ import AccountDetails from "./pages/AccountDetails";
 import About from "./pages/About";
 import NotFound from "./pages/404";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp"; 
+import SignUp from "./pages/SignUp";
+import ForgotPassword from "./pages/ForgotPassword"; 
 
 const App: React.FC = () => {
   return (
@@ -30,7 +30,9 @@ const App: React.FC = () => {
           <Route path="/about" element={<About />} />
 
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} /> 
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} /> 
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
