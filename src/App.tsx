@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// Páginas
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Product from "./pages/Product";
@@ -7,7 +9,8 @@ import Checkout from "./pages/Checkout";
 import AfterPayment from "./pages/AfterPayment";
 import Orders from "./pages/Orders";
 import AccountDetails from "./pages/AccountDetails";
-import About from "./pages/About";  
+import About from "./pages/About";
+import NotFound from "./pages/404"; 
 
 const App: React.FC = () => {
   return (
@@ -22,11 +25,14 @@ const App: React.FC = () => {
           <Route path="/afterpayment" element={<AfterPayment />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/account-details" element={<AccountDetails />} />
-          <Route path="/about" element={<About />} /> 
+          <Route path="/about" element={<About />} />
+
+         
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </Router>
   );
-}
+};
 
 export default App;
