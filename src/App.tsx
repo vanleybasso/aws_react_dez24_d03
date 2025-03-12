@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
@@ -13,11 +14,20 @@ import NotFound from "./pages/404";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword"; 
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const App: React.FC = () => {
   return (
     <Router>
+      <header>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,12 +39,12 @@ const App: React.FC = () => {
           <Route path="/orders" element={<Orders />} />
           <Route path="/account-details" element={<AccountDetails />} />
           <Route path="/about" element={<About />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
         </Routes>
       </main>
     </Router>
