@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
-
 import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Product from "./pages/Product";
@@ -20,14 +18,6 @@ import VerifyEmail from "./pages/VerifyEmail";
 const App: React.FC = () => {
   return (
     <Router>
-      <header>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
