@@ -1,7 +1,19 @@
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer'; 
+import Footer from '../components/Footer';
+import { useUser, useAuth } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
+
 const AccountDetails: React.FC = () => {
+  const { user } = useUser();
+  const { signOut } = useAuth(); 
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/login');
+  };
+
   return (
     <div>
       <Header />
@@ -23,32 +35,32 @@ const AccountDetails: React.FC = () => {
 
       <section className="flex flex-col md:flex-row items-start sm:pl-[174px] mt-[120px] p-4 sm:p-0">
         <div className="flex flex-col w-full md:w-auto">
-          <section className="flex items-center p-4">
+          <section className="flex items-center p-4 cursor-pointer">
             <img
               src="/src/assets/car.png"
               alt="Orders"
               className="w-6 h-6 mr-2"
-              style={{ width: '24px', height: '24px' }}
             />
             <span className="text-sm font-semibold">Orders</span>
           </section>
 
-          <section className="flex items-center p-4">
+          <section className="flex items-center p-4 cursor-pointer">
             <img
               src="/src/assets/user.png"
               alt="Account Detail"
               className="w-6 h-6 mr-2"
-              style={{ width: '24px', height: '24px' }}
             />
             <span className="text-sm font-semibold">Account Detail</span>
           </section>
 
-          <section className="flex items-center p-4">
+          <section
+            onClick={handleLogout}
+            className="flex items-center p-4 cursor-pointer hover:bg-gray-100 rounded"
+          >
             <img
               src="/src/assets/Logout.png"
               alt="Logout"
               className="w-6 h-6 mr-2"
-              style={{ width: '24px', height: '24px' }}
             />
             <span className="text-sm font-semibold">Logout</span>
           </section>
@@ -56,11 +68,9 @@ const AccountDetails: React.FC = () => {
 
         <div className="border-l border-[#E9E9EB] h-[504px] mx-4 mt-[-40px] hidden md:block" />
 
-       
         <div className="ml-0 md:ml-8 mt-8 md:mt-[-40px] flex flex-col justify-start w-full md:w-auto">
-          <h2 className="text-lg font-semibold ">Account Details</h2>
-          
-          
+          <h2 className="text-lg font-semibold">Account Details</h2>
+
           <div
             className="mt-10 flex justify-center items-center"
             style={{
@@ -68,28 +78,42 @@ const AccountDetails: React.FC = () => {
               height: '48px',
               backgroundColor: '#F0F1FF',
               borderRadius: '50%',
+              overflow: 'hidden', 
             }}
           >
-            <span className="text-lg font-semibold text-gray-800">VB</span>
+            {user?.imageUrl ? (
+              <img
+                src={user.imageUrl}
+                alt="User Profile"
+                className="w-full h-full object-cover" 
+              />
+            ) : (
+              <span className="text-lg font-semibold text-gray-800">
+                {user?.firstName ? user.firstName[0] : 'U'}
+              </span>
+            )}
           </div>
 
-          
-          <label className="text-sm font-medium text-gray-600 mt-8">Full Name</label>
+          <label className="text-sm font-medium text-gray-600 mt-8">
+            Full Name
+          </label>
           <input
             type="text"
-            className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm"
+            value={user?.fullName || ''}
+            readOnly
+            className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm bg-gray-100 cursor-not-allowed"
           />
 
-          
           <label className="text-sm font-medium text-gray-600 mt-6">Email</label>
           <input
             type="email"
-            className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm"
+            value={user?.primaryEmailAddress?.emailAddress || ''}
+            readOnly
+            className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm bg-gray-100 cursor-not-allowed"
           />
         </div>
       </section>
 
-      
       <div className="mt-30">
         <Footer />
       </div>
