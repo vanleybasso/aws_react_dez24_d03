@@ -8,7 +8,6 @@ const Header = () => {
   const { user } = useUser();
   const navigate = useNavigate();
 
-  
   const handleUserIconClick = () => {
     if (!user) {
       navigate("/login"); 
@@ -19,7 +18,6 @@ const Header = () => {
 
   return (
     <header className="w-full">
-    
       <div className="bg-black text-white text-center py-2 text-sm">
         Get 25% OFF on your first order.{" "}
         <a href="#" className="underline">
@@ -27,9 +25,7 @@ const Header = () => {
         </a>
       </div>
 
-     
       <nav className="flex justify-between items-center p-4 bg-white shadow-md relative">
-       
         <div className="md:hidden ml-4">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -43,13 +39,11 @@ const Header = () => {
           </button>
         </div>
 
-       
         <div className="flex items-center gap-2">
           <img src="/src/assets/Logomark.png" alt="Logo" className="h-8" />
           <span className="text-lg font-semibold">Ecommerce</span>
         </div>
 
-        
         <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-center">
           <li>
             <Link to="/" className="hover:text-black">
@@ -68,7 +62,6 @@ const Header = () => {
           </li>
         </ul>
 
-       
         <div className="flex gap-4 md:ml-auto mr-4 items-center">
           <img
             src="/src/assets/car.png"
@@ -102,7 +95,6 @@ const Header = () => {
         </div>
       </nav>
 
-      
       {isMenuOpen && (
         <ul className="md:hidden flex flex-col items-center bg-white shadow-md py-2 absolute w-full z-10">
           <li>
