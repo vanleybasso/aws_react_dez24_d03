@@ -1,20 +1,95 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 
 const Checkout: React.FC = () => {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const tax = useSelector((state: RootState) => state.cart.tax);
   const total = subtotal + tax;
-  const navigate = useNavigate(); 
+  const cartItems = useSelector((state: RootState) => state.cart.items); 
+  const navigate = useNavigate();
+  const { isSignedIn, isLoaded, user } = useUser();
 
  
-  const handleEditCart = () => {
-    navigate('/cart'); 
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      navigate('/login');
+    }
+  }, [isLoaded, isSignedIn, navigate]);
+
+ 
+  useEffect(() => {
+    if (isLoaded && isSignedIn && cartItems.length === 0) {
+      navigate('/listing'); 
+    }
+  }, [isLoaded, isSignedIn, cartItems, navigate]);
+
+  
+  const [zipCode, setZipCode] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('Brasil');
+  const [zipCodeError, setZipCodeError] = useState(''); 
+
+
+  const fetchAddress = async (cep: string) => {
+    if (cep.length === 8) { 
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+
+        if (!data.erro) {
+          
+          setStreetAddress(data.logradouro);
+          setCity(data.localidade);
+          setState(data.uf);
+          setCountry('Brasil'); 
+          setZipCodeError('');
+        } else {
+          
+          setStreetAddress('');
+          setCity('');
+          setState('');
+          setCountry('Brasil'); 
+          setZipCodeError('CEP não encontrado.'); 
+        }
+      } catch (error) {
+        console.error('Erro ao consultar CEP:', error);
+        setZipCodeError('Erro ao consultar CEP. Tente novamente.'); 
+      }
+    } else {
+     
+      setStreetAddress('');
+      setCity('');
+      setState('');
+      setCountry('Brasil'); 
+      setZipCodeError(cep.length > 0 ? 'CEP incompleto.' : ''); 
+    }
   };
+
+  const handleEditCart = () => {
+    navigate('/cart');
+  };
+
+  
+  if (!isLoaded) {
+    return null;
+  }
+
+  
+  if (!isSignedIn) {
+    return null;
+  }
+
+  
+  if (cartItems.length === 0) {
+    return null;
+  }
 
   return (
     <div>
@@ -41,7 +116,6 @@ const Checkout: React.FC = () => {
         <div className="flex-1">
           <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8">Shipping Address</h2>
 
-         
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
               <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
@@ -50,9 +124,19 @@ const Checkout: React.FC = () => {
               <input 
                 id="zip-code"
                 type="text" 
+                value={zipCode}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, ''); 
+                  setZipCode(value);
+                  fetchAddress(value); 
+                }}
                 className="w-full h-[45px] p-2 border rounded-md" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                maxLength={8} 
               />
+              {zipCodeError && (
+                <p className="text-red-500 text-sm mt-1">{zipCodeError}</p> 
+              )}
             </div>
 
             <div className="w-full sm:w-[259px]">
@@ -62,13 +146,14 @@ const Checkout: React.FC = () => {
               <input 
                 id="country"
                 type="text" 
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
                 className="w-full h-[45px] p-2 border rounded-md" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
           </div>
 
-          
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
               <label htmlFor="city" className="block text-sm font-semibold mb-2">
@@ -77,6 +162,8 @@ const Checkout: React.FC = () => {
               <input 
                 id="city"
                 type="text" 
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
                 className="w-full h-[45px] p-2 border rounded-md" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
@@ -89,13 +176,14 @@ const Checkout: React.FC = () => {
               <input 
                 id="state"
                 type="text" 
+                value={state}
+                onChange={(e) => setState(e.target.value)}
                 className="w-full h-[45px] p-2 border rounded-md" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
           </div>
 
-          
           <div className="pl-4 sm:pl-0 mt-8">
             <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
               Street Address
@@ -103,12 +191,13 @@ const Checkout: React.FC = () => {
             <input 
               id="street-address"
               type="text" 
+              value={streetAddress}
+              onChange={(e) => setStreetAddress(e.target.value)}
               className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md" 
               style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
             />
           </div>
 
-        
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
               <label htmlFor="full-name" className="block text-sm font-semibold mb-2">
@@ -117,7 +206,9 @@ const Checkout: React.FC = () => {
               <input 
                 id="full-name"
                 type="text" 
-                className="w-full h-[45px] p-2 border rounded-md" 
+                value={user?.fullName || ''} 
+                readOnly
+                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
@@ -129,14 +220,15 @@ const Checkout: React.FC = () => {
               <input 
                 id="email"
                 type="email" 
-                className="w-full h-[45px] p-2 border rounded-md" 
+                value={user?.primaryEmailAddress?.emailAddress || ''} 
+                readOnly
+                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default" 
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
           </div>
         </div>
 
-        
         <div 
           className="hidden lg:block"
           style={{
@@ -148,7 +240,6 @@ const Checkout: React.FC = () => {
           }}
         ></div>
 
-        
         <div className="w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8">
           <h2 className="text-lg font-semibold mb-10">Your Order</h2>
 
