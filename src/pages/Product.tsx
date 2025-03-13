@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
-import ImageCarousel from "../components/ImageCarousel"; 
+import ImageCarousel from "../components/ImageCarousel";
 
 interface Product {
   id: number;
   imageUrl: string;
   altText: string;
   title: string;
-  price: string;
+  price: string; 
   status: string;
   rating?: number;
   reviewsCount: number;
   colors: string[];
   sizes: string[];
   description: string;
-  images: string[]; 
+  images: string[];
 }
 
 const Product = () => {
@@ -28,6 +30,8 @@ const Product = () => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3001/products/${id}`)
@@ -74,12 +78,19 @@ const Product = () => {
       return;
     }
     setError(null);
-    console.log("Produto adicionado ao carrinho:", {
-      ...product,
+
+    const cartItem = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      imageUrl: product.imageUrl,
       selectedColor,
       selectedSize,
       quantity,
-    });
+    };
+
+    dispatch(addToCart(cartItem));
+    navigate("/cart");
   };
 
   return (
@@ -137,7 +148,7 @@ const Product = () => {
 
           <div className="mt-4">
             <p className="text-[18px] text-gray-800 font-medium">
-              {product.price}
+              ${parseFloat(product.price).toFixed(2)} 
             </p>
           </div>
 
