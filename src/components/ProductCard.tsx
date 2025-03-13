@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
+  id: number; 
   imageUrl: string;
   altText: string;
   title: string;
@@ -8,9 +10,18 @@ interface ProductCardProps {
   status: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ imageUrl, altText, title, price, status }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ id, imageUrl, altText, title, price, status }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${id}`); 
+  };
+
   return (
-    <div className="flex flex-col items-start mx-2 w-[248px]">
+    <div
+      className="flex flex-col items-start mx-2 w-[248px] cursor-pointer" 
+      onClick={handleClick} 
+    >
       <div className="w-full h-[312px] bg-[#F6F6F6] flex items-center justify-center">
         <img
           src={imageUrl}
