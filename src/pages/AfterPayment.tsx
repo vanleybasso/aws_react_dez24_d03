@@ -1,22 +1,30 @@
 import React from 'react';
-import Header from '../components/Header'; 
-import Footer from '../components/Footer'; 
+import { useNavigate } from 'react-router-dom'; 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const AfterPayment: React.FC = () => {
+  const navigate = useNavigate(); 
+
+  
+  const handleGoToAccount = () => {
+    navigate('/orders');
+  };
+
   return (
     <div>
       <Header />
 
-      <h1 
+      <h1
         className="text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
-        style={{ backgroundColor: '#D5E5D7', lineHeight: 'normal' }} 
+        style={{ backgroundColor: '#D5E5D7', lineHeight: 'normal' }}
       >
         <span className="inline-block">Successful Order</span>
       </h1>
 
-      <section 
+      <section
         className="flex items-center p-4 pl-4 pt-0 pb-4 sm:pl-[174px]"
-        style={{ backgroundColor: '#D5E5D7' }} 
+        style={{ backgroundColor: '#D5E5D7' }}
       >
         <div className="flex items-center">
           <span className="mr-2 font-bold">Ecommerce</span>
@@ -25,12 +33,12 @@ const AfterPayment: React.FC = () => {
         </div>
       </section>
 
-     
+      
       <section className="flex justify-center py-8 mt-[179px]">
-        <img 
-          src="/src/assets/Group.png" 
+        <img
+          src="/src/assets/Group.png"
           alt="Imagem de sucesso"
-          className="max-w-full h-auto" 
+          className="max-w-full h-auto"
         />
       </section>
 
@@ -49,16 +57,19 @@ const AfterPayment: React.FC = () => {
         </p>
       </section>
 
-     
+      
       <section className="flex justify-center mt-10">
-        <button className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-800">
+        <button
+          onClick={handleGoToAccount} 
+          className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-800"
+        >
           Go to my account →
         </button>
       </section>
 
       
       <div className="mt-30">
-        <Footer /> 
+        <Footer />
       </div>
     </div>
   );

@@ -10,84 +10,131 @@ const Checkout: React.FC = () => {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const tax = useSelector((state: RootState) => state.cart.tax);
   const total = subtotal + tax;
-  const cartItems = useSelector((state: RootState) => state.cart.items); 
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const navigate = useNavigate();
   const { isSignedIn, isLoaded, user } = useUser();
 
- 
+  const [zipCode, setZipCode] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('Brasil');
+  const [zipCodeError, setZipCodeError] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  
+  const validateForm = () => {
+    const isZipCodeValid = zipCode.length === 8 && !zipCodeError;
+    const isStreetAddressValid = streetAddress.trim() !== '';
+    const isCityValid = city.trim() !== '';
+    const isStateValid = state.trim() !== '';
+    const isCountryValid = country.trim() !== '';
+
+    setIsFormValid(
+      isZipCodeValid &&
+      isStreetAddressValid &&
+      isCityValid &&
+      isStateValid &&
+      isCountryValid
+    );
+  };
+
+  
+  useEffect(() => {
+    validateForm();
+  }, [zipCode, streetAddress, city, state, country, zipCodeError]);
+
+  
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       navigate('/login');
     }
   }, [isLoaded, isSignedIn, navigate]);
 
- 
+  
   useEffect(() => {
     if (isLoaded && isSignedIn && cartItems.length === 0) {
-      navigate('/listing'); 
+      navigate('/listing');
     }
   }, [isLoaded, isSignedIn, cartItems, navigate]);
 
   
-  const [zipCode, setZipCode] = useState('');
-  const [streetAddress, setStreetAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [country, setCountry] = useState('Brasil');
-  const [zipCodeError, setZipCodeError] = useState(''); 
-
-
   const fetchAddress = async (cep: string) => {
-    if (cep.length === 8) { 
+    if (cep.length === 8) {
       try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const data = await response.json();
 
         if (!data.erro) {
-          
           setStreetAddress(data.logradouro);
           setCity(data.localidade);
           setState(data.uf);
-          setCountry('Brasil'); 
+          setCountry('Brasil');
           setZipCodeError('');
         } else {
-          
           setStreetAddress('');
           setCity('');
           setState('');
-          setCountry('Brasil'); 
-          setZipCodeError('CEP não encontrado.'); 
+          setCountry('Brasil');
+          setZipCodeError('CEP não encontrado.');
         }
       } catch (error) {
         console.error('Erro ao consultar CEP:', error);
-        setZipCodeError('Erro ao consultar CEP. Tente novamente.'); 
+        setZipCodeError('Erro ao consultar CEP. Tente novamente.');
       }
     } else {
-     
       setStreetAddress('');
       setCity('');
       setState('');
-      setCountry('Brasil'); 
-      setZipCodeError(cep.length > 0 ? 'CEP incompleto.' : ''); 
+      setCountry('Brasil');
+      setZipCodeError(cep.length > 0 ? 'CEP incompleto.' : '');
     }
   };
 
+  
   const handleEditCart = () => {
     navigate('/cart');
   };
 
   
-  if (!isLoaded) {
-    return null;
-  }
+  const handlePlaceOrder = async () => {
+    if (!user) return;
+
+    const order = {
+      userId: user.id,
+      items: cartItems,
+      total,
+      date: new Date().toISOString(),
+      shippingAddress: {
+        zipCode,
+        streetAddress,
+        city,
+        state,
+        country,
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:3001/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      });
+
+      if (response.ok) {
+        navigate('/afterpayment'); 
+      } else {
+        console.error('Failed to save order');
+      }
+    } catch (error) {
+      console.error('Error saving order:', error);
+    }
+  };
 
   
-  if (!isSignedIn) {
-    return null;
-  }
-
-  
-  if (cartItems.length === 0) {
+  if (!isLoaded || !isSignedIn || cartItems.length === 0) {
     return null;
   }
 
@@ -95,16 +142,14 @@ const Checkout: React.FC = () => {
     <div>
       <Header />
 
-      <h1 
+      <h1
         className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ lineHeight: 'normal' }}
       >
         <span className="inline-block">Checkout</span>
       </h1>
 
-      <section 
-        className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]"
-      >
+      <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
           <span className="mr-2 font-bold">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
@@ -121,34 +166,32 @@ const Checkout: React.FC = () => {
               <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
                 Zip Code
               </label>
-              <input 
+              <input
                 id="zip-code"
-                type="text" 
+                type="text"
                 value={zipCode}
                 onChange={(e) => {
-                  const value = e.target.value.replace(/\D/g, ''); 
+                  const value = e.target.value.replace(/\D/g, '');
                   setZipCode(value);
-                  fetchAddress(value); 
+                  fetchAddress(value);
                 }}
-                className="w-full h-[45px] p-2 border rounded-md" 
+                className="w-full h-[45px] p-2 border rounded-md"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
-                maxLength={8} 
+                maxLength={8}
               />
-              {zipCodeError && (
-                <p className="text-red-500 text-sm mt-1">{zipCodeError}</p> 
-              )}
+              {zipCodeError && <p className="text-red-500 text-sm mt-1">{zipCodeError}</p>}
             </div>
 
             <div className="w-full sm:w-[259px]">
               <label htmlFor="country" className="block text-sm font-semibold mb-2">
                 Country
               </label>
-              <input 
+              <input
                 id="country"
-                type="text" 
+                type="text"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md" 
+                className="w-full h-[45px] p-2 border rounded-md"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
@@ -159,12 +202,12 @@ const Checkout: React.FC = () => {
               <label htmlFor="city" className="block text-sm font-semibold mb-2">
                 City
               </label>
-              <input 
+              <input
                 id="city"
-                type="text" 
+                type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md" 
+                className="w-full h-[45px] p-2 border rounded-md"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
@@ -173,12 +216,12 @@ const Checkout: React.FC = () => {
               <label htmlFor="state" className="block text-sm font-semibold mb-2">
                 State
               </label>
-              <input 
+              <input
                 id="state"
-                type="text" 
+                type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md" 
+                className="w-full h-[45px] p-2 border rounded-md"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
@@ -188,12 +231,12 @@ const Checkout: React.FC = () => {
             <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
               Street Address
             </label>
-            <input 
+            <input
               id="street-address"
-              type="text" 
+              type="text"
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
-              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md" 
+              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md"
               style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
             />
           </div>
@@ -203,12 +246,12 @@ const Checkout: React.FC = () => {
               <label htmlFor="full-name" className="block text-sm font-semibold mb-2">
                 Full Name
               </label>
-              <input 
+              <input
                 id="full-name"
-                type="text" 
-                value={user?.fullName || ''} 
+                type="text"
+                value={user?.fullName || ''}
                 readOnly
-                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default" 
+                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
@@ -217,19 +260,19 @@ const Checkout: React.FC = () => {
               <label htmlFor="email" className="block text-sm font-semibold mb-2">
                 Email
               </label>
-              <input 
+              <input
                 id="email"
-                type="email" 
-                value={user?.primaryEmailAddress?.emailAddress || ''} 
+                type="email"
+                value={user?.primaryEmailAddress?.emailAddress || ''}
                 readOnly
-                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default" 
+                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default"
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
           </div>
         </div>
 
-        <div 
+        <div
           className="hidden lg:block"
           style={{
             width: '1px',
@@ -244,9 +287,9 @@ const Checkout: React.FC = () => {
           <h2 className="text-lg font-semibold mb-10">Your Order</h2>
 
           <div className="w-full flex justify-end mb-22">
-            <div 
+            <div
               className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer"
-              onClick={handleEditCart} 
+              onClick={handleEditCart}
             >
               <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
                 Edit Cart
@@ -272,14 +315,21 @@ const Checkout: React.FC = () => {
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
-          <button className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition">
+
+          <button
+            onClick={handlePlaceOrder}
+            disabled={!isFormValid}
+            className={`w-full bg-black text-white py-3 rounded mt-6 ${
+              isFormValid ? 'hover:bg-gray-800' : 'opacity-50 cursor-not-allowed'
+            } transition`}
+          >
             Place Order
           </button>
         </div>
       </div>
 
       <div className="mt-16">
-        <Footer /> 
+        <Footer />
       </div>
     </div>
   );
