@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
-  id: number; 
+  id: number;
   imageUrl: string;
   altText: string;
   title: string;
-  price: string;
+  price: number; 
   status: string;
 }
 
@@ -14,13 +14,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, imageUrl, altText, title,
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/product/${id}`); 
+    navigate(`/product/${id}`);
   };
 
   return (
     <div
-      className="flex flex-col items-start mx-2 w-[248px] cursor-pointer" 
-      onClick={handleClick} 
+      className="flex flex-col items-start mx-2 w-[248px] cursor-pointer"
+      onClick={handleClick}
     >
       <div className="w-full h-[312px] bg-[#F6F6F6] flex items-center justify-center">
         <img
@@ -36,7 +36,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, imageUrl, altText, title,
         <p className="text-left text-xs w-[89px] h-[28px] border border-gray-400 rounded-full flex items-center justify-center">
           {status}
         </p>
-        <p className="ml-4 text-left text-sm font-semibold">{price}</p>
+        <p className="ml-4 text-left text-sm font-semibold">
+          ${price.toFixed(2)} 
+        </p>
       </div>
     </div>
   );

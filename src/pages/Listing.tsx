@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
-import productsData from "../../db.json"; 
+import productsData from "../../db.json";
 
 interface Product {
   id: number;
   imageUrl: string;
   altText: string;
   title: string;
-  price: string;
+  price: number; 
   status: string;
   category: string;
 }
@@ -19,18 +19,13 @@ interface ProductsData {
 }
 
 const Listing = () => {
-  const [priceFilter, setPriceFilter] = useState(0); 
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [priceFilter, setPriceFilter] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [maxPrice, setMaxPrice] = useState(0); 
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const productsPerPage = 9; 
-
- 
-  const parsePrice = (price: string): number => {
-    return parseFloat(price.replace("$", ""));
-  };
+  const productsPerPage = 9;
 
   
   const calculateMaxPrice = (category: string | null) => {
@@ -38,14 +33,14 @@ const Listing = () => {
       ? productsData.products.filter((product) => product.category === category)
       : productsData.products;
 
-    const prices = filteredProducts.map((product) => parsePrice(product.price));
-    const maxProductPrice = Math.max(...prices); 
-    const roundedMaxPrice = Math.ceil(maxProductPrice); 
-    setMaxPrice(roundedMaxPrice); 
-    setPriceFilter(roundedMaxPrice); 
+    const prices = filteredProducts.map((product) => product.price); 
+    const maxProductPrice = Math.max(...prices);
+    const roundedMaxPrice = Math.ceil(maxProductPrice);
+    setMaxPrice(roundedMaxPrice);
+    setPriceFilter(roundedMaxPrice);
   };
 
- 
+  
   useEffect(() => {
     calculateMaxPrice(selectedCategory);
   }, [selectedCategory]);
@@ -56,55 +51,48 @@ const Listing = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const percentage = (priceFilter / maxPrice) * 100;
 
   
   const products = (productsData as ProductsData).products;
-
- 
   const filteredProducts = products.filter((product) => {
-    const price = parsePrice(product.price);
     const matchesCategory = !selectedCategory || product.category === selectedCategory;
-    const matchesPrice = price <= priceFilter; 
-    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()); 
+    const matchesPrice = product.price <= priceFilter; 
+    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesPrice && matchesSearch;
   });
 
-  
+ 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
-  
   const nextPage = () => {
     if (currentPage < Math.ceil(filteredProducts.length / productsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  
   const handleCategoryClick = (category: string) => {
     if (selectedCategory === category) {
-      setSelectedCategory(null); 
+      setSelectedCategory(null);
     } else {
-      setSelectedCategory(category); 
+      setSelectedCategory(category);
     }
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   return (
@@ -216,7 +204,7 @@ const Listing = () => {
                 />
               </div>
             )}
-            {priceFilter < maxPrice && ( 
+            {priceFilter < maxPrice && (
               <div className="flex items-center border border-gray-200 rounded-full px-3 py-2">
                 <span>${priceFilter}</span>
                 <img
@@ -245,7 +233,7 @@ const Listing = () => {
                 imageUrl={product.imageUrl}
                 altText={product.altText}
                 title={product.title}
-                price={product.price}
+                price={product.price} 
                 status={product.status}
               />
             ))}
@@ -260,7 +248,6 @@ const Listing = () => {
                 border: "1px solid #E9E9EB",
               }}
             >
-              
               <button
                 className={`hover:opacity-80 transition ${
                   currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
@@ -275,7 +262,6 @@ const Listing = () => {
                 />
               </button>
 
-             
               <div
                 className="flex items-center justify-center text-sm font-medium text-gray-700"
                 style={{
@@ -288,7 +274,6 @@ const Listing = () => {
                 {currentPage}
               </div>
 
-              
               <button
                 className={`hover:opacity-80 transition ${
                   currentPage === Math.ceil(filteredProducts.length / productsPerPage)
