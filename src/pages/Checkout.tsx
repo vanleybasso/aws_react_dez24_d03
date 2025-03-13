@@ -1,8 +1,21 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { useNavigate } from 'react-router-dom'; 
 
 const Checkout: React.FC = () => {
+  const subtotal = useSelector((state: RootState) => state.cart.subtotal);
+  const tax = useSelector((state: RootState) => state.cart.tax);
+  const total = subtotal + tax;
+  const navigate = useNavigate(); 
+
+ 
+  const handleEditCart = () => {
+    navigate('/cart'); 
+  };
+
   return (
     <div>
       <Header />
@@ -24,23 +37,35 @@ const Checkout: React.FC = () => {
         </div>
       </section>
 
-      
       <div className="flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8">
-        
         <div className="flex-1">
           <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8">Shipping Address</h2>
 
-          
-          <div className="pl-4 sm:pl-0 mt-8">
-            <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
-              Street Address
-            </label>
-            <input 
-              id="street-address"
-              type="text" 
-              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md" 
-              style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
-            />
+         
+          <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
+                Zip Code
+              </label>
+              <input 
+                id="zip-code"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
+
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="country" className="block text-sm font-semibold mb-2">
+                Country
+              </label>
+              <input 
+                id="country"
+                type="text" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
           </div>
 
           
@@ -71,46 +96,20 @@ const Checkout: React.FC = () => {
           </div>
 
           
-          <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="w-full sm:w-[259px]">
-              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
-                Zip Code
-              </label>
-              <input 
-                id="zip-code"
-                type="text" 
-                className="w-full h-[45px] p-2 border rounded-md" 
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
-              />
-            </div>
-
-            <div className="w-full sm:w-[259px]">
-              <label htmlFor="country" className="block text-sm font-semibold mb-2">
-                Country
-              </label>
-              <input 
-                id="country"
-                type="text" 
-                className="w-full h-[45px] p-2 border rounded-md" 
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
-              />
-            </div>
+          <div className="pl-4 sm:pl-0 mt-8">
+            <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
+              Street Address
+            </label>
+            <input 
+              id="street-address"
+              type="text" 
+              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md" 
+              style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+            />
           </div>
 
-          
+        
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="w-full sm:w-[259px]">
-              <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                Email
-              </label>
-              <input 
-                id="email"
-                type="email" 
-                className="w-full h-[45px] p-2 border rounded-md" 
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
-              />
-            </div>
-
             <div className="w-full sm:w-[259px]">
               <label htmlFor="full-name" className="block text-sm font-semibold mb-2">
                 Full Name
@@ -122,10 +121,22 @@ const Checkout: React.FC = () => {
                 style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
               />
             </div>
+
+            <div className="w-full sm:w-[259px]">
+              <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                Email
+              </label>
+              <input 
+                id="email"
+                type="email" 
+                className="w-full h-[45px] p-2 border rounded-md" 
+                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              />
+            </div>
           </div>
         </div>
 
-       
+        
         <div 
           className="hidden lg:block"
           style={{
@@ -139,13 +150,12 @@ const Checkout: React.FC = () => {
 
         
         <div className="w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8">
-
           <h2 className="text-lg font-semibold mb-10">Your Order</h2>
 
-         
           <div className="w-full flex justify-end mb-22">
             <div 
-              className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px]"
+              className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer"
+              onClick={handleEditCart} 
             >
               <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
                 Edit Cart
@@ -156,7 +166,7 @@ const Checkout: React.FC = () => {
           <div className="space-y-4 text-sm text-gray-600">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>$90.00</span>
+              <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
@@ -164,11 +174,11 @@ const Checkout: React.FC = () => {
             </div>
             <div className="flex justify-between">
               <span>Tax</span>
-              <span>$3.00</span>
+              <span>${tax.toFixed(2)}</span>
             </div>
             <div className="border-t border-t-[#E6E7E8] pt-4 mb-6 flex justify-between font-medium text-black">
               <span>Total</span>
-              <span>$100.00</span>
+              <span>${total.toFixed(2)}</span>
             </div>
           </div>
           <button className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition">
@@ -177,7 +187,6 @@ const Checkout: React.FC = () => {
         </div>
       </div>
 
-     
       <div className="mt-16">
         <Footer /> 
       </div>
