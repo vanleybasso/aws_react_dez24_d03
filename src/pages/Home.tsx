@@ -1,8 +1,29 @@
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ProductCard from "../components/ProductCard";  
+import ProductCard from "../components/ProductCard";
+
+interface Product {
+  id: number;
+  imageUrl: string;
+  altText: string;
+  title: string;
+  price: string;
+  status: string;
+  rating?: number; 
+}
 
 const Home = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+   
+    fetch('http://localhost:3001/products')
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Erro ao buscar produtos:", error));
+  }, []);
+
   return (
     <>
       <Header />
@@ -76,34 +97,17 @@ const Home = () => {
       </section>
 
       <section className="py-10 px-10 flex mt-10 justify-center flex-wrap gap-5">
-        <ProductCard 
-          imageUrl="/src/assets/short.png" 
-          altText="Camiseta 1"
-          title="Classic Monochrome Tees"
-          price="$27.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/short.png" 
-          altText="Camiseta 2"
-          title="Classic Monochrome Tees"
-          price="$27.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/short.png" 
-          altText="Camiseta 3"
-          title="Classic Monochrome Tees"
-          price="$27.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/short.png" 
-          altText="Camiseta 4"
-          title="Classic Monochrome Tees"
-          price="$27.00"
-          status="In Stock"
-        />
+        {products.slice(0, 4).map((product) => ( 
+          <ProductCard
+            key={product.id}
+            id={product.id} 
+            imageUrl={product.imageUrl}
+            altText={product.altText}
+            title={product.title}
+            price={product.price}
+            status={product.status}
+          />
+        ))}
       </section>
 
       <section className="py-20 px-10 lg:pl-[174px] lg:pr-[213px] flex items-center justify-between bg-gradient-to-r from-[#F2F2F2] to-white">
@@ -124,35 +128,19 @@ const Home = () => {
         </div>
       </section>
 
+     
       <section className="py-10 px-10 flex mt-10 justify-center flex-wrap gap-5">
-        <ProductCard 
-          imageUrl="/src/assets/blazer.png" 
-          altText="Produto 1"
-          title="Classic Monochrome Tees"
-          price="$40.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/blazer.png" 
-          altText="Produto 2"
-          title="Classic Monochrome Tees"
-          price="$35.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/blazer.png" 
-          altText="Produto 3"
-          title="Classic Monochrome Tees"
-          price="$445.00"
-          status="In Stock"
-        />
-        <ProductCard 
-          imageUrl="/src/assets/blazer.png" 
-          altText="Produto 4"
-          title="Classic Monochrome Tees"
-          price="$50.00"
-          status="In Stock"
-        />
+        {products.slice(4, 8).map((product) => ( 
+          <ProductCard
+            key={product.id}
+            id={product.id} 
+            imageUrl={product.imageUrl}
+            altText={product.altText}
+            title={product.title}
+            price={product.price}
+            status={product.status}
+          />
+        ))}
       </section>
 
       <Footer /> 
