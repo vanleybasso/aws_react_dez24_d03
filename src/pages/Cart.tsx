@@ -11,22 +11,17 @@ const Cart: React.FC = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const subtotal = useSelector((state: RootState) => state.cart.subtotal);
+  const tax = useSelector((state: RootState) => state.cart.tax);
   const dispatch = useDispatch();
 
-  
-  const subtotal = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity; 
-  }, 0);
-
-  
-  const tax = 3.0; 
   const total = subtotal + tax;
 
   const handleCheckout = () => {
     if (!isSignedIn) {
       navigate("/login");
     } else {
-      console.log("Proceed to checkout");
+      navigate("/checkout");
     }
   };
 
