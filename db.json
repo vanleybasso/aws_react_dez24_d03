@@ -5,8 +5,8 @@
       "imageUrl": "srcassetsshort.png",
       "altText": "Camiseta 1",
       "title": "Classic Monochrome Tee",
-      "price": 270,
-      "status": "In Stock",
+      "price": 95,
+      "status": "IN STOCK",
       "rating": 4.2,
       "reviewsCount": 54,
       "colors": [
@@ -19,7 +19,7 @@
       ],
       "description": "Camiseta básica preta para uso diário.",
       "images": [
-        "srcassetsshort.png"
+        "https://cdn.awsli.com.br/600x1000/1960/1960866/produto/125390796/a12dd9ac46.jpg"
       ],
       "category": "Trousers"
     },
@@ -29,7 +29,7 @@
       "altText": "Camiseta 2",
       "title": "Summer Breeze Tee",
       "price": 22,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.5,
       "reviewsCount": 12,
       "colors": [
@@ -52,7 +52,7 @@
       "altText": "Blazer 1",
       "title": "Formal Black Blazer",
       "price": 120,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.8,
       "reviewsCount": 88,
       "colors": [
@@ -75,7 +75,7 @@
       "altText": "Blazer 2",
       "title": "Casual Gray Blazer",
       "price": 85,
-      "status": "No Stock",
+      "status": "IN STOCK",
       "rating": 4.6,
       "reviewsCount": 53,
       "colors": [
@@ -98,7 +98,7 @@
       "altText": "Camiseta 3",
       "title": "Sporty Fit Tee",
       "price": 29.99,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.3,
       "reviewsCount": 21,
       "colors": [
@@ -120,7 +120,7 @@
       "altText": "Blazer 3",
       "title": "Blue Executive Blazer",
       "price": 150,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.9,
       "reviewsCount": 60,
       "colors": [
@@ -142,7 +142,7 @@
       "altText": "Camiseta 4",
       "title": "Urban Street Tee",
       "price": 25,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4,
       "reviewsCount": 10,
       "colors": [
@@ -164,7 +164,7 @@
       "altText": "Blazer 4",
       "title": "White Linen Blazer",
       "price": 130,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.4,
       "reviewsCount": 34,
       "colors": [
@@ -186,7 +186,7 @@
       "altText": "Camiseta 5",
       "title": "Retro Print Tee",
       "price": 28,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.7,
       "reviewsCount": 29,
       "colors": [
@@ -209,7 +209,7 @@
       "altText": "Blazer 5",
       "title": "Slim Fit Blazer",
       "price": 140,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.5,
       "reviewsCount": 76,
       "colors": [
@@ -231,7 +231,7 @@
       "altText": "Camiseta 6",
       "title": "Eco Friendly Tee",
       "price": 30,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.8,
       "reviewsCount": 49,
       "colors": [
@@ -254,7 +254,7 @@
       "altText": "Blazer 6",
       "title": "Vintage Leather Blazer",
       "price": 300,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 5,
       "reviewsCount": 15,
       "colors": [
@@ -276,7 +276,7 @@
       "altText": "Camiseta 7",
       "title": "Minimalist Tee",
       "price": 20,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.3,
       "reviewsCount": 22,
       "colors": [
@@ -298,7 +298,7 @@
       "altText": "Blazer 7",
       "title": "Brown Business Blazer",
       "price": 110,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.6,
       "reviewsCount": 65,
       "colors": [
@@ -320,7 +320,7 @@
       "altText": "Camiseta 8",
       "title": "Longline Tee",
       "price": 26,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.2,
       "reviewsCount": 19,
       "colors": [
@@ -343,7 +343,7 @@
       "altText": "Blazer 8",
       "title": "Red Velvet Blazer",
       "price": 250,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.9,
       "reviewsCount": 42,
       "colors": [
@@ -365,7 +365,7 @@
       "altText": "Camiseta 9",
       "title": "Tie Dye Tee",
       "price": 24,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.5,
       "reviewsCount": 38,
       "colors": [
@@ -387,7 +387,7 @@
       "altText": "Blazer 9",
       "title": "Khaki Outdoor Blazer",
       "price": 95,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.4,
       "reviewsCount": 48,
       "colors": [
@@ -409,7 +409,7 @@
       "altText": "Camiseta 10",
       "title": "Henley Tee",
       "price": 27.5,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.6,
       "reviewsCount": 20,
       "colors": [
@@ -432,7 +432,7 @@
       "altText": "Blazer 10",
       "title": "Green Casual Blazer",
       "price": 105,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.7,
       "reviewsCount": 31,
       "colors": [
@@ -455,7 +455,7 @@
       "altText": "Camiseta 11",
       "title": "V-Neck Cotton Tee",
       "price": 23,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.4,
       "reviewsCount": 45,
       "colors": [
@@ -480,7 +480,7 @@
       "altText": "Blazer 11",
       "title": "Navy Double-Breasted Blazer",
       "price": 180,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.8,
       "reviewsCount": 59,
       "colors": [
@@ -503,7 +503,7 @@
       "altText": "Camiseta 12",
       "title": "Graphic Print Tee",
       "price": 32,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.7,
       "reviewsCount": 78,
       "colors": [
@@ -526,7 +526,7 @@
       "altText": "Blazer 12",
       "title": "Gray Wool Blazer",
       "price": 200,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.9,
       "reviewsCount": 90,
       "colors": [
@@ -549,7 +549,7 @@
       "altText": "Camiseta 13",
       "title": "Basic Crewneck Tee",
       "price": 18,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.1,
       "reviewsCount": 25,
       "colors": [
@@ -573,7 +573,7 @@
       "altText": "Blazer 13",
       "title": "Checkered Business Blazer",
       "price": 175,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.5,
       "reviewsCount": 67,
       "colors": [
@@ -595,7 +595,7 @@
       "altText": "Camiseta 14",
       "title": "Fitted Black Tee",
       "price": 25,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.3,
       "reviewsCount": 37,
       "colors": [
@@ -617,7 +617,7 @@
       "altText": "Blazer 14",
       "title": "Olive Green Casual Blazer",
       "price": 115,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.4,
       "reviewsCount": 44,
       "colors": [
@@ -640,7 +640,7 @@
       "altText": "Camiseta 15",
       "title": "Striped Cotton Tee",
       "price": 28,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.6,
       "reviewsCount": 58,
       "colors": [
@@ -664,7 +664,7 @@
       "altText": "Blazer 15",
       "title": "Beige Cotton Blazer",
       "price": 145,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.7,
       "reviewsCount": 71,
       "colors": [
@@ -687,7 +687,7 @@
       "altText": "Camiseta 16",
       "title": "Relaxed Fit Tee",
       "price": 22,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.2,
       "reviewsCount": 30,
       "colors": [
@@ -711,7 +711,7 @@
       "altText": "Blazer 16",
       "title": "Light Blue Denim Blazer",
       "price": 160,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.5,
       "reviewsCount": 56,
       "colors": [
@@ -733,7 +733,7 @@
       "altText": "Camiseta 17",
       "title": "Muscle Fit Tee",
       "price": 35,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.8,
       "reviewsCount": 40,
       "colors": [
@@ -756,7 +756,7 @@
       "altText": "Blazer 17",
       "title": "Cream Linen Blazer",
       "price": 190,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.9,
       "reviewsCount": 63,
       "colors": [
@@ -779,7 +779,7 @@
       "altText": "Camiseta 18",
       "title": "Polo Sport Tee",
       "price": 40,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 4.7,
       "reviewsCount": 75,
       "colors": [
@@ -803,7 +803,7 @@
       "altText": "Blazer 18",
       "title": "Classic Black Tuxedo Blazer",
       "price": 500,
-      "status": "In Stock",
+      "status": "IN STOCK",
       "rating": 5,
       "reviewsCount": 98,
       "colors": [

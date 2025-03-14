@@ -98,13 +98,13 @@ const Product = () => {
       <Header />
 
       <section className="flex items-center p-4 pl-4 xl:pl-32">
-        <span className="mr-2 font-bold">Ecommerce</span>
+        <span className="mr-2 text-custom text-sm font-semibold">Ecommerce</span>
         <img
           src="/src/assets/arrow.png"
           alt=">"
           className="w-2 h-2 mr-2"
         />
-        <span>{product.title}</span>
+        <span className="text-sm text-primary-heading font-semibold">{product.title}</span>
       </section>
 
       <div className="flex flex-col lg:flex-row ml-8 xl:ml-32 mt-4 space-y-4 lg:space-y-0 lg:space-x-8">
@@ -114,7 +114,8 @@ const Product = () => {
 
         <div className="flex flex-col justify-start">
           <div className="flex items-center space-x-8">
-            <h2 className="text-3xl font-bold">{product.title}</h2>
+          <h2 className="text-[24px] font-bold">{product.title}</h2>
+
             <img
               src="/src/assets/Share.png"
               alt="Compartilhar"
@@ -147,7 +148,7 @@ const Product = () => {
           </div>
 
           <div className="mt-4">
-            <p className="text-[18px] text-gray-800 font-medium">
+            <p className="text-[18px] text-gray-800 font-medium font-semibold">
               ${parseFloat(product.price).toFixed(2)} 
             </p>
           </div>
