@@ -47,24 +47,26 @@ const Cart: React.FC = () => {
         className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ lineHeight: "normal" }}
       >
-        <span className="inline-block">Cart</span>
+        <span className="inline-block text-2xl text-primary-heading font-semibold">Cart</span>
+
       </h1>
 
       <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Cart</span>
+          <span className="text-sm text-primary-heading font-semibold">Cart</span>
         </div>
       </section>
 
       <main className="flex flex-col lg:flex-row pl-4 sm:pl-[174px] pr-4 py-10 bg-white sm:pr-20 flex-grow">
         <div className="w-full lg:w-2/3 pr-10 mb-6 lg:mb-0">
-          <h2 className="text-lg font-semibold mb-4">Your cart</h2>
+        <h2 className="text-base font-semibold mb-4">Your cart</h2>
+
 
           <div className="w-full h-px bg-[#E9E9EB] mb-6" />
 
-          <div className="space-y-6">
+          <div className="space-y-12">
             {cartItems.map((item) => (
               <div key={item.id} className="flex items-center">
                 <div className="w-20 h-20 flex items-center justify-center bg-[#F6F6F6] rounded mr-4 hidden lg:flex">
@@ -120,23 +122,23 @@ const Cart: React.FC = () => {
         </div>
 
         <div className="w-full lg:w-1/3 border border-[#E6E7E8] rounded p-6 h-fit">
-          <h2 className="text-lg font-semibold mb-10">Order Summary</h2>
+          <h2 className="text-base font-semibold mb-10">Order Summary</h2>
 
           <div className="space-y-4 text-sm text-gray-600">
-            <div className="flex justify-between">
+            <div className="flex justify-between text-sm">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span className="text-primary-heading font-semibold">${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span>Free</span>
+              <span className="text-primary-heading font-semibold">Free</span>
             </div>
             <div className="flex justify-between">
               <span>Tax</span>
-              <span>${tax.toFixed(2)}</span>
+              <span className="text-primary-heading font-semibold">${tax.toFixed(2)}</span>
             </div>
             <div className="border-t border-t-[#E6E7E8] pt-4 mb-6 flex justify-between font-medium text-black">
-              <span>Total</span>
+              <span className="text-primary-heading font-semibold">Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
@@ -148,9 +150,13 @@ const Cart: React.FC = () => {
             {isSignedIn ? "Checkout" : "Login to Checkout"}
           </button>
 
-          <button className="w-full text-center text-sm text-gray-500 mt-8 hover:underline">
-            Continue Shopping
-          </button>
+          <button
+  onClick={() => navigate("/listing")} 
+  className="w-full text-center text-[12px] text-gray-500 mt-8 underline hover:underline text-primary-heading font-semibold cursor-pointer"
+>
+  Continue Shopping
+</button>
+
         </div>
       </main>
 
