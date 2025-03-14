@@ -10,19 +10,23 @@ const Header = () => {
 
   const handleUserIconClick = () => {
     if (!user) {
-      navigate("/login"); 
+      navigate("/login");
     } else {
       navigate("/account-details");
     }
   };
 
+  const handleCartClick = () => {
+    navigate("/cart"); 
+  };
+
   return (
     <header className="w-full">
-      <div className="bg-black text-white text-center py-2 text-sm">
+      <div className="bg-custom-banner text-white text-center py-2 text-sm">
         Get 25% OFF on your first order.{" "}
-        <a href="#" className="underline">
+        <Link to="/listing" className="underline">
           Order Now
-        </a>
+        </Link>
       </div>
 
       <nav className="flex justify-between items-center p-4 bg-white shadow-md relative">
@@ -46,17 +50,17 @@ const Header = () => {
 
         <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-center">
           <li>
-            <Link to="/" className="hover:text-black">
+            <Link to="/" className="hover:text-black text-custom">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/listing" className="hover:text-black">
+            <Link to="/listing" className="hover:text-black text-custom">
               Shop
             </Link>
           </li>
           <li>
-            <Link to="/about" className="hover:text-black">
+            <Link to="/about" className="hover:text-black text-custom">
               About
             </Link>
           </li>
@@ -67,12 +71,13 @@ const Header = () => {
             src="/src/assets/car.png"
             alt="Carrinho"
             className="w-5 h-5 cursor-pointer"
+            onClick={handleCartClick} 
           />
 
           {user ? (
             <div
               onClick={handleUserIconClick}
-              className="w-6 h-6 rounded-full bg-[#F0F1FF] flex items-center justify-center text-sm font-semibold cursor-pointer overflow-hidden"
+              className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center text-sm font-semibold cursor-pointer overflow-hidden"
             >
               {user.imageUrl ? (
                 <img
@@ -81,7 +86,9 @@ const Header = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span>{user.firstName ? user.firstName[0] : "U"}</span>
+                <span className="text-gray-700">
+                  {user.firstName ? user.firstName[0] : "U"}
+                </span>
               )}
             </div>
           ) : (
@@ -108,7 +115,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              to="/products"
+              to="/listing"
               onClick={() => setIsMenuOpen(false)}
               className="block py-2 text-gray-700 hover:text-black"
             >
