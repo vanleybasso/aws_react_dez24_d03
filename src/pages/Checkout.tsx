@@ -146,24 +146,24 @@ const Checkout: React.FC = () => {
         className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ lineHeight: 'normal' }}
       >
-        <span className="inline-block">Checkout</span>
+        <span className="inline-block  text-primary-heading font-semibold">Checkout</span>
       </h1>
 
       <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Checkout</span>
+          <span className='text-sm text-primary-heading font-semibold'>Checkout</span>
         </div>
       </section>
 
       <div className="flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8">
         <div className="flex-1">
-          <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8">Shipping Address</h2>
+          <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8 text-base font-semibold">Shipping Address</h2>
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2">
+              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2 text-custom-gray">
                 Zip Code
               </label>
               <input
@@ -183,7 +183,7 @@ const Checkout: React.FC = () => {
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="country" className="block text-sm font-semibold mb-2">
+              <label htmlFor="country" className="block text-sm font-semibold mb-2 text-custom-gray">
                 Country
               </label>
               <input
@@ -199,7 +199,7 @@ const Checkout: React.FC = () => {
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="city" className="block text-sm font-semibold mb-2">
+              <label htmlFor="city" className="block text-sm font-semibold mb-2 text-custom-gray">
                 City
               </label>
               <input
@@ -213,7 +213,7 @@ const Checkout: React.FC = () => {
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="state" className="block text-sm font-semibold mb-2">
+              <label htmlFor="state" className="block text-sm font-semibold mb-2 text-custom-gray">
                 State
               </label>
               <input
@@ -228,7 +228,7 @@ const Checkout: React.FC = () => {
           </div>
 
           <div className="pl-4 sm:pl-0 mt-8">
-            <label htmlFor="street-address" className="block text-sm font-semibold mb-2">
+            <label htmlFor="street-address" className="block text-sm font-semibold mb-2 text-custom-gray">
               Street Address
             </label>
             <input
@@ -243,7 +243,7 @@ const Checkout: React.FC = () => {
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="full-name" className="block text-sm font-semibold mb-2">
+              <label htmlFor="full-name" className="block text-sm font-semibold mb-2 text-custom-gray">
                 Full Name
               </label>
               <input
@@ -257,7 +257,7 @@ const Checkout: React.FC = () => {
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="email" className="block text-sm font-semibold mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold mb-2 text-custom-gray">
                 Email
               </label>
               <input
@@ -284,9 +284,9 @@ const Checkout: React.FC = () => {
         ></div>
 
         <div className="w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8">
-          <h2 className="text-lg font-semibold mb-10">Your Order</h2>
+          <h2 className="text-base font-semibold mb-10">Your Order</h2>
 
-          <div className="w-full flex justify-end mb-22">
+          <div className="w-full flex justify-end mb-16">
             <div
               className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer"
               onClick={handleEditCart}
@@ -300,15 +300,15 @@ const Checkout: React.FC = () => {
           <div className="space-y-4 text-sm text-gray-600">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span className='text-primary-heading font-semibold'>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span>Free</span>
+              <span className='text-primary-heading font-semibold'>Free</span>
             </div>
             <div className="flex justify-between">
               <span>Tax</span>
-              <span>${tax.toFixed(2)}</span>
+              <span className='text-primary-heading font-semibold'>${tax.toFixed(2)}</span>
             </div>
             <div className="border-t border-t-[#E6E7E8] pt-4 mb-6 flex justify-between font-medium text-black">
               <span>Total</span>
@@ -321,7 +321,7 @@ const Checkout: React.FC = () => {
             disabled={!isFormValid}
             className={`w-full bg-black text-white py-3 rounded mt-6 ${
               isFormValid ? 'hover:bg-gray-800' : 'opacity-50 cursor-not-allowed'
-            } transition`}
+            } transition cursor-pointer`}
           >
             Place Order
           </button>
