@@ -2,5 +2,40 @@
 
 body {
     background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+  }
+  
+
+  .custom-text-32 {
+    font-size: 32px;
+  }
+  
+  .text-dark {
+    color: #202533;
+  }
+
+  .text-custom-gray {
+    color: #474B57;
+  }
+
+  .bg-custom-button {
+    background-color: #0E1422;
+  }
+  
+
+  .text-custom {
+    color: #5C5F6A;
+  }
+  
+  .text-shop-now {
+    color: #878A92;
+  }
+
+  .text-primary-heading {
+    color: #0E1422;
+  }
+  
+  .bg-custom-banner {
+    background-color: #0E1422;
   }
   

@@ -1080,5 +1080,39 @@
         "country": "Brasil"
       }
     }
+  ],
+  "subscribers": [
+    {
+      "id": "7085",
+      "email": "vanley_basso@hotmail.com"
+    },
+    {
+      "id": "bd71",
+      "email": "ladiversiteoficial@gmail.com"
+    },
+    {
+      "id": "c1ba",
+      "email": "bassovanley@gmail.com"
+    },
+    {
+      "id": "40e1",
+      "email": "augustocarlos@gmail.com"
+    },
+    {
+      "id": "a77f",
+      "email": "fernandotorrees@gmail.com"
+    },
+    {
+      "id": "bcee",
+      "email": "van@hotmail.com"
+    },
+    {
+      "id": "5048",
+      "email": "van@gmail.com"
+    },
+    {
+      "id": "9b09",
+      "email": "vanley_basso@hotmail.com"
+    }
   ]
 }

@@ -88,9 +88,11 @@ const AccountDetails: React.FC = () => {
                 className="w-full h-full object-cover" 
               />
             ) : (
-              <span className="text-lg font-semibold text-gray-800">
-                {user?.firstName ? user.firstName[0] : 'U'}
-              </span>
+              <div className="w-full h-full flex items-center justify-center bg-gray-300">
+                <span className="text-lg font-semibold text-gray-700">
+                  {user?.firstName ? user.firstName[0] : 'U'}
+                </span>
+              </div>
             )}
           </div>
 
