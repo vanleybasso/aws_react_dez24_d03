@@ -22,12 +22,16 @@ const NotFound = () => {
         </p>
 
         <Link
-          to="/"
-          className="bg-black text-white py-3 px-8 rounded-md hover:bg-gray-800 transition duration-300 text-lg flex items-center"
-        >
-          Resgatar meu estilo
-          <span className="ml-2">→</span>
-        </Link>
+  to="/"
+  className="bg-black text-white py-3 px-8 rounded-md hover:bg-gray-800 transition duration-300 text-lg flex items-center gap-2"
+>
+  Resgatar meu estilo
+  <img
+    src="/src/assets/Arrow-Right.png" 
+    alt="Ícone de estilo"
+    className="w-6 h-6"
+  />
+</Link>
       </section>
     </>
   );
