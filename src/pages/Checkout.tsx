@@ -146,7 +146,7 @@ const Checkout: React.FC = () => {
         className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ lineHeight: 'normal' }}
       >
-        <span className="inline-block  text-primary-heading font-semibold">Checkout</span>
+        <span className="inline-block text-primary-heading font-semibold">Checkout</span>
       </h1>
 
       <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">

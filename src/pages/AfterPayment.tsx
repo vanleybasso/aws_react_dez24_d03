@@ -19,7 +19,7 @@ const AfterPayment: React.FC = () => {
         className="text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ backgroundColor: '#D5E5D7', lineHeight: 'normal' }}
       >
-        <span className="inline-block">Successful Order</span>
+        <span className="inline-block text-primary-heading font-semibold">Successful Order</span>
       </h1>
 
       <section
@@ -27,9 +27,9 @@ const AfterPayment: React.FC = () => {
         style={{ backgroundColor: '#D5E5D7' }}
       >
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Successful Order</span>
+          <span className='text-sm text-primary-heading font-semibold'>Successful Order</span>
         </div>
       </section>
 
@@ -43,15 +43,15 @@ const AfterPayment: React.FC = () => {
       </section>
 
       
-      <section className="flex justify-center mt-8">
-        <h2 className="text-2xl font-semibold" style={{ fontSize: '24px' }}>
+      <section className="flex justify-center mt-2">
+        <h2 className="text-2xl font-bold" style={{ fontSize: '24px' }}>
           Thank you for shopping
         </h2>
       </section>
 
       
       <section className="flex justify-center mt-4">
-        <p className="text-center" style={{ fontSize: '14px' }}>
+        <p className="text-center text-custom" style={{ fontSize: '14px' }}>
           Your order has been successfully placed and is now<br />
           being processed.
         </p>
@@ -59,13 +59,18 @@ const AfterPayment: React.FC = () => {
 
       
       <section className="flex justify-center mt-10">
-        <button
-          onClick={handleGoToAccount} 
-          className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-800"
-        >
-          Go to my account →
-        </button>
-      </section>
+  <button
+    onClick={handleGoToAccount}
+    className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2"
+  >
+    Go to my account
+    <img
+      src="/src/assets/Arrow-Right.png" // Substitua pelo caminho do seu ícone
+      alt="Ícone"
+      className="w-6 h-6" // Ajuste o tamanho conforme necessário
+    />
+  </button>
+</section>
 
       
       <div className="mt-30">
