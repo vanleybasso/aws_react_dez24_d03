@@ -145,7 +145,7 @@ const Cart: React.FC = () => {
 
           <button
             onClick={handleCheckout}
-            className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition"
+            className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition cursor-pointer"
           >
             {isSignedIn ? "Checkout" : "Login to Checkout"}
           </button>
