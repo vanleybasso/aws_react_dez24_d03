@@ -12,7 +12,7 @@ interface Product {
   imageUrl: string;
   altText: string;
   title: string;
-  price: string; 
+  price: string;
   status: string;
   rating?: number;
   reviewsCount: number;
@@ -99,12 +99,10 @@ const Product = () => {
 
       <section className="flex items-center p-4 pl-4 xl:pl-32">
         <span className="mr-2 text-custom text-sm font-semibold">Ecommerce</span>
-        <img
-          src="/src/assets/arrow.png"
-          alt=">"
-          className="w-2 h-2 mr-2"
-        />
-        <span className="text-sm text-primary-heading font-semibold">{product.title}</span>
+        <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
+        <span className="text-sm text-primary-heading font-semibold">
+          {product.title}
+        </span>
       </section>
 
       <div className="flex flex-col lg:flex-row ml-8 xl:ml-32 mt-4 space-y-4 lg:space-y-0 lg:space-x-8">
@@ -113,17 +111,16 @@ const Product = () => {
         </div>
 
         <div className="flex flex-col justify-start">
-          <div className="flex items-center space-x-8">
-          <h2 className="text-[24px] font-bold">{product.title}</h2>
+        <div className="flex items-center justify-between w-full">
+  <h2 className="text-[24px] font-bold">{product.title}</h2>
+  <img
+    src="/src/assets/Share.png"
+    alt="Compartilhar"
+    className="w-6 h-6 cursor-pointer ml-30" // Adicione uma margem à esquerda
+  />
+</div>
 
-            <img
-              src="/src/assets/Share.png"
-              alt="Compartilhar"
-              className="w-6 h-6 cursor-pointer"
-            />
-          </div>
-
-          <div className="flex items-center space-x-4 mt-4">
+          <div className="flex items-center space-x-4 mt-2">
             <div
               className="bg-[#F6F6F6] flex items-center px-3"
               style={{
@@ -149,15 +146,16 @@ const Product = () => {
 
           <div className="mt-4">
             <p className="text-[18px] text-gray-800 font-medium font-semibold">
-              ${parseFloat(product.price).toFixed(2)} 
+              ${parseFloat(product.price).toFixed(2)}
             </p>
           </div>
 
-          {product.status === "In Stock" && (
+          {/* Exibe informações adicionais apenas se o produto estiver em estoque */}
+          {product.status === "IN STOCK" && (
             <>
-              <div className="mt-4">
-                <p className="text-[12px]" style={{ color: "#5C5F6A" }}>
-                  Available Colors
+              <div className="mt-6">
+                <p className="text-[12px] font-semibold " style={{ color: "#5C5F6A" }}>
+                  AVAILABLE COLORS
                 </p>
               </div>
 
@@ -178,9 +176,9 @@ const Product = () => {
                 ))}
               </div>
 
-              <div className="mt-4">
-                <p className="text-[12px]" style={{ color: "#5C5F6A" }}>
-                  Select Size
+              <div className="mt-6">
+                <p className="text-[12px] font-semibold" style={{ color: "#5C5F6A" }}>
+                  SELECT SIZE
                 </p>
               </div>
 
@@ -192,24 +190,24 @@ const Product = () => {
                       selectedSize === size
                         ? "border-black"
                         : "border-[#E6E7E8]"
-                    } flex items-center justify-center cursor-pointer`}
+                    } flex items-center justify-center cursor-pointer rounded-[4px]`}
                     onClick={() => setSelectedSize(size)}
                   >
-                    <span className="text-[14px]" style={{ color: "#5C5F6A" }}>
+                    <span className="text-[12px]" style={{ color: "#5C5F6A" }}>
                       {size}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-4">
-                <p className="text-[12px]" style={{ color: "#5C5F6A" }}>
-                  Quantity
+              <div className="mt-8">
+                <p className="text-[12px] font-semibold" style={{ color: "#5C5F6A" }}>
+                  QUANTITY
                 </p>
               </div>
 
               <div className="mt-2">
-                <div className="w-[164px] h-[44px] border border-[#E6E7E8] flex items-center justify-between px-4">
+                <div className="w-[164px] h-[44px] border border-[#E6E7E8] flex items-center justify-between px-4 rounded">
                   <img
                     src="/src/assets/Minus.png"
                     alt="Minus"
@@ -226,9 +224,9 @@ const Product = () => {
                 </div>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-10">
                 <button
-                  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px]"
+                  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px] rounded"
                   onClick={handleAddToCart}
                 >
                   Add to cart
@@ -252,12 +250,13 @@ const Product = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row ml-8 xl:ml-32 mt-[248px]">
-        <div className="bg-[#F6F6F6] rounded-[8px] w-[241px] h-[41px] flex items-center px-3">
-          <span className="text-[14px]">Details</span>
-        </div>
+  <div className="bg-[#F6F6F6] rounded-[8px] w-[241px] h-[41px] flex items-center px-3">
+    <img src="/src/assets/More.png" alt="Ícone" className="w-6 h-6 mr-2" />
+    <span className="text-[14px]">Details</span>
+  </div>
 
         <div className="mt-[16px] lg:mt-0 lg:ml-8 max-w-[727px]">
-          <h2 className="text-[16px] font-bold">Detail</h2>
+          <h2 className="text-[16px] font-bold text-primary-heading">Detail</h2>
           <p className="text-[14px] mt-2" style={{ color: "#5C5F6A" }}>
             {product.description}
           </p>
@@ -278,7 +277,7 @@ const Product = () => {
               imageUrl={product.imageUrl}
               altText={product.altText}
               title={product.title}
-              price={product.price}
+              price={parseFloat(product.price)}
               status={product.status}
             />
           ))}
