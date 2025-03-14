@@ -8,7 +8,6 @@ const Footer = () => {
   const [success, setSuccess] = useState("");
   const location = useLocation();
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -52,13 +51,11 @@ const Footer = () => {
 
   return (
     <footer>
-      
       <div className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between">
-          
           <div className="md:w-1/2 md:pl-[40px]">
             <h2 className="text-xl font-bold mb-2 md:mb-4 text-primary-heading">Join Our Newsletter</h2>
-            <p className=" mb-4 md:mb-6 text-custom text-sm">
+            <p className="mb-4 md:mb-6 text-custom text-sm">
               We love to surprise our subscribers with occasional gifts.
             </p>
           </div>
@@ -77,7 +74,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="px-6 py-2 bg-custom-button text-white rounded-lg hover:bg-gray-800 tex-sm"
+                className="px-6 py-2 bg-custom-button text-white rounded-lg hover:bg-gray-800 tex-sm cursor-pointer"
               >
                 Subscribe
               </button>
@@ -86,21 +83,17 @@ const Footer = () => {
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             {success && <p className="text-green-500 text-sm mt-2">{success}</p>}
           </form>
-
         </div>
       </div>
 
-     
       <div className="bg-white py-8">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between md:pl-[50px]">
-
-         
           <div>
             <div className="flex items-center">
               <img src="/src/assets/Logomark.png" alt="Logo" className="h-8 mr-2" />
               <span className="text-lg font-semibold">Ecommerce</span>
             </div>
-            <p className="text-custom  mt-2 text-sm">
+            <p className="text-custom mt-2 text-sm">
               DevCut is a YouTube channel for <br /> practical project-based learning.
             </p>
             <div className="flex items-center gap-4 mt-6">
@@ -116,35 +109,51 @@ const Footer = () => {
             </div>
           </div>
 
-         
           <div className="grid grid-cols-3 gap-18 mt-6 md:mt-0">
             <div>
               <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">SUPPORT</h3>
               <ul className="text-custom text-sm space-y-2">
-                <li>FAQ</li>
-                <li>Terms of use</li>
-                <li>Privacy Policy</li>
+                <li>
+                  <Link to="/faq" className="hover:text-black transition-colors duration-200">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="hover:text-black transition-colors duration-200">
+                    Terms of use
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="hover:text-black transition-colors duration-200">
+                    Privacy Policy
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
-  <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">
-    COMPANY
-  </h3>
-  <ul className="space-y-2">
-    <li>
-      <Link
-        to="/about"
-        className="text-sm text-custom hover:text-black transition-colors duration-200"
-      >
-        About us
-      </Link>
-    </li>
-    <li className="text-sm text-custom">Contact</li>
-    <li className="text-sm text-custom">Careers</li>
-  </ul>
-</div>
-
+              <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">COMPANY</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    to="/about"
+                    className="text-sm text-custom hover:text-black transition-colors duration-200"
+                  >
+                    About us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-sm text-custom hover:text-black transition-colors duration-200">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/careers" className="text-sm text-custom hover:text-black transition-colors duration-200">
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">SHOP</h3>
@@ -152,7 +161,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/account-details"
-                    className=" text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="text-sm text-custom hover:text-black transition-colors duration-200"
                   >
                     My Account
                   </Link>
@@ -168,7 +177,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/cart"
-                    className=" text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="text-sm text-custom hover:text-black transition-colors duration-200"
                   >
                     Cart
                   </Link>
@@ -177,7 +186,6 @@ const Footer = () => {
             </div>
           </div>
 
-         
           <div className="mt-6 md:mt-0">
             <h3 className="font-semibold mb-8 text-sm text-shop-now">ACCEPTED PAYMENTS</h3>
             <div className="flex gap-8">
@@ -186,14 +194,11 @@ const Footer = () => {
               <img src="/src/assets/Visa.png" alt="Visa" className="h-6" />
             </div>
           </div>
-
         </div>
 
-        
         <div className="text-center text-gray-600 mt-30 mb-0 text-sm text-custom">
           © {currentYear} DevCut. All rights reserved.
         </div>
-
       </div>
     </footer>
   );

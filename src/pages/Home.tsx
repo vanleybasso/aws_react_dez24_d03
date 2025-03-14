@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
@@ -15,6 +16,7 @@ interface Product {
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -23,18 +25,28 @@ const Home = () => {
       .catch((error) => console.error("Erro ao buscar produtos:", error));
   }, []);
 
+  const handleViewCollectionClick = () => {
+    navigate("/listing");
+  };
+
+  const handleStartBrowsingClick = () => {
+    navigate("/listing");
+  };
+
   return (
     <>
       <Header />
 
-     
       <section className="bg-[#F6F6F6] pt-20 pb-0 px-10 flex flex-col lg:flex-row items-center justify-between relative">
         <div className="max-w-xl lg:ml-[182px] text-center lg:text-left">
           <h1 className="custom-text-32 font-bold mb-2 text-dark">Fresh Arrivals Online</h1>
           <p className="text-sm text-gray-600 mb-6 mt--2text-custom-gray">
             Discover Our Newest Collection Today.
           </p>
-          <button className="text-sm bg-custom-button  text-white py-2 px-6 rounded-md hover:bg-gray-800 button-border">
+          <button 
+            className="text-sm bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 button-border cursor-pointer"
+            onClick={handleViewCollectionClick}
+          >
             View Collection →
           </button>
         </div>
@@ -56,7 +68,6 @@ const Home = () => {
         </div>
       </section>
 
-     
       <section className="px-10 lg:ml-[182px] mt-20 grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="flex flex-col items-start">
           <img
@@ -101,7 +112,6 @@ const Home = () => {
         </div>
       </section>
 
-     
       <section className="py-20 px-10 text-center mt-16">
         <h2 className="text-[12px] mb-2 text-shop-now">SHOP NOW</h2>
         <h3 className="text-[24px] font-bold text-primary-heading ">Best Selling</h3>
@@ -121,7 +131,6 @@ const Home = () => {
         ))}
       </section>
 
-     
       <section className="py-20 px-10 lg:pl-[174px] lg:pr-[213px] flex items-center justify-between bg-gradient-to-r from-[#F2F2F2] to-white mt-28">
         <div className="text-left">
           <h2 className="text-[24px] font-bold mb-4 text-primary-heading">
@@ -132,7 +141,10 @@ const Home = () => {
             <br />
             clothing categories.
           </p>
-          <button className=" text-white py-2 px-6 rounded-md hover:bg-gray-800 flex items-center bg-custom-button text-sm  ">
+          <button 
+            className="text-white py-2 px-6 rounded-md hover:bg-gray-800 flex items-center bg-custom-button text-sm cursor-pointer"
+            onClick={handleStartBrowsingClick}
+          >
             Start Browsing
             <span className="ml-2">→</span>
           </button>
@@ -147,7 +159,6 @@ const Home = () => {
         </div>
       </section>
 
-     
       <section className="py-10 px-10 flex flex-col mt-20 items-center justify-center gap-10">
         <div className="flex items-center justify-center">
           <span className="text-sm font-medium text-[#202533] border border-[#E9E9EB] rounded-[100px] py-1 px-4">
@@ -170,11 +181,9 @@ const Home = () => {
         </div>
       </section>
 
-      
       <div className="mt-20">
         <Footer />
       </div>
-      
     </>
   );
 };
