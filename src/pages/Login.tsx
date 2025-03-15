@@ -54,14 +54,14 @@ const Login: React.FC = () => {
         className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
         style={{ lineHeight: "normal" }}
       >
-        <span className="inline-block">Login</span>
+        <span className="inline-block text-primary-heading font-semibold">Login</span>
       </h1>
 
       <section className="flex items-center p-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Login</span>
+          <span className="text-sm text-primary-heading font-semibold">Login</span>
         </div>
       </section>
 
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
           <button
             type="button"
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 cursor-pointer"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -88,7 +88,7 @@ const Login: React.FC = () => {
 
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-custom-gray">
                 Email
               </label>
               <input
@@ -102,7 +102,7 @@ const Login: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-custom-gray">
                 Password
               </label>
               <input
@@ -118,22 +118,22 @@ const Login: React.FC = () => {
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <div className="flex justify-end">
-              <a href="/forgot-password" className="text-xs text-gray-500 hover:underline">
+              <a href="/forgot-password" className="text-xs text-custom-gray hover:underline">
                 Forgot Password?
               </a>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium"
+              className="w-full bg-custom-button  text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium cursor-pointer"
             >
               Login
             </button>
           </form>
 
-          <p className="mt-4 text-center text-sm text-gray-500">
+          <p className="mt-4 text-center text-sm text-custom">
             Don&apos;t have an account?{" "}
-            <a href="/signup" className="text-black font-medium hover:underline">
+            <a href="/signup" className="text-custom font-medium hover:underline">
               Sign up
             </a>
           </p>

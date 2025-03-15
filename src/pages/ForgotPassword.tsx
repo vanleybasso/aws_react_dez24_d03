@@ -39,27 +39,27 @@ const ForgotPassword: React.FC = () => {
     <>
       <Header />
 
-      <h1 className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 sm:pl-[174px]">
+      <h1 className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 sm:pl-[174px] text-primary-heading font-semibold">
         <span>Forgot Password</span>
       </h1>
 
       <section className="flex items-center p-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Forgot Password</span>
+          <span className=" text-sm text-primary-heading font-semibold">Forgot Password</span>
         </div>
       </section>
 
       <div className="flex justify-center items-center bg-white mt-16 mb-16 px-4">
         <div className="w-full max-w-sm p-6">
-          <p className="text-sm text-gray-600 mb-6">
+          <p className="text-sm text-custom-gray mb-6">
             Digite seu e-mail para receber um código de redefinição.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-custom-gray">
                 Email
               </label>
               <input
@@ -78,7 +78,7 @@ const ForgotPassword: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-black text-white rounded-md text-sm hover:bg-gray-800"
+              className="w-full px-4 py-2 bg-custom-button  text-white rounded-md text-sm cursor-pointer"
             >
               Enviar código
             </button>
@@ -86,7 +86,9 @@ const ForgotPassword: React.FC = () => {
         </div>
       </div>
 
-      <Footer />
+      <div className="mt-30">
+        <Footer />
+      </div>
     </>
   );
 };
