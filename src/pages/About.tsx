@@ -7,7 +7,7 @@ const About = () => {
     <>
       <Header />
 
-      <section className="bg-[#000000] h-[150px] relative">
+      <section className="bg-[#0E1422] h-[150px] relative">
       
 
        
