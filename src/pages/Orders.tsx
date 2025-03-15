@@ -114,31 +114,29 @@ const Orders: React.FC = () => {
           {orders.length > 0 && <h2 className="text-base font-semibold">Orders</h2>}
 
           <div style={{ marginTop: "20px" }}>
-  {orders.length === 0 ? (
-    <div style={{ marginLeft: "250px", marginTop: "50px" }}>
-      <div className="flex justify-center items-center flex-col">
-        <img
-          src="/src/assets/Empty.png"
-          alt="No Orders"
-          style={{ width: "64px", height: "64px" }}
-        />
-        <p style={{ fontSize: "14px", marginTop: "10px", textAlign: "center", color: "#5C5F6A" }}>
-          Your order history is waiting to be filled.
-        </p>
-        <button
-          onClick={() => navigate("/listing")} 
-          className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2 mt-4"
-        >
-          Start Shopping
-          <img
-            src="/src/assets/Arrow-Right.png" 
-            alt="Ícone"
-            className="w-6 h-6" 
-          />
-        </button>
-      </div>
-    </div>
-  ) : (
+            {orders.length === 0 ? (
+              <div className="flex justify-center items-center flex-col mt-12 sm:mt-16 md:ml-[200px]">
+              <img
+                src="/src/assets/Empty.png"
+                alt="No Orders"
+                className="w-16 h-16"
+              />
+              <p className="text-sm sm:text-base mt-4 text-center text-gray-600">
+                Your order history is waiting to be filled.
+              </p>
+              <button
+                onClick={() => navigate("/listing")}
+                className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2 mt-4"
+              >
+                Start Shopping
+                <img
+                  src="/src/assets/Arrow-Right.png"
+                  alt="Ícone"
+                  className="w-6 h-6"
+                />
+              </button>
+            </div>
+            ) : (
               orders.map((order, index) => (
                 <React.Fragment key={index}>
                   <div className="flex flex-col md:flex-row items-start justify-between mt-4 mb-6 w-full">
