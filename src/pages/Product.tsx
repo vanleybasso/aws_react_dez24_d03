@@ -116,7 +116,7 @@ const Product = () => {
   <img
     src="/src/assets/Share.png"
     alt="Compartilhar"
-    className="w-6 h-6 cursor-pointer ml-30" // Adicione uma margem à esquerda
+    className="w-6 h-6 cursor-pointer ml-30" 
   />
 </div>
 
@@ -150,7 +150,7 @@ const Product = () => {
             </p>
           </div>
 
-          {/* Exibe informações adicionais apenas se o produto estiver em estoque */}
+          
           {product.status === "IN STOCK" && (
             <>
               <div className="mt-6">
@@ -226,7 +226,7 @@ const Product = () => {
 
               <div className="mt-10">
                 <button
-                  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px] rounded"
+                  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px] rounded cursor-pointer"
                   onClick={handleAddToCart}
                 >
                   Add to cart
