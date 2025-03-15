@@ -57,15 +57,15 @@ const ResetPassword: React.FC = () => {
     <>
       <Header />
 
-      <h1 className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 sm:pl-[174px]">
+      <h1 className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 sm:pl-[174px] text-primary-heading font-semibold">
         <span>Reset Password</span>
       </h1>
 
       <section className="flex items-center p-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
         <div className="flex items-center">
-          <span className="mr-2 font-bold">Ecommerce</span>
+          <span className="mr-2 font-bold  text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span>Reset Password</span>
+          <span className="text-sm text-primary-heading font-semibold">Reset Password</span>
         </div>
       </section>
 
@@ -73,7 +73,7 @@ const ResetPassword: React.FC = () => {
         <div className="w-full max-w-sm p-6 space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="code" className="block text-sm font-medium text-custom-gray">
                 Código de verificação
               </label>
               <input
@@ -88,7 +88,7 @@ const ResetPassword: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="new-password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="new-password" className="block text-sm font-medium text-custom-gray">
                 Nova senha
               </label>
               <input
@@ -103,7 +103,7 @@ const ResetPassword: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirm-password" className="block text-sm font-medium text-custom-gray">
                 Confirmar nova senha
               </label>
               <input
@@ -121,7 +121,7 @@ const ResetPassword: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-black text-white rounded-md text-sm hover:bg-gray-800"
+              className="w-full px-4 py-2 bg-custom-button  text-white rounded-md text-sm cursor-pointer"
             >
               Redefinir senha
             </button>
@@ -129,7 +129,9 @@ const ResetPassword: React.FC = () => {
         </div>
       </div>
 
-      <Footer />
+      <div className="mt-30">
+        <Footer />
+      </div>
     </>
   );
 };
