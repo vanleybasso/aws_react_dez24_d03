@@ -2,17 +2,44 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useSignIn } from "@clerk/clerk-react";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const Login: React.FC = () => {
   const { isLoaded, signIn, setActive } = useSignIn();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); 
+
+  
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isLoaded) return;
+    
+    setEmailError("");
+    setPasswordError("");
+    setError("");
+
+    
+    let isValid = true;
+
+    if (!email.trim()) {
+      setEmailError("Email is required.");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      isValid = false;
+    }
+
+    if (!password.trim()) {
+      setPasswordError("Password is required.");
+      isValid = false;
+    }
+
+    if (!isValid || !isLoaded) return;
 
     try {
       const result = await signIn.create({
@@ -86,7 +113,8 @@ const Login: React.FC = () => {
             <div className="w-full h-px bg-gray-200"></div>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          
+          <form className="space-y-4" onSubmit={handleSubmit} noValidate>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-custom-gray">
                 Email
@@ -97,22 +125,39 @@ const Login: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
-                required
               />
+              {emailError && (
+                <p className="text-red-500 text-sm mt-1">{emailError}</p>
+              )}
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-custom-gray">
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                  {showPassword ? (
+                    <FaEyeSlash style={{ color: "#474B57" }} /> 
+                  ) : (
+                    <FaEye style={{ color: "#474B57" }} /> 
+                  )}
+                </button>
+              </div>
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+              )}
             </div>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -125,7 +170,7 @@ const Login: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-custom-button  text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium cursor-pointer"
+              className="w-full bg-custom-button text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium cursor-pointer"
             >
               Login
             </button>
