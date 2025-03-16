@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useSignUp } from "@clerk/clerk-react";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const SignUp: React.FC = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -9,11 +10,55 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); 
+
+ 
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  
+  const validatePassword = (password: string) => {
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+    return regex.test(password);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isLoaded) return;
+    
+    setNameError("");
+    setEmailError("");
+    setPasswordError("");
+    setError("");
+
+    
+    let isValid = true;
+
+    if (!name.trim()) {
+      setNameError("Name is required.");
+      isValid = false;
+    }
+
+    if (!email.trim()) {
+      setEmailError("Email is required.");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      isValid = false;
+    }
+
+    if (!password.trim()) {
+      setPasswordError("Password is required.");
+      isValid = false;
+    } else if (!validatePassword(password)) {
+      setPasswordError(
+        "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."
+      );
+      isValid = false;
+    }
+
+    if (!isValid || !isLoaded) return;
 
     try {
       await signUp.create({
@@ -85,7 +130,8 @@ const SignUp: React.FC = () => {
             <div className="w-full h-px bg-gray-200"></div>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          
+          <form className="space-y-4" onSubmit={handleSubmit} noValidate>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-custom-gray">
                 Name
@@ -96,8 +142,10 @@ const SignUp: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
-                required
               />
+              {nameError && (
+                <p className="text-red-500 text-sm mt-1">{nameError}</p>
+              )}
             </div>
 
             <div>
@@ -110,29 +158,43 @@ const SignUp: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
-                required
               />
+              {emailError && (
+                <p className="text-red-500 text-sm mt-1">{emailError}</p>
+              )}
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-custom-gray">
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                  {showPassword ? (
+                    <FaEyeSlash style={{ color: "#474B57" }} /> 
+                  ) : (
+                    <FaEye style={{ color: "#474B57" }} /> 
+                  )}
+                </button>
+              </div>
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+              )}
+              <p className="text-xs text-custom-gray mt-2">
+                By creating an account you agree with our Terms of Service, Privacy Policy.
+              </p>
             </div>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-
-            <p className="text-xs text-custom-gray mt-2">
-              By creating an account you agree with our Terms of Service, Privacy Policy.
-            </p>
 
             <button
               type="submit"

@@ -17,6 +17,12 @@ const ForgotPassword: React.FC = () => {
 
     if (!isLoaded) return;
 
+    
+    if (!email || !validateEmail(email)) {
+      setError("Por favor, insira um e-mail válido.");
+      return;
+    }
+
     try {
       await signIn.create({
         strategy: "reset_password_email_code",
@@ -24,15 +30,20 @@ const ForgotPassword: React.FC = () => {
       });
 
       setSuccess("Enviamos um código para o seu email!");
-      
-      localStorage.setItem("reset_email", email);
+      setError(""); 
 
-     
+      localStorage.setItem("reset_email", email);
       navigate("/reset-password");
     } catch (err: any) {
       console.error(err);
       setError(err.errors?.[0]?.message || "Erro ao enviar código.");
     }
+  };
+
+ 
+  const validateEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+    return regex.test(email);
   };
 
   return (
@@ -57,7 +68,7 @@ const ForgotPassword: React.FC = () => {
             Digite seu e-mail para receber um código de redefinição.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-custom-gray">
                 Email
@@ -67,8 +78,12 @@ const ForgotPassword: React.FC = () => {
                 id="email"
                 placeholder="Digite seu email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError(""); 
+                }}
                 required
+                pattern="[^\s@]+@[^\s@]+\.[^\s@]+" 
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </div>
@@ -78,7 +93,7 @@ const ForgotPassword: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-custom-button  text-white rounded-md text-sm cursor-pointer"
+              className="w-full px-4 py-2 bg-custom-button text-white rounded-md text-sm cursor-pointer"
             >
               Enviar código
             </button>
