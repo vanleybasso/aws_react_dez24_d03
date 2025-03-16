@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser();
   const navigate = useNavigate();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  
+  const totalItemsInCart = cartItems.length;
 
   const handleUserIconClick = () => {
     if (!user) {
@@ -17,7 +23,7 @@ const Header = () => {
   };
 
   const handleCartClick = () => {
-    navigate("/cart"); 
+    navigate("/cart");
   };
 
   return (
@@ -67,12 +73,21 @@ const Header = () => {
         </ul>
 
         <div className="flex gap-4 md:ml-auto mr-4 items-center">
-          <img
-            src="/src/assets/car.png"
-            alt="Carrinho"
-            className="w-5 h-5 cursor-pointer"
-            onClick={handleCartClick} 
-          />
+          <div className="relative cursor-pointer" onClick={handleCartClick}>
+            <img
+              src="/src/assets/car.png"
+              alt="Carrinho"
+              className="w-5 h-5"
+            />
+            {totalItemsInCart > 0 && (
+              <span
+                className="absolute top-4 -right-2 text-white text-[10px] rounded-full px-1.5 py-0.5 flex items-center justify-center w-4 h-4"
+                style={{ backgroundColor: "#BE1313" }}
+              >
+                {totalItemsInCart}
+              </span>
+            )}
+          </div>
 
           {user ? (
             <div
