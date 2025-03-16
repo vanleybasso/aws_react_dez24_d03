@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
+import { clearCart } from '../redux/cartSlice';
 
 const Checkout: React.FC = () => {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
@@ -13,6 +14,7 @@ const Checkout: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const navigate = useNavigate();
   const { isSignedIn, isLoaded, user } = useUser();
+  const dispatch = useDispatch();
 
   const [zipCode, setZipCode] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
@@ -22,7 +24,6 @@ const Checkout: React.FC = () => {
   const [zipCodeError, setZipCodeError] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
 
-  
   const validateForm = () => {
     const isZipCodeValid = zipCode.length === 8 && !zipCodeError;
     const isStreetAddressValid = streetAddress.trim() !== '';
@@ -39,26 +40,16 @@ const Checkout: React.FC = () => {
     );
   };
 
-  
   useEffect(() => {
     validateForm();
   }, [zipCode, streetAddress, city, state, country, zipCodeError]);
 
-  
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       navigate('/login');
     }
   }, [isLoaded, isSignedIn, navigate]);
 
-  
-  useEffect(() => {
-    if (isLoaded && isSignedIn && cartItems.length === 0) {
-      navigate('/listing');
-    }
-  }, [isLoaded, isSignedIn, cartItems, navigate]);
-
-  
   const fetchAddress = async (cep: string) => {
     if (cep.length === 8) {
       try {
@@ -91,12 +82,10 @@ const Checkout: React.FC = () => {
     }
   };
 
-  
   const handleEditCart = () => {
     navigate('/cart');
   };
 
-  
   const handlePlaceOrder = async () => {
     if (!user) return;
 
@@ -124,7 +113,11 @@ const Checkout: React.FC = () => {
       });
 
       if (response.ok) {
-        navigate('/afterpayment'); 
+        
+        dispatch(clearCart());
+
+       
+        navigate('/afterpayment');
       } else {
         console.error('Failed to save order');
       }
@@ -133,7 +126,6 @@ const Checkout: React.FC = () => {
     }
   };
 
-  
   if (!isLoaded || !isSignedIn || cartItems.length === 0) {
     return null;
   }
