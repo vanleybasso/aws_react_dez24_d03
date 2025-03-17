@@ -18,6 +18,13 @@ const Cart: React.FC = () => {
   const total = subtotal + tax;
 
   const handleCheckout = () => {
+    // Verifica se o carrinho está vazio
+    if (cartItems.length === 0) {
+      navigate("/listing"); // Redireciona para a página de listagem se o carrinho estiver vazio
+      return;
+    }
+
+    // Se o carrinho não estiver vazio, prossegue para o checkout ou login
     if (!isSignedIn) {
       navigate("/login");
     } else {
@@ -48,7 +55,6 @@ const Cart: React.FC = () => {
         style={{ lineHeight: "normal" }}
       >
         <span className="inline-block text-2xl text-primary-heading font-semibold">Cart</span>
-
       </h1>
 
       <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
@@ -61,8 +67,7 @@ const Cart: React.FC = () => {
 
       <main className="flex flex-col lg:flex-row pl-4 sm:pl-[174px] pr-4 py-10 bg-white sm:pr-20 flex-grow">
         <div className="w-full lg:w-2/3 pr-10 mb-6 lg:mb-0">
-        <h2 className="text-base font-semibold mb-4">Your cart</h2>
-
+          <h2 className="text-base font-semibold mb-4">Your cart</h2>
 
           <div className="w-full h-px bg-[#E9E9EB] mb-6" />
 
@@ -89,7 +94,7 @@ const Cart: React.FC = () => {
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <span className="font-medium mr-6">${item.price.toFixed(2)}</span> 
+                  <span className="font-medium mr-6">${item.price.toFixed(2)}</span>
                   <div className="w-[140px] h-[44px] border border-[#E6E7E8] flex items-center justify-between px-4">
                     <img
                       src="/src/assets/Minus.png"
@@ -151,12 +156,11 @@ const Cart: React.FC = () => {
           </button>
 
           <button
-  onClick={() => navigate("/listing")} 
-  className="w-full text-center text-[12px] text-gray-500 mt-8 underline hover:underline text-primary-heading font-semibold cursor-pointer"
->
-  Continue Shopping
-</button>
-
+            onClick={() => navigate("/listing")}
+            className="w-full text-center text-[12px] text-gray-500 mt-8 underline hover:underline text-primary-heading font-semibold cursor-pointer"
+          >
+            Continue Shopping
+          </button>
         </div>
       </main>
 
