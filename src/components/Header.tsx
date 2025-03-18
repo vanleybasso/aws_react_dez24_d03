@@ -49,8 +49,8 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <img src="/src/assets/Logomark.png" alt="Logo" className="h-8" />
-          <span className="text-lg font-semibold">Ecommerce</span>
+          <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-8" />
+          <span className="text-lg font-semibold">Hype</span>
         </div>
 
         <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-center">
