@@ -3,14 +3,19 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
+import { clearCart } from '../redux/cartSlice'; 
 
 const AccountDetails: React.FC = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch(); 
 
   const handleLogout = async () => {
     await signOut();
+    dispatch(clearCart()); 
+    localStorage.removeItem('cartState'); 
     navigate('/login');
   };
 
@@ -43,7 +48,7 @@ const AccountDetails: React.FC = () => {
 
       <section className="flex flex-col md:flex-row items-start sm:pl-[174px] mt-[120px] p-4 sm:p-0">
         <div className="flex flex-col w-full md:w-auto">
-         
+          
           <section
             onClick={handleOrdersClick}
             className="flex items-center p-4 cursor-pointer hover:scale-105 transition-transform duration-200"
@@ -71,7 +76,7 @@ const AccountDetails: React.FC = () => {
             <span className="text-sm font-semibold">Account Detail</span>
           </section>
 
-          
+         
           <section
             onClick={handleLogout}
             className="flex items-center p-4 cursor-pointer rounded hover:scale-105 transition-transform duration-200"
@@ -85,8 +90,10 @@ const AccountDetails: React.FC = () => {
           </section>
         </div>
 
+       
         <div className="border-l border-[#E9E9EB] h-[504px] mx-4 mt-[-40px] hidden md:block" />
 
+        
         <div className="ml-0 md:ml-8 mt-8 md:mt-[-40px] flex flex-col justify-start w-full md:w-auto">
           <h2 className="text-base font-semibold">Account Details</h2>
 
@@ -100,7 +107,7 @@ const AccountDetails: React.FC = () => {
               borderRadius: '50%',
               overflow: 'hidden',
             }}
-            onClick={() => alert('Avatar clicado!')} 
+            onClick={() => alert('Avatar clicado!')}
           >
             {user?.imageUrl ? (
               <img
@@ -128,6 +135,7 @@ const AccountDetails: React.FC = () => {
             className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm bg-gray-100 cursor-not-allowed"
           />
 
+         
           <label className="text-sm font-medium text-custom-gray mt-6">
             Email
           </label>
@@ -140,6 +148,7 @@ const AccountDetails: React.FC = () => {
         </div>
       </section>
 
+     
       <div className="mt-30">
         <Footer />
       </div>
