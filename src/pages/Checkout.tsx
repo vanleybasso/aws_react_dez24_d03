@@ -87,9 +87,9 @@ const Checkout: React.FC = () => {
   };
 
   const handlePlaceOrder = async () => {
-    // Verifica se o carrinho está vazio
+    
     if (cartItems.length === 0) {
-      navigate('/listing'); // Redireciona para a página de listagem se o carrinho estiver vazio
+      navigate('/listing'); 
       return;
     }
 
@@ -119,8 +119,8 @@ const Checkout: React.FC = () => {
       });
 
       if (response.ok) {
-        dispatch(clearCart()); // Limpa o carrinho após o pedido ser finalizado
-        navigate('/afterpayment'); // Redireciona para a página de afterpayment
+        dispatch(clearCart()); 
+        navigate('/afterpayment'); 
       } else {
         console.error('Failed to save order');
       }

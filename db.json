@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "1",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 1",
       "title": "Classic Monochrome Tee",
       "price": 95,
@@ -19,13 +19,14 @@
       ],
       "description": "Camiseta básica preta para uso diário.",
       "images": [
-        "https://cdn.awsli.com.br/600x1000/1960/1960866/produto/125390796/a12dd9ac46.jpg"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
-      "category": "Trousers"
+      "category": "Shoe"
     },
     {
       "id": "2",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Camiseta 2",
       "title": "Summer Breeze Tee",
       "price": 22,
@@ -42,13 +43,13 @@
       ],
       "description": "Leve e confortável para o verão.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa7.png"
       ],
-      "category": "Shoe"
+      "category": "HandBag"
     },
     {
       "id": "3",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Blazer 1",
       "title": "Formal Black Blazer",
       "price": 120,
@@ -65,13 +66,13 @@
       ],
       "description": "Blazer elegante para eventos formais.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa8.png"
       ],
       "category": "HandBag"
     },
     {
       "id": "4",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 2",
       "title": "Casual Gray Blazer",
       "price": 85,
@@ -88,17 +89,18 @@
       ],
       "description": "Blazer casual perfeito para reuniões informais.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
       "category": "Hat"
     },
     {
       "id": "5",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa5.png",
       "altText": "Camiseta 3",
       "title": "Sporty Fit Tee",
       "price": 29.99,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.3,
       "reviewsCount": 21,
       "colors": [
@@ -110,13 +112,14 @@
       ],
       "description": "Camiseta esportiva com tecido respirável.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa5.png",
+        "/src/assets/camisa6.png"
       ],
       "category": "Thermos"
     },
     {
       "id": "6",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa9.png",
       "altText": "Blazer 3",
       "title": "Blue Executive Blazer",
       "price": 150,
@@ -132,13 +135,13 @@
       ],
       "description": "Blazer azul marinho para executivos.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa9.png"
       ],
-      "category": "Perfume"
+      "category": "Shoe"
     },
     {
       "id": "7",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 4",
       "title": "Urban Street Tee",
       "price": 25,
@@ -154,13 +157,14 @@
       ],
       "description": "Estilo urbano para o dia a dia.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
       "category": "Trousers"
     },
     {
       "id": "8",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Blazer 4",
       "title": "White Linen Blazer",
       "price": 130,
@@ -176,13 +180,13 @@
       ],
       "description": "Blazer de linho branco para ocasiões especiais.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa7.png"
       ],
       "category": "Shoe"
     },
     {
       "id": "9",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Camiseta 5",
       "title": "Retro Print Tee",
       "price": 28,
@@ -199,13 +203,13 @@
       ],
       "description": "Estampa retrô vibrante e divertida.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa8.png"
       ],
-      "category": "HandBag"
+      "category": "Thermos"
     },
     {
       "id": "10",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 5",
       "title": "Slim Fit Blazer",
       "price": 140,
@@ -221,13 +225,14 @@
       ],
       "description": "Corte slim para um visual moderno.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
-      "category": "Hat"
+      "category": "Trousers"
     },
     {
       "id": "11",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa5.png",
       "altText": "Camiseta 6",
       "title": "Eco Friendly Tee",
       "price": 30,
@@ -244,13 +249,14 @@
       ],
       "description": "Feita com materiais sustentáveis.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa5.png",
+        "/src/assets/camisa6.png"
       ],
       "category": "Thermos"
     },
     {
       "id": "12",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa9.png",
       "altText": "Blazer 6",
       "title": "Vintage Leather Blazer",
       "price": 300,
@@ -266,17 +272,17 @@
       ],
       "description": "Blazer de couro com estilo vintage.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa9.png"
       ],
-      "category": "Perfume"
+      "category": "HandBag"
     },
     {
       "id": "13",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 7",
       "title": "Minimalist Tee",
       "price": 20,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.3,
       "reviewsCount": 22,
       "colors": [
@@ -288,13 +294,14 @@
       ],
       "description": "Design minimalista e elegante.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
-      "category": "Trousers"
+      "category": "Thermos"
     },
     {
       "id": "14",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Blazer 7",
       "title": "Brown Business Blazer",
       "price": 110,
@@ -310,13 +317,13 @@
       ],
       "description": "Blazer marrom clássico para negócios.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa7.png"
       ],
       "category": "Shoe"
     },
     {
       "id": "15",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Camiseta 8",
       "title": "Longline Tee",
       "price": 26,
@@ -333,17 +340,17 @@
       ],
       "description": "Camiseta longa para um estilo moderno.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa8.png"
       ],
-      "category": "HandBag"
+      "category": "Perfume"
     },
     {
       "id": "16",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 8",
       "title": "Red Velvet Blazer",
       "price": 250,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.9,
       "reviewsCount": 42,
       "colors": [
@@ -355,13 +362,14 @@
       ],
       "description": "Blazer de veludo vermelho para eventos luxuosos.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
       "category": "Hat"
     },
     {
       "id": "17",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa5.png",
       "altText": "Camiseta 9",
       "title": "Tie Dye Tee",
       "price": 24,
@@ -377,13 +385,14 @@
       ],
       "description": "Estampa tie dye única e vibrante.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa5.png",
+        "/src/assets/camisa6.png"
       ],
-      "category": "Thermos"
+      "category": "Trousers"
     },
     {
       "id": "18",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa9.png",
       "altText": "Blazer 9",
       "title": "Khaki Outdoor Blazer",
       "price": 95,
@@ -399,13 +408,13 @@
       ],
       "description": "Ideal para uso casual ao ar livre.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa9.png"
       ],
       "category": "Perfume"
     },
     {
       "id": "19",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 10",
       "title": "Henley Tee",
       "price": 27.5,
@@ -422,17 +431,18 @@
       ],
       "description": "Camiseta Henley com botões frontais.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
       "category": "Trousers"
     },
     {
       "id": "20",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Blazer 10",
       "title": "Green Casual Blazer",
       "price": 105,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.7,
       "reviewsCount": 31,
       "colors": [
@@ -445,13 +455,13 @@
       ],
       "description": "Blazer verde casual para o dia a dia.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa7.png"
       ],
       "category": "Shoe"
     },
     {
       "id": "21",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Camiseta 11",
       "title": "V-Neck Cotton Tee",
       "price": 23,
@@ -470,13 +480,13 @@
       ],
       "description": "Camiseta em algodão com decote V.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa8.png"
       ],
       "category": "HandBag"
     },
     {
       "id": "22",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "./src/assets/camisa9.png",
       "altText": "Blazer 11",
       "title": "Navy Double-Breasted Blazer",
       "price": 180,
@@ -493,13 +503,13 @@
       ],
       "description": "Blazer azul marinho com dois botões.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa9.png"
       ],
       "category": "Hat"
     },
     {
       "id": "23",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "./src/assets/camisa8.png",
       "altText": "Camiseta 12",
       "title": "Graphic Print Tee",
       "price": 32,
@@ -516,13 +526,13 @@
       ],
       "description": "Camiseta com estampa gráfica moderna.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa8.png"
       ],
-      "category": "Thermos"
+      "category": "Trousers"
     },
     {
       "id": "24",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 12",
       "title": "Gray Wool Blazer",
       "price": 200,
@@ -539,13 +549,14 @@
       ],
       "description": "Blazer de lã cinza para o inverno.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
       "category": "Perfume"
     },
     {
       "id": "25",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 13",
       "title": "Basic Crewneck Tee",
       "price": 18,
@@ -563,13 +574,14 @@
       ],
       "description": "Camiseta básica de gola careca.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
       "category": "Trousers"
     },
     {
       "id": "26",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Blazer 13",
       "title": "Checkered Business Blazer",
       "price": 175,
@@ -585,13 +597,13 @@
       ],
       "description": "Blazer xadrez para negócios casuais.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa7.png"
       ],
-      "category": "Shoe"
+      "category": "Trousers"
     },
     {
       "id": "27",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Camiseta 14",
       "title": "Fitted Black Tee",
       "price": 25,
@@ -607,17 +619,17 @@
       ],
       "description": "Camiseta preta ajustada ao corpo.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa8.png"
       ],
       "category": "HandBag"
     },
     {
       "id": "28",
-      "imageUrl": "srcassetsblazer.png",
+      "imageUrl": "/src/assets/camisa5.png",
       "altText": "Blazer 14",
       "title": "Olive Green Casual Blazer",
       "price": 115,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.4,
       "reviewsCount": 44,
       "colors": [
@@ -630,13 +642,14 @@
       ],
       "description": "Blazer verde oliva para ocasiões informais.",
       "images": [
-        "srcassetsblazer.png"
+        "/src/assets/camisa5.png",
+        "/src/assets/camisa6.png"
       ],
       "category": "Hat"
     },
     {
       "id": "29",
-      "imageUrl": "srcassetsshort.png",
+      "imageUrl": "/src/assets/camisa9.png",
       "altText": "Camiseta 15",
       "title": "Striped Cotton Tee",
       "price": 28,
@@ -654,13 +667,13 @@
       ],
       "description": "Camiseta listrada em algodão.",
       "images": [
-        "srcassetsshort.png"
+        "/src/assets/camisa9.png"
       ],
       "category": "Thermos"
     },
     {
       "id": "30",
-      "imageUrl": "/src/assets/blazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 15",
       "title": "Beige Cotton Blazer",
       "price": 145,
@@ -677,13 +690,14 @@
       ],
       "description": "Blazer bege de algodão ideal para o verão.",
       "images": [
-        "/src/assets/blazer.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
       "category": "Perfume"
     },
     {
       "id": "31",
-      "imageUrl": "/src/assets/short.png",
+      "imageUrl": "/src/assets/camisa1.png",
       "altText": "Camiseta 16",
       "title": "Relaxed Fit Tee",
       "price": 22,
@@ -701,13 +715,14 @@
       ],
       "description": "Camiseta com corte solto e confortável.",
       "images": [
-        "/src/assets/short.png"
+        "/src/assets/camisa1.png",
+        "/src/assets/camisa2.png"
       ],
       "category": "Trousers"
     },
     {
       "id": "32",
-      "imageUrl": "/src/assets/blazer.png",
+      "imageUrl": "/src/assets/camisa7.png",
       "altText": "Blazer 16",
       "title": "Light Blue Denim Blazer",
       "price": 160,
@@ -723,17 +738,17 @@
       ],
       "description": "Blazer jeans azul claro para um visual descontraído.",
       "images": [
-        "/src/assets/blazer.png"
+        "/src/assets/camisa7.png"
       ],
       "category": "Shoe"
     },
     {
       "id": "33",
-      "imageUrl": "/src/assets/short.png",
+      "imageUrl": "/src/assets/camisa8.png",
       "altText": "Camiseta 17",
       "title": "Muscle Fit Tee",
       "price": 35,
-      "status": "IN STOCK",
+      "status": "NO STOCK",
       "rating": 4.8,
       "reviewsCount": 40,
       "colors": [
@@ -746,13 +761,13 @@
       ],
       "description": "Camiseta com corte muscle para realçar o físico.",
       "images": [
-        "/src/assets/short.png"
+        "/src/assets/camisa8.png"
       ],
       "category": "HandBag"
     },
     {
       "id": "34",
-      "imageUrl": "/src/assets/blazer.png",
+      "imageUrl": "/src/assets/camisa5.png",
       "altText": "Blazer 17",
       "title": "Cream Linen Blazer",
       "price": 190,
@@ -769,13 +784,14 @@
       ],
       "description": "Blazer de linho creme, leve e sofisticado.",
       "images": [
-        "/src/assets/blazer.png"
+        "/src/assets/camisa5.png",
+        "/src/assets/camisa6.png"
       ],
       "category": "Hat"
     },
     {
       "id": "35",
-      "imageUrl": "/src/assets/short.png",
+      "imageUrl": "/src/assets/camisa9.png",
       "altText": "Camiseta 18",
       "title": "Polo Sport Tee",
       "price": 40,
@@ -793,13 +809,13 @@
       ],
       "description": "Camiseta polo esportiva, ideal para práticas esportivas.",
       "images": [
-        "/src/assets/short.png"
+        "/src/assets/camisa9.png"
       ],
       "category": "Perfume"
     },
     {
       "id": "36",
-      "imageUrl": "/src/assets/blazer.png",
+      "imageUrl": "/src/assets/camisa3.png",
       "altText": "Blazer 18",
       "title": "Classic Black Tuxedo Blazer",
       "price": 500,
@@ -816,7 +832,8 @@
       ],
       "description": "Blazer tuxedo clássico para eventos formais.",
       "images": [
-        "/src/assets/short.png"
+        "/src/assets/camisa3.png",
+        "/src/assets/camisa4.png"
       ],
       "category": "Perfume"
     }
@@ -1429,6 +1446,78 @@
       ],
       "total": 69,
       "date": "2025-03-17T17:55:46.927Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
+    },
+    {
+      "id": "2012",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "6",
+          "title": "Blue Executive Blazer",
+          "price": 150,
+          "imageUrl": "/src/assets/camisa9.png",
+          "selectedColor": "#0000FF",
+          "selectedSize": "XL",
+          "quantity": 2
+        }
+      ],
+      "total": 303,
+      "date": "2025-03-18T04:25:03.294Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
+    },
+    {
+      "id": "2f43",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "17",
+          "title": "Tie Dye Tee",
+          "price": 24,
+          "imageUrl": "/src/assets/camisa5.png",
+          "selectedColor": "#FF7F50",
+          "selectedSize": "M",
+          "quantity": 3
+        }
+      ],
+      "total": 75,
+      "date": "2025-03-18T04:28:02.584Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
+    },
+    {
+      "id": "faf3",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "7",
+          "title": "Urban Street Tee",
+          "price": 25,
+          "imageUrl": "/src/assets/camisa1.png",
+          "selectedColor": "#A52A2A",
+          "selectedSize": "M",
+          "quantity": 2
+        }
+      ],
+      "total": 53,
+      "date": "2025-03-18T04:30:05.646Z",
       "shippingAddress": {
         "zipCode": "99050100",
         "streetAddress": "Rua Princesa Isabel",

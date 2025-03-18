@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageCarouselProps {
@@ -8,6 +8,11 @@ interface ImageCarouselProps {
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, altText }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [images]);
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -22,31 +27,32 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, altText }) => {
   };
 
   return (
-    <div className="relative w-full h-full flex justify-center items-center">
-     
+    <div className="relative w-full h-[550px] flex justify-center items-center overflow-hidden">
       <img
         src={images[currentIndex]}
         alt={altText}
-        className="object-contain w-[300px] h-[400px] lg:w-[400px] lg:h-[500px]"
+        className="w-full h-full object-contain"
+        style={{ aspectRatio: "1/1" }}
       />
 
-     
       <button
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200"
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200 cursor-pointer"
         onClick={goToPrevious}
       >
         <ChevronLeft size={32} strokeWidth={2.5} />
       </button>
 
       <button
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200"
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200 cursor-pointer"
         onClick={goToNext}
       >
         <ChevronRight size={32} strokeWidth={2.5} />
       </button>
 
-     
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div 
+        className="absolute left-1/2 -translate-x-1/2 flex space-x-2"
+        style={{ bottom: "5px" }} 
+      >
         {images.map((_, index) => (
           <div
             key={index}

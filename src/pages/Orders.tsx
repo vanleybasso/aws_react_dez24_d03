@@ -39,7 +39,13 @@ const Orders: React.FC = () => {
       try {
         const response = await fetch(`http://localhost:3001/orders?userId=${user.id}`);
         const data = await response.json();
-        setOrders(data);
+
+       
+        const sortedOrders = data.sort((a: Order, b: Order) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+
+        setOrders(sortedOrders);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -59,6 +65,10 @@ const Orders: React.FC = () => {
   const handleLogout = async () => {
     await signOut();
     navigate("/login");
+  };
+
+  const handleViewItemClick = (productId: number) => {
+    navigate(`/product/${productId}`);
   };
 
   return (
@@ -152,7 +162,7 @@ const Orders: React.FC = () => {
                         <img
                           src={order.items[0]?.imageUrl || "/src/assets/product.png"}
                           alt="Product"
-                          style={{ width: "40px", height: "55px" }}
+                          style={{ width: "50px", height: "55px" }}
                         />
                       </div>
 
@@ -170,12 +180,13 @@ const Orders: React.FC = () => {
                     </div>
 
                     <div
-                      className="flex items-center justify-center border border-[#0E1422] rounded mt-4 md:mt-0 md:ml-40 ml-0 w-full md:w-auto flex-shrink-0"
+                      className="flex items-center justify-center border border-[#0E1422] rounded mt-4 md:mt-0 md:ml-40 ml-0 w-full md:w-auto flex-shrink-0 cursor-pointer"
                       style={{
                         width: "100px",
                         height: "40px",
                         borderRadius: "4px",
                       }}
+                      onClick={() => handleViewItemClick(order.items[0]?.id)}
                     >
                       <span className="text-sm" style={{ color: "#0E1422" }}>
                         View Item

@@ -11,7 +11,6 @@ const Header = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  
   const totalItemsInCart = cartItems.length;
 
   const handleUserIconClick = () => {
@@ -39,7 +38,7 @@ const Header = () => {
         <div className="md:hidden ml-4">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="mt-2 focus:outline-none"
+            className="mt-2 focus:outline-none cursor-pointer" 
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
