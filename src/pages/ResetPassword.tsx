@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useSignIn } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importando ícones de olho
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const ResetPassword: React.FC = () => {
   const { isLoaded, signIn, setActive } = useSignIn();
@@ -33,20 +33,20 @@ const ResetPassword: React.FC = () => {
 
     
     if (!code.trim()) {
-      validationErrors.code = "O código de verificação é obrigatório.";
+      validationErrors.code = "Verification code is required.";
     }
 
     if (!newPassword.trim()) {
-      validationErrors.newPassword = "A nova senha é obrigatória.";
+      validationErrors.newPassword = "New password is required.";
     } else if (!validatePassword(newPassword)) {
       validationErrors.newPassword =
-        "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial.";
+        "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.";
     }
 
     if (!confirmPassword.trim()) {
-      validationErrors.confirmPassword = "A confirmação de senha é obrigatória.";
+      validationErrors.confirmPassword = "Password confirmation is mandatory.";
     } else if (newPassword !== confirmPassword) {
-      validationErrors.confirmPassword = "As senhas não coincidem.";
+      validationErrors.confirmPassword = "Passwords do not match.";
     }
 
    
@@ -76,10 +76,10 @@ const ResetPassword: React.FC = () => {
 
       const rawMessage = err.errors?.[0]?.message || "";
 
-      let customMessage = "Erro ao redefinir senha.";
+      let customMessage = "Error resetting password.";
 
       if (rawMessage.toLowerCase().includes("code") || rawMessage.toLowerCase().includes("incorrect")) {
-        customMessage = "Código inválido, tente novamente...";
+        customMessage = "Invalid code, please try again...";
       }
 
       setErrors({ form: customMessage }); 
@@ -107,12 +107,12 @@ const ResetPassword: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="code" className="block text-sm font-medium text-custom-gray">
-                Código de verificação
+              Verification code
               </label>
               <input
                 type="text"
                 id="code"
-                placeholder="Digite o código de 6 dígitos"
+                placeholder="Enter the 6-digit code"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
@@ -122,13 +122,13 @@ const ResetPassword: React.FC = () => {
 
             <div>
               <label htmlFor="new-password" className="block text-sm font-medium text-custom-gray">
-                Nova senha
+              New password
               </label>
               <div className="relative">
                 <input
                   type={showNewPassword ? "text" : "password"}
                   id="new-password"
-                  placeholder="Digite a nova senha"
+                  placeholder="Enter the new password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
@@ -150,13 +150,13 @@ const ResetPassword: React.FC = () => {
 
             <div>
               <label htmlFor="confirm-password" className="block text-sm font-medium text-custom-gray">
-                Confirmar nova senha
+              Confirm new password
               </label>
               <div className="relative">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirm-password"
-                  placeholder="Confirme a nova senha"
+                  placeholder="Confirm new password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
@@ -180,11 +180,12 @@ const ResetPassword: React.FC = () => {
             {errors.form && <p className="text-red-500 text-sm">{errors.form}</p>}
 
             <button
-              type="submit"
-              className="w-full px-4 py-2 bg-custom-button  text-white rounded-md text-sm cursor-pointer"
-            >
-              Redefinir senha
-            </button>
+  type="submit"
+  className="w-full px-4 py-3 bg-custom-button text-white rounded-md text-base font-medium cursor-pointer hover:scale-105 transition-transform duration-200"
+>
+  Reset password
+</button>
+
           </form>
         </div>
       </div>

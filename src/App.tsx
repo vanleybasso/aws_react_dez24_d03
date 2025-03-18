@@ -14,15 +14,17 @@ import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
+import PageTitle from "./components/PageTitle"; 
 
 const App: React.FC = () => {
   return (
     <Router>
+      <PageTitle /> 
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/listing" element={<Listing />} />
-          <Route path="/product/:id" element={<Product />} /> 
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/afterpayment" element={<AfterPayment />} />
@@ -33,8 +35,8 @@ const App: React.FC = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </Router>

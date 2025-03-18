@@ -8,14 +8,11 @@ const About = () => {
       <Header />
 
       <section className="bg-[#0E1422] h-[150px] relative">
-      
-
-       
         <div className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2">
           <img
             src="/src/assets/vanley.jpeg" 
             alt="Profile"
-            className="w-28 h-28 rounded-full object-cover border-4 border-white"
+            className="w-28 h-28 rounded-full object-cover border-4 border-white transition-transform duration-300 hover:scale-110"
           />
         </div>
       </section>
@@ -68,7 +65,7 @@ const About = () => {
             className="flex items-center text-gray-800 hover:text-black font-medium"
           >
             <span className="mr-2">🤝</span>
-            Conecte-se comigo!
+            Connect with me!
           </a>
         </div>
       </section>

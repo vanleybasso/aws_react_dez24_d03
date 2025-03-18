@@ -61,13 +61,13 @@ const AfterPayment: React.FC = () => {
       <section className="flex justify-center mt-10">
   <button
     onClick={handleGoToAccount}
-    className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2"
+    className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2 hover:scale-105 transition-transform duration-200"
   >
     Go to my account
     <img
-      src="/src/assets/Arrow-Right.png" // Substitua pelo caminho do seu ícone
+      src="/src/assets/Arrow-Right.png" 
       alt="Ícone"
-      className="w-6 h-6" // Ajuste o tamanho conforme necessário
+      className="w-6 h-6" 
     />
   </button>
 </section>

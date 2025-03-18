@@ -197,11 +197,11 @@ const SignUp: React.FC = () => {
             </div>
 
             <button
-              type="submit"
-              className="w-full bg-custom-button text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium mt-4 cursor-pointer"
-            >
-              Create account
-            </button>
+  type="submit"
+  className="w-full bg-custom-button text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer"
+>
+  Create account
+</button>
           </form>
 
           <p className="mt-4 text-center text-sm text-custom">

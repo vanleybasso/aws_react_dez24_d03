@@ -19,7 +19,7 @@ const ForgotPassword: React.FC = () => {
 
     
     if (!email || !validateEmail(email)) {
-      setError("Por favor, insira um e-mail válido.");
+      setError("Please enter a valid email address.");
       return;
     }
 
@@ -29,14 +29,14 @@ const ForgotPassword: React.FC = () => {
         identifier: email,
       });
 
-      setSuccess("Enviamos um código para o seu email!");
+      setSuccess("We sent a code to your email!");
       setError(""); 
 
       localStorage.setItem("reset_email", email);
       navigate("/reset-password");
     } catch (err: any) {
       console.error(err);
-      setError(err.errors?.[0]?.message || "Erro ao enviar código.");
+      setError(err.errors?.[0]?.message || "Error sending code.");
     }
   };
 
@@ -65,7 +65,7 @@ const ForgotPassword: React.FC = () => {
       <div className="flex justify-center items-center bg-white mt-16 mb-16 px-4">
         <div className="w-full max-w-sm p-6">
           <p className="text-sm text-custom-gray mb-6">
-            Digite seu e-mail para receber um código de redefinição.
+          Enter your email to receive a reset code.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -76,7 +76,7 @@ const ForgotPassword: React.FC = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="Digite seu email"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -92,11 +92,11 @@ const ForgotPassword: React.FC = () => {
             {success && <p className="text-green-500 text-sm">{success}</p>}
 
             <button
-              type="submit"
-              className="w-full px-4 py-2 bg-custom-button text-white rounded-md text-sm cursor-pointer"
-            >
-              Enviar código
-            </button>
+  type="submit"
+  className="w-full px-4 py-2 bg-custom-button text-white rounded-md text-sm cursor-pointer hover:scale-105 transition-transform duration-200"
+>
+  Send code
+</button>
           </form>
         </div>
       </div>

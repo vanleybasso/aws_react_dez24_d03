@@ -7,7 +7,6 @@ const NotFound = () => {
       <Header />
 
       <section className="min-h-screen flex flex-col justify-center items-center bg-[#F6F6F6] px-8 text-center">
-        
         <h1 className="text-[72px] font-extrabold text-black mb-4 leading-none">
           404
         </h1>
@@ -21,17 +20,18 @@ const NotFound = () => {
           Mas calma! Seu look perfeito ainda tá na nossa coleção.
         </p>
 
+        
         <Link
-  to="/"
-  className="bg-custom-button text-white py-3 px-8 rounded-md hover:bg-gray-800 transition duration-300 text-lg flex items-center gap-2"
->
-  Resgatar meu estilo
-  <img
-    src="/src/assets/Arrow-Right.png" 
-    alt="Ícone de estilo"
-    className="w-6 h-6"
-  />
-</Link>
+          to="/"
+          className="bg-custom-button text-white py-3 px-8 rounded-md hover:bg-gray-800 transition duration-300 text-lg flex items-center gap-2 hover:scale-105 transition-transform duration-200"
+        >
+          Resgatar meu estilo
+          <img
+            src="/src/assets/Arrow-Right.png" 
+            alt="Ícone de estilo"
+            className="w-6 h-6"
+          />
+        </Link>
       </section>
     </>
   );

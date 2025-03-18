@@ -38,6 +38,7 @@ const Product = () => {
       .then((response) => response.json())
       .then((data) => {
         setProduct(data);
+        document.title = `Hype - ${data.title}`; 
         if (data.colors.length === 1) {
           setSelectedColor(data.colors[0]);
         }
@@ -74,7 +75,7 @@ const Product = () => {
 
   const handleAddToCart = () => {
     if (!selectedColor || !selectedSize) {
-      setError("Por favor, selecione uma cor e um tamanho.");
+      setError("Please select a color and size.");
       return;
     }
     setError(null);
@@ -111,14 +112,14 @@ const Product = () => {
         </div>
 
         <div className="flex flex-col justify-start">
-        <div className="flex items-center justify-between w-full">
-  <h2 className="text-[24px] font-bold">{product.title}</h2>
-  <img
-    src="/src/assets/Share.png"
-    alt="Compartilhar"
-    className="w-6 h-6 cursor-pointer ml-30" 
-  />
-</div>
+          <div className="flex items-center justify-between w-full">
+            <h2 className="text-[24px] font-bold">{product.title}</h2>
+            <img
+              src="/src/assets/Share.png"
+              alt="Compartilhar"
+              className="w-6 h-6 cursor-pointer ml-30"
+            />
+          </div>
 
           <div className="flex items-center space-x-4 mt-2">
             <div
@@ -150,7 +151,6 @@ const Product = () => {
             </p>
           </div>
 
-          
           {product.status === "IN STOCK" && (
             <>
               <div className="mt-6">
@@ -225,12 +225,12 @@ const Product = () => {
               </div>
 
               <div className="mt-10">
-                <button
-                  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px] rounded cursor-pointer"
-                  onClick={handleAddToCart}
-                >
-                  Add to cart
-                </button>
+              <button
+  className="w-[284px] h-[44px] bg-[#0E1422] text-white text-[14px] rounded cursor-pointer hover:scale-105 transition-transform duration-200"
+  onClick={handleAddToCart}
+>
+  Add to cart
+</button>
               </div>
 
               {error && (
@@ -250,10 +250,10 @@ const Product = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row ml-8 xl:ml-32 mt-[248px]">
-  <div className="bg-[#F6F6F6] rounded-[8px] w-[241px] h-[41px] flex items-center px-3">
-    <img src="/src/assets/More.png" alt="Ícone" className="w-6 h-6 mr-2" />
-    <span className="text-[14px]">Details</span>
-  </div>
+        <div className="bg-[#F6F6F6] rounded-[8px] w-[241px] h-[41px] flex items-center px-3">
+          <img src="/src/assets/More.png" alt="Ícone" className="w-6 h-6 mr-2" />
+          <span className="text-[14px]">Details</span>
+        </div>
 
         <div className="mt-[16px] lg:mt-0 lg:ml-8 max-w-[727px]">
           <h2 className="text-[16px] font-bold text-primary-heading">Detail</h2>

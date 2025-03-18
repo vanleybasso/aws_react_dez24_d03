@@ -40,7 +40,6 @@ const Orders: React.FC = () => {
         const response = await fetch(`http://localhost:3001/orders?userId=${user.id}`);
         const data = await response.json();
 
-       
         const sortedOrders = data.sort((a: Order, b: Order) => {
           return new Date(b.date).getTime() - new Date(a.date).getTime();
         });
@@ -92,8 +91,9 @@ const Orders: React.FC = () => {
 
       <section className="flex flex-col md:flex-row items-start sm:pl-[174px] mt-[120px] p-4 sm:p-0">
         <div className="flex flex-col w-full md:w-auto">
+          
           <section
-            className="flex items-center p-4 cursor-pointer"
+            className="flex items-center p-4 cursor-pointer hover:scale-105 transition-transform duration-200"
             style={{ backgroundColor: "#F6F6F6", width: "212px", height: "41px", borderRadius: "8px" }}
             onClick={handleOrdersClick}
           >
@@ -101,16 +101,18 @@ const Orders: React.FC = () => {
             <span className="text-sm font-semibold text-primary-heading">Orders</span>
           </section>
 
+          
           <section
-            className="flex items-center p-4 cursor-pointer"
+            className="flex items-center p-4 cursor-pointer hover:scale-105 transition-transform duration-200"
             onClick={handleAccountDetailsClick}
           >
             <img src="/src/assets/user.png" alt="Account Detail" className="w-6 h-6 mr-2" style={{ width: "24px", height: "24px" }} />
             <span className="text-sm font-semibold text-custom">Account Detail</span>
           </section>
 
+          
           <section
-            className="flex items-center p-4 -mt-2 cursor-pointer rounded"
+            className="flex items-center p-4 -mt-2 cursor-pointer rounded hover:scale-105 transition-transform duration-200"
             onClick={handleLogout}
           >
             <img src="/src/assets/Logout.png" alt="Logout" className="w-6 h-6 mr-2" style={{ width: "24px", height: "24px" }} />
@@ -136,7 +138,7 @@ const Orders: React.FC = () => {
                 </p>
                 <button
                   onClick={() => navigate("/listing")}
-                  className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2 mt-4"
+                  className="bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 cursor-pointer flex items-center gap-2 mt-4 hover:scale-105 transition-transform duration-200"
                 >
                   Start Shopping
                   <img
@@ -179,8 +181,9 @@ const Orders: React.FC = () => {
                       </div>
                     </div>
 
+                   
                     <div
-                      className="flex items-center justify-center border border-[#0E1422] rounded mt-4 md:mt-0 md:ml-40 ml-0 w-full md:w-auto flex-shrink-0 cursor-pointer"
+                      className="flex items-center justify-center border border-[#0E1422] rounded mt-4 md:mt-0 md:ml-40 ml-0 w-full md:w-auto flex-shrink-0 cursor-pointer hover:scale-105 transition-transform duration-200"
                       style={{
                         width: "100px",
                         height: "40px",

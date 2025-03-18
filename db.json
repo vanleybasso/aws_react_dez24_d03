@@ -3,7 +3,7 @@
     {
       "id": "1",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 1",
+      "altText": "T-Shirt 1",
       "title": "Classic Monochrome Tee",
       "price": 95,
       "status": "NO STOCK",
@@ -17,7 +17,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta básica preta para uso diário.",
+      "description": "Basic black t-shirt for everyday wear.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -27,7 +27,7 @@
     {
       "id": "2",
       "imageUrl": "/src/assets/camisa7.png",
-      "altText": "Camiseta 2",
+      "altText": "T-Shirt 2",
       "title": "Summer Breeze Tee",
       "price": 22,
       "status": "IN STOCK",
@@ -41,7 +41,7 @@
         "S",
         "M"
       ],
-      "description": "Leve e confortável para o verão.",
+      "description": "Lightweight and comfortable for summer days.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -64,7 +64,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer elegante para eventos formais.",
+      "description": "Elegant blazer for formal events.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -87,7 +87,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer casual perfeito para reuniões informais.",
+      "description": "Casual blazer perfect for informal meetings.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -97,7 +97,7 @@
     {
       "id": "5",
       "imageUrl": "/src/assets/camisa5.png",
-      "altText": "Camiseta 3",
+      "altText": "T-Shirt 3",
       "title": "Sporty Fit Tee",
       "price": 29.99,
       "status": "NO STOCK",
@@ -110,7 +110,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta esportiva com tecido respirável.",
+      "description": "Sports t-shirt with breathable fabric.",
       "images": [
         "/src/assets/camisa5.png",
         "/src/assets/camisa6.png"
@@ -133,7 +133,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer azul marinho para executivos.",
+      "description": "Navy blue blazer for executives.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -142,7 +142,7 @@
     {
       "id": "7",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 4",
+      "altText": "T-Shirt 4",
       "title": "Urban Street Tee",
       "price": 25,
       "status": "IN STOCK",
@@ -155,7 +155,7 @@
         "S",
         "M"
       ],
-      "description": "Estilo urbano para o dia a dia.",
+      "description": "Urban style for everyday life.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -178,7 +178,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer de linho branco para ocasiões especiais.",
+      "description": "White linen blazer for special occasions.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -187,7 +187,7 @@
     {
       "id": "9",
       "imageUrl": "/src/assets/camisa8.png",
-      "altText": "Camiseta 5",
+      "altText": "T-Shirt 5",
       "title": "Retro Print Tee",
       "price": 28,
       "status": "IN STOCK",
@@ -201,7 +201,7 @@
         "M",
         "L"
       ],
-      "description": "Estampa retrô vibrante e divertida.",
+      "description": "Vibrant and fun retro print design.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -223,7 +223,7 @@
         "L",
         "XL"
       ],
-      "description": "Corte slim para um visual moderno.",
+      "description": "Slim cut for a modern look.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -233,7 +233,7 @@
     {
       "id": "11",
       "imageUrl": "/src/assets/camisa5.png",
-      "altText": "Camiseta 6",
+      "altText": "T-Shirt 6",
       "title": "Eco Friendly Tee",
       "price": 30,
       "status": "IN STOCK",
@@ -247,7 +247,7 @@
         "L",
         "XL"
       ],
-      "description": "Feita com materiais sustentáveis.",
+      "description": "Made with sustainable materials.",
       "images": [
         "/src/assets/camisa5.png",
         "/src/assets/camisa6.png"
@@ -270,7 +270,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer de couro com estilo vintage.",
+      "description": "Vintage-style leather blazer.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -279,7 +279,7 @@
     {
       "id": "13",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 7",
+      "altText": "T-shirt 7",
       "title": "Minimalist Tee",
       "price": 20,
       "status": "NO STOCK",
@@ -292,7 +292,7 @@
         "S",
         "M"
       ],
-      "description": "Design minimalista e elegante.",
+      "description": "Minimalist and elegant design.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -315,7 +315,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer marrom clássico para negócios.",
+      "description": "Classic brown blazer for business occasions.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -324,7 +324,7 @@
     {
       "id": "15",
       "imageUrl": "/src/assets/camisa8.png",
-      "altText": "Camiseta 8",
+      "altText": "T-shirt 8",
       "title": "Longline Tee",
       "price": 26,
       "status": "IN STOCK",
@@ -338,7 +338,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta longa para um estilo moderno.",
+      "description": "Longline T-shirt for a modern style.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -360,7 +360,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer de veludo vermelho para eventos luxuosos.",
+      "description": "Red velvet blazer for luxurious events.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -370,7 +370,7 @@
     {
       "id": "17",
       "imageUrl": "/src/assets/camisa5.png",
-      "altText": "Camiseta 9",
+      "altText": "T-shirt 9",
       "title": "Tie Dye Tee",
       "price": 24,
       "status": "IN STOCK",
@@ -383,7 +383,7 @@
         "S",
         "M"
       ],
-      "description": "Estampa tie dye única e vibrante.",
+      "description": "Unique and vibrant tie dye print.",
       "images": [
         "/src/assets/camisa5.png",
         "/src/assets/camisa6.png"
@@ -406,7 +406,7 @@
         "M",
         "L"
       ],
-      "description": "Ideal para uso casual ao ar livre.",
+      "description": "Ideal for casual outdoor use.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -415,7 +415,7 @@
     {
       "id": "19",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 10",
+      "altText": "T-shirt 10",
       "title": "Henley Tee",
       "price": 27.5,
       "status": "IN STOCK",
@@ -429,7 +429,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta Henley com botões frontais.",
+      "description": "Henley T-shirt with front buttons.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -453,7 +453,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer verde casual para o dia a dia.",
+      "description": "Green casual blazer for everyday wear.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -462,7 +462,7 @@
     {
       "id": "21",
       "imageUrl": "/src/assets/camisa8.png",
-      "altText": "Camiseta 11",
+      "altText": "T-shirt 11",
       "title": "V-Neck Cotton Tee",
       "price": 23,
       "status": "IN STOCK",
@@ -478,7 +478,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta em algodão com decote V.",
+      "description": "Cotton T-shirt with V-neck design.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -501,7 +501,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer azul marinho com dois botões.",
+      "description": "Navy blue double-breasted blazer.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -510,7 +510,7 @@
     {
       "id": "23",
       "imageUrl": "./src/assets/camisa8.png",
-      "altText": "Camiseta 12",
+      "altText": "T-shirt 12",
       "title": "Graphic Print Tee",
       "price": 32,
       "status": "IN STOCK",
@@ -524,7 +524,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta com estampa gráfica moderna.",
+      "description": "T-shirt with modern graphic print.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -547,7 +547,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer de lã cinza para o inverno.",
+      "description": "Gray wool blazer for winter.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -557,7 +557,7 @@
     {
       "id": "25",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 13",
+      "altText": "T-shirt 13",
       "title": "Basic Crewneck Tee",
       "price": 18,
       "status": "IN STOCK",
@@ -572,7 +572,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta básica de gola careca.",
+      "description": "Basic crewneck T-shirt.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -595,7 +595,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer xadrez para negócios casuais.",
+      "description": "Checkered blazer for casual business settings.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -604,7 +604,7 @@
     {
       "id": "27",
       "imageUrl": "/src/assets/camisa8.png",
-      "altText": "Camiseta 14",
+      "altText": "T-shirt 14",
       "title": "Fitted Black Tee",
       "price": 25,
       "status": "IN STOCK",
@@ -617,7 +617,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta preta ajustada ao corpo.",
+      "description": "Black fitted t-shirt.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -640,7 +640,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer verde oliva para ocasiões informais.",
+      "description": "Olive green blazer for casual occasions.",
       "images": [
         "/src/assets/camisa5.png",
         "/src/assets/camisa6.png"
@@ -650,7 +650,7 @@
     {
       "id": "29",
       "imageUrl": "/src/assets/camisa9.png",
-      "altText": "Camiseta 15",
+      "altText": "T-shirt 15",
       "title": "Striped Cotton Tee",
       "price": 28,
       "status": "IN STOCK",
@@ -665,7 +665,7 @@
         "M",
         "L"
       ],
-      "description": "Camiseta listrada em algodão.",
+      "description": "Striped cotton t-shirt.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -688,7 +688,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer bege de algodão ideal para o verão.",
+      "description": "Beige cotton blazer ideal for summer.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -698,7 +698,7 @@
     {
       "id": "31",
       "imageUrl": "/src/assets/camisa1.png",
-      "altText": "Camiseta 16",
+      "altText": "T-shirt 16",
       "title": "Relaxed Fit Tee",
       "price": 22,
       "status": "IN STOCK",
@@ -713,7 +713,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta com corte solto e confortável.",
+      "description": "Relaxed fit t-shirt, comfortable and loose.",
       "images": [
         "/src/assets/camisa1.png",
         "/src/assets/camisa2.png"
@@ -736,7 +736,7 @@
         "M",
         "L"
       ],
-      "description": "Blazer jeans azul claro para um visual descontraído.",
+      "description": "Light blue denim blazer for a relaxed look.",
       "images": [
         "/src/assets/camisa7.png"
       ],
@@ -745,7 +745,7 @@
     {
       "id": "33",
       "imageUrl": "/src/assets/camisa8.png",
-      "altText": "Camiseta 17",
+      "altText": "T-shirt 17",
       "title": "Muscle Fit Tee",
       "price": 35,
       "status": "NO STOCK",
@@ -759,7 +759,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta com corte muscle para realçar o físico.",
+      "description": "Muscle fit t-shirt to enhance physique.",
       "images": [
         "/src/assets/camisa8.png"
       ],
@@ -782,7 +782,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer de linho creme, leve e sofisticado.",
+      "description": "Cream linen blazer, light and sophisticated.",
       "images": [
         "/src/assets/camisa5.png",
         "/src/assets/camisa6.png"
@@ -792,7 +792,7 @@
     {
       "id": "35",
       "imageUrl": "/src/assets/camisa9.png",
-      "altText": "Camiseta 18",
+      "altText": "T-shirt 18",
       "title": "Polo Sport Tee",
       "price": 40,
       "status": "IN STOCK",
@@ -807,7 +807,7 @@
         "L",
         "XL"
       ],
-      "description": "Camiseta polo esportiva, ideal para práticas esportivas.",
+      "description": "Sport polo t-shirt, ideal for sports activities.",
       "images": [
         "/src/assets/camisa9.png"
       ],
@@ -830,7 +830,7 @@
         "L",
         "XL"
       ],
-      "description": "Blazer tuxedo clássico para eventos formais.",
+      "description": "Classic tuxedo blazer for formal events.",
       "images": [
         "/src/assets/camisa3.png",
         "/src/assets/camisa4.png"
@@ -1525,6 +1525,54 @@
         "state": "RS",
         "country": "Brasil"
       }
+    },
+    {
+      "id": "5e62",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "2",
+          "title": "Summer Breeze Tee",
+          "price": 22,
+          "imageUrl": "/src/assets/camisa7.png",
+          "selectedColor": "#FFCCCB",
+          "selectedSize": "M",
+          "quantity": 2
+        }
+      ],
+      "total": 47,
+      "date": "2025-03-18T13:08:21.617Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
+    },
+    {
+      "id": "92e5",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "15",
+          "title": "Longline Tee",
+          "price": 26,
+          "imageUrl": "/src/assets/camisa8.png",
+          "selectedColor": "#696969",
+          "selectedSize": "M",
+          "quantity": 2
+        }
+      ],
+      "total": 55,
+      "date": "2025-03-18T16:42:57.091Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
     }
   ],
   "subscribers": [
@@ -1559,6 +1607,14 @@
     {
       "id": "9b09",
       "email": "vanley_basso@hotmail.com"
+    },
+    {
+      "id": "5c22",
+      "email": "vanley_basso@hotmail.com"
+    },
+    {
+      "id": "2191",
+      "email": "carlos@gmail.com"
     }
   ]
 }

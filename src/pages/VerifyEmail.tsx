@@ -16,7 +16,6 @@ const VerifyEmail: React.FC = () => {
       return;
     }
 
-    
     if (!code.trim()) {
       setError("Verification code is required");
       return;
@@ -29,17 +28,18 @@ const VerifyEmail: React.FC = () => {
 
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        
-        
         setSuccessMessage("Email verified successfully! Your account has been created.");
 
-        
         setTimeout(() => {
           window.location.href = "/";
         }, 3000);
       }
     } catch (err: any) {
-      setError(err.errors[0].message);
+      
+      const errorMessage = err.errors[0].message.includes("is incorrect")
+        ? "Invalid code"
+        : err.errors[0].message;
+      setError(errorMessage);
     }
   };
 
@@ -59,7 +59,6 @@ const VerifyEmail: React.FC = () => {
         </div>
       </section>
 
-      
       <div className="flex justify-center items-center min-h-[calc(100vh-200px)] bg-white pt-8">
         <div className="w-full max-w-sm p-6">
           <h1 className="text-2xl font-bold mb-4 text-primary-heading">Verify Email</h1>

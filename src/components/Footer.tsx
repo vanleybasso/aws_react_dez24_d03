@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,6 +7,7 @@ const Footer = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,6 +50,10 @@ const Footer = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <footer>
       <div className="bg-gray-100 py-8">
@@ -74,7 +79,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="px-6 py-2 bg-custom-button text-white rounded-lg hover:bg-gray-800 tex-sm cursor-pointer"
+                className="px-6 py-2 bg-custom-button text-white rounded-lg hover:bg-gray-800 hover:scale-105 transition-all duration-300 text-sm cursor-pointer"
               >
                 Subscribe
               </button>
@@ -89,21 +94,39 @@ const Footer = () => {
       <div className="bg-white py-8">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between md:pl-[50px]">
           <div>
-            <div className="flex items-center">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={handleLogoClick}
+            >
               <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-10 mr-2" />
               <span className="text-lg font-semibold">Hype</span>
             </div>
             <p className="text-custom mt-2 text-sm">
-            Urban fashion, authentic style. The trends <br /> you love, with the attitude you live!
+              Urban fashion, authentic style. The trends <br /> you love, with the attitude you live!
             </p>
             <div className="flex items-center gap-4 mt-6">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transform transition-transform duration-300 hover:scale-110"
+              >
                 <img src="/src/assets/github.png" alt="GitHub" className="h-6" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transform transition-transform duration-300 hover:scale-110"
+              >
                 <img src="/src/assets/instagram.png" alt="Instagram" className="h-6" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transform transition-transform duration-300 hover:scale-110"
+              >
                 <img src="/src/assets/youtube.png" alt="YouTube" className="h-6" />
               </a>
             </div>
@@ -133,22 +156,28 @@ const Footer = () => {
 
             <div>
               <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">COMPANY</h3>
-              <ul className="space-y-2">
+              <ul className="text-custom text-sm space-y-2">
                 <li>
                   <Link
                     to="/about"
-                    className="text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="hover:text-black transition-colors duration-200"
                   >
                     About us
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-sm text-custom hover:text-black transition-colors duration-200">
+                  <Link
+                    to="/contact"
+                    className="hover:text-black transition-colors duration-200"
+                  >
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link to="/careers" className="text-sm text-custom hover:text-black transition-colors duration-200">
+                  <Link
+                    to="/careers"
+                    className="hover:text-black transition-colors duration-200"
+                  >
                     Careers
                   </Link>
                 </li>
@@ -157,11 +186,11 @@ const Footer = () => {
 
             <div>
               <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">SHOP</h3>
-              <ul className="text-gray-600 space-y-2">
+              <ul className="text-custom text-sm space-y-2">
                 <li>
                   <Link
                     to="/account-details"
-                    className="text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="hover:text-black transition-colors duration-200"
                   >
                     My Account
                   </Link>
@@ -169,7 +198,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/checkout"
-                    className="text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="hover:text-black transition-colors duration-200"
                   >
                     Checkout
                   </Link>
@@ -177,7 +206,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/cart"
-                    className="text-sm text-custom hover:text-black transition-colors duration-200"
+                    className="hover:text-black transition-colors duration-200"
                   >
                     Cart
                   </Link>
