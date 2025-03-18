@@ -90,11 +90,11 @@ const Footer = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between md:pl-[50px]">
           <div>
             <div className="flex items-center">
-              <img src="/src/assets/Logomark.png" alt="Logo" className="h-8 mr-2" />
-              <span className="text-lg font-semibold">Ecommerce</span>
+              <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-10 mr-2" />
+              <span className="text-lg font-semibold">Hype</span>
             </div>
             <p className="text-custom mt-2 text-sm">
-              DevCut is a YouTube channel for <br /> practical project-based learning.
+            Urban fashion, authentic style. The trends <br /> you love, with the attitude you live!
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a href="https://github.com" target="_blank" rel="noopener noreferrer">
@@ -197,7 +197,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center text-gray-600 mt-30 mb-0 text-sm text-custom">
-          © {currentYear} DevCut. All rights reserved.
+          © {currentYear} Hype. All rights reserved.
         </div>
       </div>
     </footer>
