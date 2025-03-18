@@ -12,12 +12,10 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false); 
 
- 
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  
   const validatePassword = (password: string) => {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
     return regex.test(password);
@@ -26,13 +24,11 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
     setNameError("");
     setEmailError("");
     setPasswordError("");
     setError("");
 
-    
     let isValid = true;
 
     if (!name.trim()) {
@@ -130,7 +126,6 @@ const SignUp: React.FC = () => {
             <div className="w-full h-px bg-gray-200"></div>
           </div>
 
-          
           <form className="space-y-4" onSubmit={handleSubmit} noValidate>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-custom-gray">
@@ -196,12 +191,16 @@ const SignUp: React.FC = () => {
               </p>
             </div>
 
+            {error && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
+
             <button
-  type="submit"
-  className="w-full bg-custom-button text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer"
->
-  Create account
-</button>
+              type="submit"
+              className="w-full bg-custom-button text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer"
+            >
+              Create account
+            </button>
           </form>
 
           <p className="mt-4 text-center text-sm text-custom">

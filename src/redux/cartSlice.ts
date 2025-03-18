@@ -48,6 +48,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const existingItem = state.items.find(
         (item) =>
@@ -62,28 +63,48 @@ const cartSlice = createSlice({
         state.items.push(action.payload);
       }
 
-      state.subtotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
+      
+      state.subtotal = state.items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
 
       
       localStorage.setItem('cartState', JSON.stringify(state));
     },
+
+    
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
-      state.subtotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
       
+      state.subtotal = state.items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+
+     
       localStorage.setItem('cartState', JSON.stringify(state));
     },
+
+   
     updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
       const item = state.items.find((item) => item.id === action.payload.id);
       if (item) {
         item.quantity = action.payload.quantity;
-        state.subtotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+       
+        state.subtotal = state.items.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
 
         
         localStorage.setItem('cartState', JSON.stringify(state));
       }
     },
+
+    
     clearCart: (state) => {
       state.items = [];
       state.subtotal = 0;
@@ -94,6 +115,8 @@ const cartSlice = createSlice({
   },
 });
 
+
 export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
+
 
 export default cartSlice.reducer;

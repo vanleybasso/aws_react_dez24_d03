@@ -18,11 +18,13 @@ const Cart: React.FC = () => {
   const total = subtotal + tax;
 
   const handleCheckout = () => {
+   
     if (cartItems.length === 0) {
-      navigate("/listing");
+      navigate("/listing"); 
       return;
     }
 
+    
     if (!isSignedIn) {
       navigate("/login");
     } else {
@@ -148,7 +150,7 @@ const Cart: React.FC = () => {
 
           <button
             onClick={handleCheckout}
-            className="w-full bg-black text-white py-3 rounded mt-6 hover:scale-105 transition-transform duration-200 cursor-pointer"
+            className="w-full bg-black text-white py-3 rounded mt-6 hover:bg-gray-800 transition cursor-pointer"
           >
             {isSignedIn ? "Checkout" : "Login to Checkout"}
           </button>
