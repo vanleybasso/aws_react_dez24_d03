@@ -44,7 +44,7 @@ const Home = () => {
             Discover Our Newest Collection Today.
           </p>
           <button 
-            className="text-sm bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 button-border cursor-pointer flex items-center gap-2"
+            className="text-sm bg-custom-button text-white py-2 px-6 rounded-md hover:bg-gray-800 hover:scale-105 transition-all duration-300 button-border cursor-pointer flex items-center gap-2"
             onClick={handleViewCollectionClick}
           >
             View Collection
@@ -147,7 +147,7 @@ const Home = () => {
             clothing categories.
           </p>
           <button 
-            className="text-white py-2 px-6 rounded-md hover:bg-gray-800 flex items-center bg-custom-button text-sm cursor-pointer gap-2"
+            className="text-white py-2 px-6 rounded-md hover:bg-gray-800 hover:scale-105 transition-all duration-300 flex items-center bg-custom-button text-sm cursor-pointer gap-2"
             onClick={handleStartBrowsingClick}
           >
             Start Browsing

@@ -282,14 +282,14 @@ const Checkout: React.FC = () => {
           <h2 className="text-base font-semibold mb-10">Your Order</h2>
 
           <div className="w-full flex justify-end mb-16">
-            <div
-              className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer"
-              onClick={handleEditCart}
-            >
-              <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
-                Edit Cart
-              </span>
-            </div>
+          <div
+  className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer hover:scale-105 transition-transform duration-200"
+  onClick={handleEditCart}
+>
+  <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
+    Edit Cart
+  </span>
+</div>
           </div>
 
           <div className="space-y-4 text-sm text-gray-600">
@@ -312,14 +312,14 @@ const Checkout: React.FC = () => {
           </div>
 
           <button
-            onClick={handlePlaceOrder}
-            disabled={!isFormValid}
-            className={`w-full bg-black text-white py-3 rounded mt-6 ${
-              isFormValid ? 'hover:bg-gray-800' : 'opacity-50 cursor-not-allowed'
-            } transition cursor-pointer`}
-          >
-            Place Order
-          </button>
+  onClick={handlePlaceOrder}
+  disabled={!isFormValid}
+  className={`w-full bg-black text-white py-3 rounded mt-6 ${
+    isFormValid ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+  } transition-transform duration-200`}
+>
+  Place Order
+</button>
         </div>
       </div>
 

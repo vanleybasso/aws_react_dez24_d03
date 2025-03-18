@@ -169,11 +169,11 @@ const Login: React.FC = () => {
             </div>
 
             <button
-              type="submit"
-              className="w-full bg-custom-button text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium cursor-pointer"
-            >
-              Login
-            </button>
+  type="submit"
+  className="w-full bg-custom-button text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium cursor-pointer"
+>
+  Login
+</button>
           </form>
 
           <p className="mt-4 text-center text-sm text-custom">

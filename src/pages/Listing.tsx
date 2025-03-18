@@ -114,12 +114,12 @@ const Listing = () => {
               (category) => (
                 <div key={category} className="mb-3 text-custom-gray text-sm">
                   <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      className="mr-2"
-                      checked={selectedCategory === category}
-                      onChange={() => handleCategoryClick(category)}
-                    />
+                  <input
+  type="checkbox"
+  className="mr-2 appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-black checked:border-black relative"
+  checked={selectedCategory === category}
+  onChange={() => handleCategoryClick(category)}
+/>
                     {category}
                   </label>
                   <hr className="border-gray-200 my-3" />
@@ -174,21 +174,23 @@ const Listing = () => {
         </section>
 
         <div className="w-full lg:w-64 mb-8 lg:mb-0 lg:ml-8 order-1 lg:order-2">
-          <div className="flex items-center border border-gray-200 rounded-lg p-2 bg-white">
-            <img
-              src="/src/assets/Search.png"
-              alt="Search"
-              className="w-5 h-5 mr-2"
-            />
-            <input
-              type="text"
-              placeholder="Search products"
-              className="w-full outline-none text-sm"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-        </div>
+  <div
+    className="flex items-center border border-gray-200 rounded-lg p-2 bg-white focus-within:outline focus-within:outline-2 focus-within:outline-[#0e1422]"
+  >
+    <img
+      src="/src/assets/Search.png"
+      alt="Search"
+      className="w-5 h-5 mr-2"
+    />
+    <input
+      type="text"
+      placeholder="Search products"
+      className="w-full outline-none text-sm"
+      value={searchTerm}
+      onChange={handleSearchChange}
+    />
+  </div>
+</div>
 
         <section className="flex-1 order-2 lg:order-1">
           <h3 className="font-bold text-sm text-primary-heading">Applied Filters:</h3>

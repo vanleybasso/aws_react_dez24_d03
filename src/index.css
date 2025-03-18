@@ -39,3 +39,27 @@ body {
     background-color: #0E1422;
   }
   
+  .nav-link {
+    color: inherit; 
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #0e1422; 
+  }
+
+  .search-input:focus {
+    outline: 2px solid #0e1422;
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: translate(-50%, -50%);
+  }

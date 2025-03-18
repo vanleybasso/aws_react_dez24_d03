@@ -25,6 +25,10 @@ const Header = () => {
     navigate("/cart");
   };
 
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
+
   return (
     <header className="w-full">
       <div className="bg-custom-banner text-white text-center py-2 text-sm">
@@ -48,31 +52,35 @@ const Header = () => {
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={handleLogoClick}>
           <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-8" />
           <span className="text-lg font-semibold">Hype</span>
         </div>
 
         <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-center">
           <li>
-            <Link to="/" className="hover:text-black text-custom">
+            <Link to="/" className="nav-link text-custom">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/listing" className="hover:text-black text-custom">
+            <Link to="/listing" className="nav-link text-custom">
               Shop
             </Link>
           </li>
           <li>
-            <Link to="/about" className="hover:text-black text-custom">
+            <Link to="/about" className="nav-link text-custom">
               About
             </Link>
           </li>
         </ul>
 
         <div className="flex gap-4 md:ml-auto mr-4 items-center">
-          <div className="relative cursor-pointer" onClick={handleCartClick}>
+          
+          <div
+            className="relative cursor-pointer transform transition-transform duration-300 hover:scale-110"
+            onClick={handleCartClick}
+          >
             <img
               src="/src/assets/car.png"
               alt="Carrinho"
@@ -88,10 +96,11 @@ const Header = () => {
             )}
           </div>
 
+          
           {user ? (
             <div
               onClick={handleUserIconClick}
-              className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center text-sm font-semibold cursor-pointer overflow-hidden"
+              className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center text-sm font-semibold cursor-pointer overflow-hidden transform transition-transform duration-300 hover:scale-110"
             >
               {user.imageUrl ? (
                 <img
@@ -106,12 +115,16 @@ const Header = () => {
               )}
             </div>
           ) : (
-            <img
-              src="/src/assets/perfil.png"
-              alt="Usuário"
-              className="w-5 h-5 cursor-pointer"
+            <div
+              className="transform transition-transform duration-300 hover:scale-110"
               onClick={handleUserIconClick}
-            />
+            >
+              <img
+                src="/src/assets/perfil.png"
+                alt="Usuário"
+                className="w-5 h-5 cursor-pointer"
+              />
+            </div>
           )}
         </div>
       </nav>
@@ -122,7 +135,7 @@ const Header = () => {
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
-              className="block py-2 text-gray-700 hover:text-black"
+              className="nav-link block py-2 text-gray-700"
             >
               Home
             </Link>
@@ -131,7 +144,7 @@ const Header = () => {
             <Link
               to="/listing"
               onClick={() => setIsMenuOpen(false)}
-              className="block py-2 text-gray-700 hover:text-black"
+              className="nav-link block py-2 text-gray-700"
             >
               Shop
             </Link>
@@ -140,7 +153,7 @@ const Header = () => {
             <Link
               to="/about"
               onClick={() => setIsMenuOpen(false)}
-              className="block py-2 text-gray-700 hover:text-black"
+              className="nav-link block py-2 text-gray-700"
             >
               About
             </Link>

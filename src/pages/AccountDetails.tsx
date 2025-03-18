@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AccountDetails: React.FC = () => {
   const { user } = useUser();
-  const { signOut } = useAuth(); 
+  const { signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -15,11 +15,11 @@ const AccountDetails: React.FC = () => {
   };
 
   const handleOrdersClick = () => {
-    navigate('/orders'); 
+    navigate('/orders');
   };
 
   const handleAccountDetailsClick = () => {
-    window.location.reload(); 
+    window.location.reload();
   };
 
   return (
@@ -37,15 +37,16 @@ const AccountDetails: React.FC = () => {
         <div className="flex items-center">
           <span className="mr-2 font-semibold text-sm text-custom">Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span className='text-sm font-semibold text-primary-heading'>My Account</span>
+          <span className="text-sm font-semibold text-primary-heading">My Account</span>
         </div>
       </section>
 
       <section className="flex flex-col md:flex-row items-start sm:pl-[174px] mt-[120px] p-4 sm:p-0">
         <div className="flex flex-col w-full md:w-auto">
+         
           <section
-            onClick={handleOrdersClick} 
-            className="flex items-center p-4 cursor-pointer"
+            onClick={handleOrdersClick}
+            className="flex items-center p-4 cursor-pointer hover:scale-105 transition-transform duration-200"
           >
             <img
               src="/src/assets/car.png"
@@ -55,23 +56,25 @@ const AccountDetails: React.FC = () => {
             <span className="text-sm font-semibold text-custom">Orders</span>
           </section>
 
+          
           <section
-            onClick={handleAccountDetailsClick} 
-            className="flex items-center p-4 cursor-pointer"
-            style={{ backgroundColor: "#F6F6F6", width: "212px", height: "41px", borderRadius: "8px" }}
+            onClick={handleAccountDetailsClick}
+            className="flex items-center p-4 cursor-pointer hover:scale-105 transition-transform duration-200"
+            style={{ backgroundColor: '#F6F6F6', width: '212px', height: '41px', borderRadius: '8px' }}
           >
             <img
               src="/src/assets/user3.png"
               alt="Account Detail"
               className="w-6 h-6 mr-2"
-              style={{ width: "24px", height: "24px" }}
+              style={{ width: '24px', height: '24px' }}
             />
             <span className="text-sm font-semibold">Account Detail</span>
           </section>
 
+          
           <section
             onClick={handleLogout}
-            className="flex items-center p-4 cursor-pointer rounded"
+            className="flex items-center p-4 cursor-pointer rounded hover:scale-105 transition-transform duration-200"
           >
             <img
               src="/src/assets/Logout.png"
@@ -87,21 +90,23 @@ const AccountDetails: React.FC = () => {
         <div className="ml-0 md:ml-8 mt-8 md:mt-[-40px] flex flex-col justify-start w-full md:w-auto">
           <h2 className="text-base font-semibold">Account Details</h2>
 
+          
           <div
-            className="mt-10 flex justify-center items-center"
+            className="mt-10 flex justify-center items-center hover:scale-105 transition-transform duration-200 cursor-pointer"
             style={{
               width: '48px',
               height: '48px',
               backgroundColor: '#F0F1FF',
               borderRadius: '50%',
-              overflow: 'hidden', 
+              overflow: 'hidden',
             }}
+            onClick={() => alert('Avatar clicado!')} 
           >
             {user?.imageUrl ? (
               <img
                 src={user.imageUrl}
                 alt="User Profile"
-                className="w-full h-full object-cover" 
+                className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-300">
@@ -112,7 +117,8 @@ const AccountDetails: React.FC = () => {
             )}
           </div>
 
-          <label className="text-sm font-medium text-custom-gray  mt-8">
+          
+          <label className="text-sm font-medium text-custom-gray mt-8">
             Full Name
           </label>
           <input
@@ -122,7 +128,9 @@ const AccountDetails: React.FC = () => {
             className="mt-2 w-[320px] h-[44px] border border-[#E6E7E8] rounded-[6px] px-4 py-2 text-sm bg-gray-100 cursor-not-allowed"
           />
 
-          <label className="text-sm font-medium text-custom-gray  mt-6">Email</label>
+          <label className="text-sm font-medium text-custom-gray mt-6">
+            Email
+          </label>
           <input
             type="email"
             value={user?.primaryEmailAddress?.emailAddress || ''}
