@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react"; 
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { useTheme } from "./ThemeContext"; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser();
   const navigate = useNavigate();
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const { isDarkMode, toggleTheme } = useTheme(); 
 
   const totalItemsInCart = cartItems.length;
 
@@ -30,19 +32,22 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full">
-      <div className="bg-custom-banner text-white text-center py-2 text-sm">
+    <header className={`w-full ${isDarkMode ? "bg-black text-white" : "bg-white text-gray-700"}`}>
+      
+      <div className={`${isDarkMode ? "bg-gray-800" : "bg-custom-banner"} text-white text-center py-2 text-sm`}>
         Get 25% OFF on your first order.{" "}
         <Link to="/listing" className="underline">
           Order Now
         </Link>
       </div>
 
-      <nav className="flex justify-between items-center p-4 bg-white shadow-md relative">
+      
+      <nav className="flex justify-between items-center p-4 shadow-md relative">
+        
         <div className="md:hidden ml-4">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="mt-2 focus:outline-none cursor-pointer" 
+            className="mt-2 focus:outline-none cursor-pointer"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -52,30 +57,59 @@ const Header = () => {
           </button>
         </div>
 
+       
         <div className="flex items-center gap-2 cursor-pointer" onClick={handleLogoClick}>
-          <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-8" />
+          <img 
+            src={isDarkMode ? "/src/assets/logo-favicon2.svg" : "/src/assets/logo-favicon.svg"} 
+            alt="Logo" 
+            className="h-8" 
+          />
           <span className="text-lg font-semibold">Hype</span>
         </div>
 
-        <ul className="hidden md:flex gap-6 text-gray-700 flex-grow justify-center">
+        
+        <ul className="hidden md:flex gap-6 flex-grow justify-center">
           <li>
-            <Link to="/" className="nav-link text-custom">
+            <Link
+              to="/"
+              className={`${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-custom hover:text-gray-500"}`}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to="/listing" className="nav-link text-custom">
+            <Link
+              to="/listing"
+              className={`${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-custom hover:text-gray-500"}`}
+            >
               Shop
             </Link>
           </li>
           <li>
-            <Link to="/about" className="nav-link text-custom">
+            <Link
+              to="/about"
+              className={`${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-custom hover:text-gray-500"}`}
+            >
               About
             </Link>
           </li>
         </ul>
 
+       
         <div className="flex gap-4 md:ml-auto mr-4 items-center">
+         
+          <button
+            onClick={toggleTheme}
+            className="focus:outline-none transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+          >
+            {isDarkMode ? (
+              <Sun className={`w-5 h-5 ${isDarkMode ? "text-white" : "text-black"}`} /> 
+            ) : (
+              <Moon  className={`w-5 h-5 ${isDarkMode ? "text-white" : "text-black"}`} />
+            )}
+          </button>
+          
+
           
           <div
             className="relative cursor-pointer transform transition-transform duration-300 hover:scale-110"
@@ -84,7 +118,7 @@ const Header = () => {
             <img
               src="/src/assets/car.png"
               alt="Carrinho"
-              className="w-5 h-5"
+              className={`w-5 h-5 ${isDarkMode ? "filter brightness-0 invert" : ""}`}
             />
             {totalItemsInCart > 0 && (
               <span
@@ -109,7 +143,7 @@ const Header = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-gray-700">
+                <span className={`${isDarkMode ? "text-gray-700" : "text-gray-700"}`}>
                   {user.firstName ? user.firstName[0] : "U"}
                 </span>
               )}
@@ -122,20 +156,23 @@ const Header = () => {
               <img
                 src="/src/assets/perfil.png"
                 alt="Usuário"
-                className="w-5 h-5 cursor-pointer"
+                className={`w-5 h-5 cursor-pointer ${isDarkMode ? "filter brightness-0 invert" : ""}`}
               />
             </div>
           )}
         </div>
       </nav>
 
+      
       {isMenuOpen && (
-        <ul className="md:hidden flex flex-col items-center bg-white shadow-md py-2 absolute w-full z-10">
+        <ul className={`md:hidden flex flex-col items-center shadow-md py-2 absolute w-full z-10 ${
+          isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-700"
+        }`}>
           <li>
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
-              className="nav-link block py-2 text-gray-700"
+              className={`block py-2 ${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-gray-700 hover:text-gray-500"}`}
             >
               Home
             </Link>
@@ -144,7 +181,7 @@ const Header = () => {
             <Link
               to="/listing"
               onClick={() => setIsMenuOpen(false)}
-              className="nav-link block py-2 text-gray-700"
+              className={`block py-2 ${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-gray-700 hover:text-gray-500"}`}
             >
               Shop
             </Link>
@@ -153,7 +190,7 @@ const Header = () => {
             <Link
               to="/about"
               onClick={() => setIsMenuOpen(false)}
-              className="nav-link block py-2 text-gray-700"
+              className={`block py-2 ${isDarkMode ? "text-gray-300 hover:text-gray-500" : "text-gray-700 hover:text-gray-500"}`}
             >
               About
             </Link>

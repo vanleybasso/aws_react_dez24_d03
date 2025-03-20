@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "./ThemeContext"; 
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,6 +9,7 @@ const Footer = () => {
   const [success, setSuccess] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme(); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,12 +57,17 @@ const Footer = () => {
   };
 
   return (
-    <footer>
-      <div className="bg-gray-100 py-8">
+    <footer className={`${isDarkMode ? "bg-black text-white" : "bg-white text-gray-700"}`}>
+      
+      <div className={`${isDarkMode ? "bg-gray-800" : "bg-[#F6F6F6]"} py-8`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between">
           <div className="md:w-1/2 md:pl-[40px]">
-            <h2 className="text-xl font-bold mb-2 md:mb-4 text-primary-heading">Join Our Newsletter</h2>
-            <p className="mb-4 md:mb-6 text-custom text-sm">
+            
+            <h2 className={`text-xl font-bold mb-2 md:mb-4 ${isDarkMode ? "text-white" : "text-dark"}`}>
+              Join Our Newsletter
+            </h2>
+            
+            <p className={`mb-4 md:mb-6 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
               We love to surprise our subscribers with occasional gifts.
             </p>
           </div>
@@ -72,8 +79,10 @@ const Footer = () => {
                 placeholder="Your email address"
                 aria-invalid={!!error}
                 className={`px-4 py-2 border ${
-                  error ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:border-black w-2/3`}
+                  error ? "border-red-500" : isDarkMode ? "border-gray-600" : "border-gray-300"
+                } rounded-lg focus:outline-none focus:border-black w-2/3 placeholder-gray-500 ${
+                  isDarkMode ? "bg-gray-700 text-white" : "bg-white"
+                }`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -91,17 +100,20 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-white py-8">
+     
+      <div className={`${isDarkMode ? "bg-black" : "bg-white"} py-8`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between md:pl-[50px]">
+          
           <div>
-            <div
-              className="flex items-center cursor-pointer"
-              onClick={handleLogoClick}
-            >
-              <img src="/src/assets/logo-favicon.svg" alt="Logo" className="h-10 mr-2" />
-              <span className="text-lg font-semibold">Hype</span>
-            </div>
-            <p className="text-custom mt-2 text-sm">
+          <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
+  <img 
+    src={isDarkMode ? "/src/assets/logo-favicon2.svg" : "/src/assets/logo-favicon.svg"} 
+    alt="Logo" 
+    className="h-10 mr-2" 
+  />
+  <span className="text-lg font-semibold">Hype</span>
+</div>
+            <p className={`mt-2 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
               Urban fashion, authentic style. The trends <br /> you love, with the attitude you live!
             </p>
             <div className="flex items-center gap-4 mt-6">
@@ -111,7 +123,11 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="transform transition-transform duration-300 hover:scale-110"
               >
-                <img src="/src/assets/github.png" alt="GitHub" className="h-6" />
+                <img
+                  src="/src/assets/github.png"
+                  alt="GitHub"
+                  className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : ""}`}
+                />
               </a>
               <a
                 href="https://instagram.com"
@@ -119,7 +135,11 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="transform transition-transform duration-300 hover:scale-110"
               >
-                <img src="/src/assets/instagram.png" alt="Instagram" className="h-6" />
+                <img
+                  src="/src/assets/instagram.png"
+                  alt="Instagram"
+                  className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : ""}`}
+                />
               </a>
               <a
                 href="https://youtube.com"
@@ -127,27 +147,34 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="transform transition-transform duration-300 hover:scale-110"
               >
-                <img src="/src/assets/youtube.png" alt="YouTube" className="h-6" />
+                <img
+                  src="/src/assets/youtube.png"
+                  alt="YouTube"
+                  className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : ""}`}
+                />
               </a>
             </div>
           </div>
 
+          
           <div className="grid grid-cols-3 gap-18 mt-6 md:mt-0">
             <div>
-              <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">SUPPORT</h3>
-              <ul className="text-custom text-sm space-y-2">
+              <h3 className={`text-lg font-semibold mb-5 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
+                SUPPORT
+              </h3>
+              <ul className={`text-sm space-y-2 ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
                 <li>
-                  <Link to="/faq" className="hover:text-black transition-colors duration-200">
+                  <Link to="/faq" className="hover:text-gray-500 transition-colors duration-200">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms" className="hover:text-black transition-colors duration-200">
+                  <Link to="/terms" className="hover:text-gray-500 transition-colors duration-200">
                     Terms of use
                   </Link>
                 </li>
                 <li>
-                  <Link to="/privacy" className="hover:text-black transition-colors duration-200">
+                  <Link to="/privacy" className="hover:text-gray-500 transition-colors duration-200">
                     Privacy Policy
                   </Link>
                 </li>
@@ -155,29 +182,22 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">COMPANY</h3>
-              <ul className="text-custom text-sm space-y-2">
+              <h3 className={`text-lg font-semibold mb-5 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
+                COMPANY
+              </h3>
+              <ul className={`text-sm space-y-2 ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
                 <li>
-                  <Link
-                    to="/about"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/about" className="hover:text-gray-500 transition-colors duration-200">
                     About us
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/contact"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/contact" className="hover:text-gray-500 transition-colors duration-200">
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/careers"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/careers" className="hover:text-gray-500 transition-colors duration-200">
                     Careers
                   </Link>
                 </li>
@@ -185,29 +205,22 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-5 text-sm text-shop-now">SHOP</h3>
-              <ul className="text-custom text-sm space-y-2">
+              <h3 className={`text-lg font-semibold mb-5 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
+                SHOP
+              </h3>
+              <ul className={`text-sm space-y-2 ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
                 <li>
-                  <Link
-                    to="/account-details"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/account-details" className="hover:text-gray-500 transition-colors duration-200">
                     My Account
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/checkout"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/checkout" className="hover:text-gray-500 transition-colors duration-200">
                     Checkout
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/cart"
-                    className="hover:text-black transition-colors duration-200"
-                  >
+                  <Link to="/cart" className="hover:text-gray-500 transition-colors duration-200">
                     Cart
                   </Link>
                 </li>
@@ -215,17 +228,36 @@ const Footer = () => {
             </div>
           </div>
 
+         
           <div className="mt-6 md:mt-0">
-            <h3 className="font-semibold mb-8 text-sm text-shop-now">ACCEPTED PAYMENTS</h3>
+            <h3 className={`font-semibold mb-8 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
+              ACCEPTED PAYMENTS
+            </h3>
             <div className="flex gap-8">
-              <img src="/src/assets/Mastercard.png" alt="MasterCard" className="h-6" />
-              <img src="/src/assets/Amex.png" alt="Amex" className="h-6" />
-              <img src="/src/assets/Visa.png" alt="Visa" className="h-6" />
-            </div>
+  <img
+    src="/src/assets/Mastercard.png"
+    alt="MasterCard"
+    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+  />
+  <img
+    src="/src/assets/Amex.png"
+    alt="Amex"
+    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+  />
+  <img
+    src="/src/assets/Visa.png"
+    alt="Visa"
+    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+  />
+</div>
           </div>
         </div>
 
-        <div className="text-center text-gray-600 mt-30 mb-0 text-sm text-custom">
+        
+        <div className={`text-center mt-30 mb-0 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
           © {currentYear} Hype. All rights reserved.
         </div>
       </div>
