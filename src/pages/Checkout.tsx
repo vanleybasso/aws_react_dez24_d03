@@ -6,15 +6,15 @@ import { RootState } from '../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { clearCart } from '../redux/cartSlice';
+import { useTheme } from '../components/ThemeContext';
 
 const Checkout: React.FC = () => {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
-  const tax = useSelector((state: RootState) => state.cart.tax);
-  const total = subtotal + tax;
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const navigate = useNavigate();
   const { isSignedIn, isLoaded, user } = useUser();
   const dispatch = useDispatch();
+  const { isDarkMode } = useTheme();
 
   const [zipCode, setZipCode] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
@@ -23,6 +23,12 @@ const Checkout: React.FC = () => {
   const [country, setCountry] = useState('Brasil');
   const [zipCodeError, setZipCodeError] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+
+  
+  const shipping = subtotal >= 100 ? "Free" : "No Free";
+  const shippingCost = 0; 
+  const tax = subtotal < 100 ? 10 : 0; 
+  const total = subtotal + tax; 
 
   const validateForm = () => {
     const isZipCodeValid = zipCode.length === 8 && !zipCodeError;
@@ -87,9 +93,8 @@ const Checkout: React.FC = () => {
   };
 
   const handlePlaceOrder = async () => {
-    
     if (cartItems.length === 0) {
-      navigate('/listing'); 
+      navigate('/listing');
       return;
     }
 
@@ -119,8 +124,8 @@ const Checkout: React.FC = () => {
       });
 
       if (response.ok) {
-        dispatch(clearCart()); 
-        navigate('/afterpayment'); 
+        dispatch(clearCart());
+        navigate('/afterpayment');
       } else {
         console.error('Failed to save order');
       }
@@ -134,31 +139,45 @@ const Checkout: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={`min-h-screen flex flex-col ${isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-700"}`}>
       <Header />
 
       <h1
-        className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px]"
+        className={`text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px] ${
+          isDarkMode ? "bg-gray-800" : "bg-gray-100"
+        }`}
         style={{ lineHeight: 'normal' }}
       >
-        <span className="inline-block text-primary-heading font-semibold">Checkout</span>
+        <span className={`inline-block text-2xl font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>
+          Checkout
+        </span>
       </h1>
 
-      <section className="flex items-center p-4 pl-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
+      <section className={`flex items-center p-4 pl-4 pt-0 pb-4 sm:pl-[174px] ${
+        isDarkMode ? "bg-gray-800" : "bg-gray-100"
+      }`}>
         <div className="flex items-center">
-          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
+          <span className={`mr-2 font-bold text-sm ${isDarkMode ? "text-gray-300" : "text-custom"}`}>Ecommerce</span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span className='text-sm text-primary-heading font-semibold'>Checkout</span>
+          <span className={`text-sm font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Checkout</span>
         </div>
       </section>
 
-      <div className="flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8">
+      <div className={`flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8 flex-grow ${
+        isDarkMode ? "bg-black" : "bg-white"
+      }`}>
         <div className="flex-1">
-          <h2 className="text-left text-lg pl-4 pt-4 sm:pl-0 mt-8 text-base font-semibold">Shipping Address</h2>
+          <h2 className={`text-left text-lg pl-4 pt-4 sm:pl-0 mt-8 text-base font-semibold ${
+            isDarkMode ? "text-white" : "text-gray-700"
+          }`}>
+            Shipping Address
+          </h2>
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="zip-code" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="zip-code" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 Zip Code
               </label>
               <input
@@ -170,15 +189,19 @@ const Checkout: React.FC = () => {
                   setZipCode(value);
                   fetchAddress(value);
                 }}
-                className="w-full h-[45px] p-2 border rounded-md"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-[#E6E7E8] text-gray-700"
+                }`}
+                style={{ fontSize: '14px' }}
                 maxLength={8}
               />
               {zipCodeError && <p className="text-red-500 text-sm mt-1">{zipCodeError}</p>}
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="country" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="country" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 Country
               </label>
               <input
@@ -186,15 +209,19 @@ const Checkout: React.FC = () => {
                 type="text"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-[#E6E7E8] text-gray-700"
+                }`}
+                style={{ fontSize: '14px' }}
               />
             </div>
           </div>
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="city" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="city" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 City
               </label>
               <input
@@ -202,13 +229,17 @@ const Checkout: React.FC = () => {
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-[#E6E7E8] text-gray-700"
+                }`}
+                style={{ fontSize: '14px' }}
               />
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="state" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="state" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 State
               </label>
               <input
@@ -216,14 +247,18 @@ const Checkout: React.FC = () => {
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="w-full h-[45px] p-2 border rounded-md"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-[#E6E7E8] text-gray-700"
+                }`}
+                style={{ fontSize: '14px' }}
               />
             </div>
           </div>
 
           <div className="pl-4 sm:pl-0 mt-8">
-            <label htmlFor="street-address" className="block text-sm font-semibold mb-2 text-custom-gray">
+            <label htmlFor="street-address" className={`block text-sm font-semibold mb-2 ${
+              isDarkMode ? "text-gray-300" : "text-custom-gray"
+            }`}>
               Street Address
             </label>
             <input
@@ -231,14 +266,18 @@ const Checkout: React.FC = () => {
               type="text"
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
-              className="w-full lg:w-[534px] h-[45px] p-2 border rounded-md"
-              style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+              className={`w-full lg:w-[534px] h-[45px] p-2 border rounded-md ${
+                isDarkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-[#E6E7E8] text-gray-700"
+              }`}
+              style={{ fontSize: '14px' }}
             />
           </div>
 
           <div className="pl-4 sm:pl-0 mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="full-name" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="full-name" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 Full Name
               </label>
               <input
@@ -246,13 +285,17 @@ const Checkout: React.FC = () => {
                 type="text"
                 value={user?.fullName || ''}
                 readOnly
-                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white cursor-default" : "bg-gray-100 border-[#E6E7E8] text-gray-700 cursor-default"
+                }`}
+                style={{ fontSize: '14px' }}
               />
             </div>
 
             <div className="w-full sm:w-[259px]">
-              <label htmlFor="email" className="block text-sm font-semibold mb-2 text-custom-gray">
+              <label htmlFor="email" className={`block text-sm font-semibold mb-2 ${
+                isDarkMode ? "text-gray-300" : "text-custom-gray"
+              }`}>
                 Email
               </label>
               <input
@@ -260,8 +303,10 @@ const Checkout: React.FC = () => {
                 type="email"
                 value={user?.primaryEmailAddress?.emailAddress || ''}
                 readOnly
-                className="w-full h-[45px] p-2 border rounded-md bg-gray-100 cursor-default"
-                style={{ fontSize: '14px', borderColor: '#E6E7E8' }}
+                className={`w-full h-[45px] p-2 border rounded-md ${
+                  isDarkMode ? "bg-gray-800 border-gray-700 text-white cursor-default" : "bg-gray-100 border-[#E6E7E8] text-gray-700 cursor-default"
+                }`}
+                style={{ fontSize: '14px' }}
               />
             </div>
           </div>
@@ -272,58 +317,82 @@ const Checkout: React.FC = () => {
           style={{
             width: '1px',
             height: '504px',
-            backgroundColor: '#E6E7E8',
+            backgroundColor: isDarkMode ? '#4A5568' : '#E6E7E8',
             marginLeft: '32px',
             marginTop: '32px',
           }}
         ></div>
 
-        <div className="w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8">
-          <h2 className="text-base font-semibold mb-10">Your Order</h2>
+        <div className={`w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8 border rounded ${
+          isDarkMode ? "border-gray-700 bg-gray-800" : "border-[#E6E7E8] bg-white"
+        }`}>
+          <h2 className={`text-base font-semibold mb-10 ${
+            isDarkMode ? "text-white" : "text-gray-700"
+          }`}>
+            Your Order
+          </h2>
 
           <div className="w-full flex justify-end mb-16">
-          <div
-  className="border border-[#B6B7BC] rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer hover:scale-105 transition-transform duration-200"
-  onClick={handleEditCart}
->
-  <span className="text-sm text-[#5C5F6A]" style={{ fontSize: '14px' }}>
-    Edit Cart
-  </span>
-</div>
+            <div
+              className={`border rounded-[4px] flex items-center justify-center w-[107px] h-[44px] cursor-pointer hover:scale-105 transition-transform duration-200 ${
+                isDarkMode ? "border-gray-700" : "border-[#B6B7BC]"
+              }`}
+              onClick={handleEditCart}
+            >
+              <span className={`text-sm ${
+                isDarkMode ? "text-gray-300" : "text-[#5C5F6A]"
+              }`} style={{ fontSize: '14px' }}>
+                Edit Cart
+              </span>
+            </div>
           </div>
 
-          <div className="space-y-4 text-sm text-gray-600">
+          <div className={`space-y-4 text-sm ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}>
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span className='text-primary-heading font-semibold'>${subtotal.toFixed(2)}</span>
+              <span className={`font-semibold ${
+                isDarkMode ? "text-white" : "text-primary-heading"
+              }`}>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span className='text-primary-heading font-semibold'>Free</span>
+              <span className={`font-semibold ${
+                isDarkMode ? "text-white" : "text-primary-heading"
+              }`}>{shipping}</span>
             </div>
             <div className="flex justify-between">
               <span>Tax</span>
-              <span className='text-primary-heading font-semibold'>${tax.toFixed(2)}</span>
+              <span className={`font-semibold ${
+                isDarkMode ? "text-white" : "text-primary-heading"
+              }`}>${tax.toFixed(2)}</span>
             </div>
-            <div className="border-t border-t-[#E6E7E8] pt-4 mb-6 flex justify-between font-medium text-black">
-              <span>Total</span>
+            <div className={`border-t pt-4 mb-6 flex justify-between font-medium ${
+              isDarkMode ? "border-gray-700 text-white" : "border-[#E6E7E8] text-black"
+            }`}>
+              <span className={`font-semibold ${
+                isDarkMode ? "text-white" : "text-primary-heading"
+              }`}>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
 
           <button
-  onClick={handlePlaceOrder}
-  disabled={!isFormValid}
-  className={`w-full bg-black text-white py-3 rounded mt-6 ${
-    isFormValid ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
-  } transition-transform duration-200`}
->
-  Place Order
-</button>
+            onClick={handlePlaceOrder}
+            disabled={!isFormValid}
+            className={`w-full py-3 rounded mt-6 ${
+              isFormValid ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+            } transition-transform duration-200 ${
+              isDarkMode ? "bg-[#0E1422] text-white" : "bg-[#0E1422] text-white"
+            }`}
+          >
+            Place Order
+          </button>
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className={`mt-16 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
         <Footer />
       </div>
     </div>

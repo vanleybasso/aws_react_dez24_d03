@@ -3,13 +3,14 @@ import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import productsData from "../../db.json";
+import { useTheme } from "../components/ThemeContext";
 
 interface Product {
   id: number;
   imageUrl: string;
   altText: string;
   title: string;
-  price: number; 
+  price: number;
   status: string;
   category: string;
 }
@@ -24,6 +25,7 @@ const Listing = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+  const { isDarkMode } = useTheme();
 
   const productsPerPage = 9;
 
@@ -32,7 +34,7 @@ const Listing = () => {
       ? productsData.products.filter((product) => product.category === category)
       : productsData.products;
 
-    const prices = filteredProducts.map((product) => product.price); 
+    const prices = filteredProducts.map((product) => product.price);
     const maxProductPrice = Math.max(...prices);
     const roundedMaxPrice = Math.ceil(maxProductPrice);
     setMaxPrice(roundedMaxPrice);
@@ -43,7 +45,6 @@ const Listing = () => {
     calculateMaxPrice(selectedCategory);
   }, [selectedCategory]);
 
-  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
@@ -62,7 +63,7 @@ const Listing = () => {
   const products = (productsData as ProductsData).products;
   const filteredProducts = products.filter((product) => {
     const matchesCategory = !selectedCategory || product.category === selectedCategory;
-    const matchesPrice = product.price <= priceFilter; 
+    const matchesPrice = product.price <= priceFilter;
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesPrice && matchesSearch;
   });
@@ -97,37 +98,40 @@ const Listing = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-700"}`}>
       <Header />
 
-      <section className="flex items-center p-4 pl-24 bg-gray-100">
-        <span className="mr-2 font-bold text-custom text-sm">Ecommerce</span>
+      
+      <section className={`flex items-center p-4 pl-24 ${isDarkMode ? "bg-gray-800" : "bg-gray-100"}`}>
+        <span className={`mr-2 font-bold text-sm ${isDarkMode ? "text-gray-300" : "text-custom"}`}>Ecommerce</span>
         <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-        <span className="text-primary-heading text-sm font-semibold">Search</span>
+        <span className={`text-sm font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Search</span>
       </section>
 
+      
       <section className="flex flex-col lg:flex-row p-4 lg:pl-24 lg:pr-24 mt-12 flex-grow">
-        <section className="bg-white rounded-lg  w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8">
-          <div className="border border-gray-200 rounded-lg p-4">
-            <h3 className="font-bold mb-5 text-sm text-primary-heading ">Categories</h3>
-            {["Perfume", "Trousers", "Shoe", "HandBag", "Hat", "Thermos"].map(
-              (category) => (
-                <div key={category} className="mb-3 text-custom-gray text-sm">
-                  <label className="flex items-center">
+        
+        <section className={`rounded-lg w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8 ${isDarkMode ? "bg-gray-800" : "bg-white"}`}>
+          <div className={`border rounded-lg p-4 ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}>
+            <h3 className={`font-bold mb-5 text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Categories</h3>
+            {["Perfume", "Trousers", "Shoe", "HandBag", "Hat", "Thermos"].map((category) => (
+              <div key={category} className="mb-3">
+                <label className="flex items-center">
                   <input
-  type="checkbox"
-  className="mr-2 appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-black checked:border-black relative"
-  checked={selectedCategory === category}
-  onChange={() => handleCategoryClick(category)}
-/>
-                    {category}
-                  </label>
-                  <hr className="border-gray-200 my-3" />
-                </div>
-              )
-            )}
+                    type="checkbox"
+                    className={`mr-2 appearance-none w-4 h-4 border rounded-sm checked:bg-black checked:border-black relative ${
+                      isDarkMode ? "border-gray-500" : "border-gray-400"
+                    }`}
+                    checked={selectedCategory === category}
+                    onChange={() => handleCategoryClick(category)}
+                  />
+                  <span className={`text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>{category}</span>
+                </label>
+                <hr className={`my-3 ${isDarkMode ? "border-gray-700" : "border-gray-200"}`} />
+              </div>
+            ))}
 
-            <h4 className="font-bold mb-5 mt-5 text-sm text-primary-heading">Price</h4>
+            <h4 className={`font-bold mb-5 mt-5 text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Price</h4>
 
             <div className="relative w-full">
               <input
@@ -137,34 +141,16 @@ const Listing = () => {
                 step="1"
                 value={priceFilter}
                 onChange={handleSliderChange}
-                className="w-full mb-10 appearance-none h-2 rounded-lg bg-gradient-to-r from-gray-500 to-gray-200"
+                className="w-full mb-10 appearance-none h-2 rounded-lg"
                 style={{
                   background: `linear-gradient(to right, #878A92 0%, #878A92 ${percentage}%, #E6E7E8 ${percentage}%, #E6E7E8 100%)`,
                 }}
               />
 
-              <style>
-                {`
-                  input[type="range"]::-webkit-slider-runnable-track {
-                    background-color: transparent;
-                    height: 8px;
-                    border-radius: 8px;
-                  }
-                  input[type="range"]::-webkit-slider-thumb {
-                    background-color: #000;
-                    border: none;
-                    width: 16px;
-                    height: 16px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    appearance: none;
-                    margin-top: -4px;
-                  }
-                `}
-              </style>
-
               <div
-                className="absolute top-8 transform -translate-x-1/2 bg-black text-white w-20 h-7 flex items-center justify-center border border-gray-200 rounded-full text-[12px]"
+                className={`absolute top-8 transform -translate-x-1/2 w-20 h-7 flex items-center justify-center border rounded-full text-[12px] ${
+                  isDarkMode ? "bg-gray-700 text-white border-gray-600" : "bg-black text-white border-gray-200"
+                }`}
                 style={{ left: `${percentage}%` }}
               >
                 ${priceFilter.toFixed(2)}
@@ -173,32 +159,42 @@ const Listing = () => {
           </div>
         </section>
 
+        
         <div className="w-full lg:w-64 mb-8 lg:mb-0 lg:ml-8 order-1 lg:order-2">
-  <div
-    className="flex items-center border border-gray-200 rounded-lg p-2 bg-white focus-within:outline focus-within:outline-2 focus-within:outline-[#0e1422]"
-  >
-    <img
-      src="/src/assets/Search.png"
-      alt="Search"
-      className="w-5 h-5 mr-2"
-    />
-    <input
-      type="text"
-      placeholder="Search products"
-      className="w-full outline-none text-sm"
-      value={searchTerm}
-      onChange={handleSearchChange}
-    />
-  </div>
-</div>
+          <div
+            className={`flex items-center border rounded-lg p-2 ${
+              isDarkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"
+            } focus-within:outline focus-within:outline-2 focus-within:outline-[#0e1422]`}
+          >
+            <img
+              src="/src/assets/Search.png"
+              alt="Search"
+              className="w-5 h-5 mr-2"
+            />
+            <input
+              type="text"
+              placeholder="Search products"
+              className={`w-full outline-none text-sm ${
+                isDarkMode ? "bg-gray-700 text-white" : "bg-white text-gray-700"
+              }`}
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
 
+        
         <section className="flex-1 order-2 lg:order-1">
-          <h3 className="font-bold text-sm text-primary-heading">Applied Filters:</h3>
+          <h3 className={`font-bold text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Applied Filters:</h3>
 
           <div className="flex flex-wrap gap-2 mt-3">
             {selectedCategory && (
-              <div className="flex items-center border border-gray-200 rounded-full px-3 py-2">
-                <span className="text-[12px] text-primary-heading font-semibold">{selectedCategory}</span>
+              <div className={`flex items-center border rounded-full px-3 py-2 ${
+                isDarkMode ? "border-gray-600" : "border-gray-200"
+              }`}>
+                <span className={`text-[12px] font-semibold ${
+                  isDarkMode ? "text-white" : "text-primary-heading"
+                }`}>{selectedCategory}</span>
                 <img
                   src="/src/assets/close.png"
                   alt="Remove filter"
@@ -208,8 +204,12 @@ const Listing = () => {
               </div>
             )}
             {priceFilter < maxPrice && (
-              <div className="flex items-center border border-gray-200 rounded-full px-3 py-2">
-                <span className="text-[12px] text-primary-heading font-semibold">${priceFilter}</span>
+              <div className={`flex items-center border rounded-full px-3 py-2 ${
+                isDarkMode ? "border-gray-600" : "border-gray-200"
+              }`}>
+                <span className={`text-[12px] font-semibold ${
+                  isDarkMode ? "text-white" : "text-primary-heading"
+                }`}>${priceFilter.toFixed(2)}</span> 
                 <img
                   src="/src/assets/close.png"
                   alt="Remove filter"
@@ -220,12 +220,10 @@ const Listing = () => {
             )}
           </div>
 
-          <div className="mt-7 text-xs text-custom ">
-            {filteredProducts.length === 0 ? (
-              "Showing 0 of 0 results"
-            ) : (
-              `Showing ${indexOfFirstProduct + 1}-${Math.min(indexOfLastProduct, filteredProducts.length)} of ${filteredProducts.length} results`
-            )}
+          <div className={`mt-7 text-xs ${isDarkMode ? "text-gray-300" : "text-custom"}`}>
+            {filteredProducts.length === 0
+              ? "Showing 0 of 0 results"
+              : `Showing ${indexOfFirstProduct + 1}-${Math.min(indexOfLastProduct, filteredProducts.length)} of ${filteredProducts.length} results`}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
@@ -236,19 +234,22 @@ const Listing = () => {
                 imageUrl={product.imageUrl}
                 altText={product.altText}
                 title={product.title}
-                price={product.price} 
+                price={product.price}
                 status={product.status}
               />
             ))}
           </div>
 
+          
           <div className="flex justify-center items-center mt-12">
             <div
-              className="flex items-center justify-between px-4 py-2 rounded"
+              className={`flex items-center justify-between px-4 py-2 rounded ${
+                isDarkMode ? "border-gray-600" : "border-gray-200"
+              }`}
               style={{
                 width: "152px",
                 height: "44px",
-                border: "1px solid #E9E9EB",
+                border: "1px solid",
               }}
             >
               <button
@@ -261,16 +262,18 @@ const Listing = () => {
                 <img
                   src="/src/assets/left.png"
                   alt="Previous page"
-                  className="w-6 h-6"
+                  className="w-6 h-6 pagination-arrow"
                 />
               </button>
 
               <div
-                className="flex items-center justify-center text-sm font-medium text-gray-700"
+                className={`flex items-center justify-center text-sm font-medium ${
+                  isDarkMode ? "text-white" : "text-gray-700"
+                }`}
                 style={{
                   width: "40px",
                   height: "32px",
-                  backgroundColor: "#F6F6F6",
+                  backgroundColor: isDarkMode ? "#374151" : "#F6F6F6",
                   borderRadius: "4px",
                 }}
               >
@@ -284,14 +287,12 @@ const Listing = () => {
                     : "cursor-pointer"
                 }`}
                 onClick={nextPage}
-                disabled={
-                  currentPage === Math.ceil(filteredProducts.length / productsPerPage)
-                }
+                disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage)}
               >
                 <img
                   src="/src/assets/rigth.png"
                   alt="Next page"
-                  className="w-6 h-6"
+                  className="w-6 h-6 pagination-arrow"
                 />
               </button>
             </div>

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useSignUp } from "@clerk/clerk-react";
+import { useTheme } from "../components/ThemeContext"; 
 
 const VerifyEmail: React.FC = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); 
+  const [successMessage, setSuccessMessage] = useState("");
+  const { isDarkMode } = useTheme(); 
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +37,6 @@ const VerifyEmail: React.FC = () => {
         }, 3000);
       }
     } catch (err: any) {
-      
       const errorMessage = err.errors[0].message.includes("is incorrect")
         ? "Invalid code"
         : err.errors[0].message;
@@ -44,42 +45,65 @@ const VerifyEmail: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={`${isDarkMode ? "bg-black text-white" : "bg-white text-gray-700"}`}>
       <Header />
 
-      <h1 className="bg-gray-100 text-left text-2xl pl-4 pt-6 pb-2 mb-0 sm:pl-[174px] text-primary-heading font-semibold">
-        <span>Verify Email</span>
+      <h1
+        className={`text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px] ${
+          isDarkMode ? "bg-gray-800" : "bg-gray-100"
+        }`}
+        style={{ lineHeight: "normal" }}
+      >
+        <span className={`inline-block font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>
+          Verify Email
+        </span>
       </h1>
 
-      <section className="flex items-center p-4 bg-gray-100 pt-0 pb-4 sm:pl-[174px]">
+      <section
+        className={`flex items-center p-4 pt-0 pb-4 sm:pl-[174px] ${
+          isDarkMode ? "bg-gray-800" : "bg-gray-100"
+        }`}
+      >
         <div className="flex items-center">
-          <span className="mr-2 font-bold text-sm text-custom">Ecommerce</span>
+          <span className={`mr-2 font-bold text-sm ${isDarkMode ? "text-gray-300" : "text-custom"}`}>
+            Ecommerce
+          </span>
           <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
-          <span className=" text-sm text-primary-heading font-semibold">Verify Email</span>
+          <span className={`text-sm font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>
+            Verify Email
+          </span>
         </div>
       </section>
 
-      <div className="flex justify-center items-center min-h-[calc(100vh-200px)] bg-white pt-8">
+      <div className={`flex justify-center items-center min-h-[calc(100vh-200px)] ${isDarkMode ? "bg-black" : "bg-white"} pt-8`}>
         <div className="w-full max-w-sm p-6">
-          <h1 className="text-2xl font-bold mb-4 text-primary-heading">Verify Email</h1>
+          <h1 className={`text-2xl font-bold mb-4 ${isDarkMode ? "text-white" : "text-primary-heading"}`}>
+            Verify Email
+          </h1>
           <form onSubmit={handleVerify}>
             <input
               type="text"
               value={code}
               onChange={(e) => setCode(e.target.value)}
               placeholder="Enter verification code"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm"
+              className={`w-full px-3 py-2 border ${
+                isDarkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-white"
+              } rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black text-sm`}
             />
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             {successMessage && (
               <p className="text-green-500 text-sm mt-2">{successMessage}</p>
             )}
             <button
-              type="submit"
-              className="w-full bg-custom-button cursor-pointer text-white py-2 rounded-md hover:bg-gray-800 text-sm font-medium mt-4"
-            >
-              Verify
-            </button>
+  type="submit"
+  className={`w-full ${
+    isDarkMode
+      ? "bg-[#0E1422] hover:bg-[#1a2533]" 
+      : "bg-[#0E1422] hover:bg-[#1a2533]" 
+  } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer`}
+>
+  Verify
+</button>
           </form>
         </div>
       </div>
@@ -87,7 +111,7 @@ const VerifyEmail: React.FC = () => {
       <div className="mt-30">
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
