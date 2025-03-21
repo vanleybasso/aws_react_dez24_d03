@@ -29,12 +29,19 @@ interface Order {
 
 const Orders: React.FC = () => {
   const { user } = useUser();
+  const { isLoaded, isSignedIn } = useAuth(); 
   const { signOut } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const navigate = useNavigate();
   const { isDarkMode } = useTheme(); 
 
   useEffect(() => {
+    
+    if (isLoaded && !isSignedIn) {
+      navigate("/login"); 
+      return;
+    }
+
     const fetchOrders = async () => {
       if (!user) return;
 
@@ -53,7 +60,7 @@ const Orders: React.FC = () => {
     };
 
     fetchOrders();
-  }, [user]);
+  }, [user, isLoaded, isSignedIn, navigate]); 
 
   const handleAccountDetailsClick = () => {
     navigate("/account-details");

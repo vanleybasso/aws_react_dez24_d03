@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useUser, useAuth } from '@clerk/clerk-react';
@@ -9,10 +9,18 @@ import { useTheme } from '../components/ThemeContext';
 
 const AccountDetails: React.FC = () => {
   const { user } = useUser();
+  const { isLoaded, isSignedIn } = useAuth(); 
   const { signOut } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isDarkMode } = useTheme();
+
+  
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      navigate('/login'); 
+    }
+  }, [isLoaded, isSignedIn, navigate]);
 
   const handleLogout = async () => {
     await signOut();
