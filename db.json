@@ -839,51 +839,6 @@
         "/src/assets/camisa4.png"
       ],
       "category": "Perfume"
-    },
-    {
-      "id": "0",
-      "imageUrl": "https://cdn.sistemawbuy.com.br/arquivos/13ef42c661356c967c0cee1859873499/produtos/65a9930f70caf/preta-frente-65de22e549c56.jpg",
-      "altText": "",
-      "title": "sdfsfsdfs",
-      "price": "100",
-      "status": "IN STOCK",
-      "colors": [
-        "#000000",
-        "#FFFFFF"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L"
-      ],
-      "description": "ghfhfghfg",
-      "images": [
-        "/src/assets/camisa1.png",
-        "/src/assets/camisa2.png"
-      ],
-      "category": "Perfume"
-    },
-    {
-      "id": "0",
-      "imageUrl": "https://cdn.sistemawbuy.com.br/arquivos/13ef42c661356c967c0cee1859873499/produtos/65a9930f70caf/preta-frente-65de22e549c56.jpg",
-      "altText": "",
-      "title": "agora vai",
-      "price": "150",
-      "status": "IN STOCK",
-      "colors": [
-        "#000000",
-        "#FFFFFF"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L"
-      ],
-      "description": "aadaddas",
-      "images": [
-        "https://cdn.sistemawbuy.com.br/arquivos/13ef42c661356c967c0cee1859873499/produtos/65a9930f70caf/preta-frente-65de22e549c56.jpg"
-      ],
-      "category": "Perfume"
     }
   ],
   "orders": [
