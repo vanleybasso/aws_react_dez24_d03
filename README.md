@@ -28,10 +28,10 @@
 ### 🔧 Admin
 - ✔ CRUD de produtos (Criar, Editar, Deletar)
 
-### 🔑 Acesso de Admin (Testes)
-Para testar a área administrativa, utilize as seguintes credenciais:
-- **E-mail:** hypeawsd3@gmail.com
-- **Senha:** Admin@01
+### 🔑 Admin Access (Testing)
+To test the admin area, use the following credentials:
+- **Email:** hypeawsd3@gmail.com
+- **Password:** Admin@01
 
 ## 🎨 Layout
 O design do projeto foi baseado no modelo do Figma. Você pode visualizar o layout no [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
