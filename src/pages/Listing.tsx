@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react"; 
+import { useUser } from "@clerk/clerk-react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
@@ -27,14 +27,42 @@ const Listing = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const { isDarkMode } = useTheme();
-  const { user } = useUser(); 
+  const { user } = useUser();
   const navigate = useNavigate();
 
-  const isAdmin = user?.publicMetadata?.role === "admin"; 
+  const isAdmin = user?.publicMetadata?.role === "admin";
 
   const productsPerPage = 9;
+
+  
+  useEffect(() => {
+    const savedPriceFilter = localStorage.getItem("priceFilter");
+    const savedSelectedCategory = localStorage.getItem("selectedCategory");
+    const savedSearchTerm = localStorage.getItem("searchTerm");
+
+    if (savedPriceFilter) setPriceFilter(Number(savedPriceFilter));
+    if (savedSelectedCategory) setSelectedCategory(savedSelectedCategory);
+    if (savedSearchTerm) setSearchTerm(savedSearchTerm);
+  }, []);
+
+  
+  useEffect(() => {
+    localStorage.setItem("priceFilter", priceFilter.toString());
+  }, [priceFilter]);
+
+  useEffect(() => {
+    if (selectedCategory !== null) {
+      localStorage.setItem("selectedCategory", selectedCategory);
+    } else {
+      localStorage.removeItem("selectedCategory");
+    }
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    localStorage.setItem("searchTerm", searchTerm);
+  }, [searchTerm]);
 
   const calculateMaxPrice = (category: string | null) => {
     const filteredProducts = category
@@ -80,35 +108,35 @@ const Listing = () => {
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber: number) => {
-    setIsLoading(true); 
+    setIsLoading(true);
     setTimeout(() => {
       setCurrentPage(pageNumber);
-      setIsLoading(false); 
-    }, 500); 
+      setIsLoading(false);
+    }, 500);
   };
 
   const nextPage = () => {
     if (currentPage < Math.ceil(filteredProducts.length / productsPerPage)) {
-      setIsLoading(true); 
+      setIsLoading(true);
       setTimeout(() => {
         setCurrentPage(currentPage + 1);
-        setIsLoading(false); 
-      }, 500); 
+        setIsLoading(false);
+      }, 500);
     }
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
-      setIsLoading(true); 
+      setIsLoading(true);
       setTimeout(() => {
         setCurrentPage(currentPage - 1);
-        setIsLoading(false); 
-      }, 500); 
+        setIsLoading(false);
+      }, 500);
     }
   };
 
   const handleCategoryClick = (category: string) => {
-    setIsLoading(true); 
+    setIsLoading(true);
     setTimeout(() => {
       if (selectedCategory === category) {
         setSelectedCategory(null);
@@ -116,8 +144,8 @@ const Listing = () => {
         setSelectedCategory(category);
       }
       setCurrentPage(1);
-      setIsLoading(false); 
-    }, 500); 
+      setIsLoading(false);
+    }, 500);
   };
 
   const handleEditProduct = (id: number) => {
@@ -132,16 +160,13 @@ const Listing = () => {
     <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-700"}`}>
       <Header />
 
-      
       <section className={`flex items-center p-4 pl-24 ${isDarkMode ? "bg-gray-800" : "bg-gray-100"}`}>
         <span className={`mr-2 font-bold text-sm ${isDarkMode ? "text-gray-300" : "text-custom"}`}>Ecommerce</span>
         <img src="/src/assets/arrow.png" alt=">" className="w-2 h-2 mr-2" />
         <span className={`text-sm font-semibold ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Search</span>
       </section>
 
-      
       <section className="flex flex-col lg:flex-row p-4 lg:pl-24 lg:pr-24 mt-12 flex-grow">
-        
         <section className={`rounded-lg w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8 ${isDarkMode ? "bg-black" : "bg-white"}`}>
           <div className={`border rounded-lg p-4 ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}>
             <h3 className={`font-bold mb-5 text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Categories</h3>
@@ -190,7 +215,6 @@ const Listing = () => {
           </div>
         </section>
 
-        
         <div className="w-full lg:w-64 mb-8 lg:mb-0 lg:ml-8 order-1 lg:order-2">
           <div
             className={`flex items-center border rounded-lg p-2 ${
@@ -214,7 +238,6 @@ const Listing = () => {
           </div>
         </div>
 
-        
         <section className="flex-1 order-2 lg:order-1">
           <div className="flex items-center justify-between">
             <h3 className={`font-bold text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Applied Filters:</h3>
@@ -270,34 +293,32 @@ const Listing = () => {
             </div>
           </div>
 
-          
           {isLoading ? (
-  <div className="flex justify-center items-center mt-8">
-    <div 
-      className={`w-8 h-8 border-2 rounded-full animate-spin ${
-        isDarkMode ? "border-white border-t-transparent" : "border-gray-700 border-t-transparent"
-      }`}
-    ></div>
-  </div>
-) : (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
-    {currentProducts.map((product) => (
-      <div key={product.id}>
-        <ProductCard
-          id={product.id}
-          imageUrl={product.imageUrl}
-          altText={product.altText}
-          title={product.title}
-          price={product.price}
-          status={product.status}
-          onEditClick={isAdmin ? () => handleEditProduct(product.id) : undefined} 
-        />
-      </div>
-    ))}
-  </div>
-)}
+            <div className="flex justify-center items-center mt-8">
+              <div 
+                className={`w-8 h-8 border-2 rounded-full animate-spin ${
+                  isDarkMode ? "border-white border-t-transparent" : "border-gray-700 border-t-transparent"
+                }`}
+              ></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
+              {currentProducts.map((product) => (
+                <div key={product.id}>
+                  <ProductCard
+                    id={product.id}
+                    imageUrl={product.imageUrl}
+                    altText={product.altText}
+                    title={product.title}
+                    price={product.price}
+                    status={product.status}
+                    onEditClick={isAdmin ? () => handleEditProduct(product.id) : undefined} 
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
-          
           <div className="flex justify-center items-center mt-12">
             <div
               className={`flex items-center justify-between px-4 py-2 rounded ${
@@ -357,7 +378,6 @@ const Listing = () => {
         </section>
       </section>
 
-      
       <div className="mt-16">
         <Footer />
       </div>
