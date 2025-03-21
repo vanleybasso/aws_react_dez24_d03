@@ -15,7 +15,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import PageTitle from "./components/PageTitle";
-import { ThemeProvider } from "./components/ThemeContext"; 
+import { ThemeProvider } from "./components/ThemeContext";
+import EditProduct from "./pages/EditProduct"; 
 
 const App: React.FC = () => {
   return (
@@ -38,6 +39,9 @@ const App: React.FC = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
+           
+            <Route path="/edit-product/:id" element={<EditProduct />} /> 
+            <Route path="/edit-product" element={<EditProduct />} /> 
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

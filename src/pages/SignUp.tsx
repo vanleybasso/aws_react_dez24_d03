@@ -15,6 +15,8 @@ const SignUp: React.FC = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [isLoadingSignUp, setIsLoadingSignUp] = useState(false); 
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false); 
   const { isDarkMode } = useTheme(); 
 
   const validatePassword = (password: string) => {
@@ -57,6 +59,8 @@ const SignUp: React.FC = () => {
 
     if (!isValid || !isLoaded) return;
 
+    setIsLoadingSignUp(true); 
+
     try {
       await signUp.create({
         firstName: name,
@@ -70,11 +74,15 @@ const SignUp: React.FC = () => {
     } catch (err: any) {
       console.error(err);
       setError(err.errors?.[0]?.message || "An error occurred.");
+    } finally {
+      setIsLoadingSignUp(false); 
     }
   };
 
   const handleGoogleSignUp = async () => {
     if (!isLoaded) return;
+
+    setIsLoadingGoogle(true); 
 
     try {
       await signUp.authenticateWithRedirect({
@@ -84,6 +92,8 @@ const SignUp: React.FC = () => {
     } catch (err: any) {
       console.error("Erro ao autenticar com Google:", err);
       setError("Erro ao autenticar com Google. Tente novamente.");
+    } finally {
+      setIsLoadingGoogle(false); 
     }
   };
 
@@ -126,13 +136,20 @@ const SignUp: React.FC = () => {
             className={`w-full flex items-center justify-center gap-2 px-4 py-2 border ${
               isDarkMode ? "border-gray-600 bg-gray-700 text-white hover:bg-gray-600" : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
             } rounded-md shadow-sm text-sm font-medium cursor-pointer`}
+            disabled={isLoadingGoogle} 
           >
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google"
-              className="w-4 h-4"
-            />
-            Continue with Google
+            {isLoadingGoogle ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <>
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="w-4 h-4"
+                />
+                Continue with Google
+              </>
+            )}
           </button>
 
           <div className="my-4 flex items-center justify-center">
@@ -216,16 +233,21 @@ const SignUp: React.FC = () => {
               <p className="text-red-500 text-sm mt-1">{error}</p>
             )}
 
-<button
-  type="submit"
-  className={`w-full ${
-    isDarkMode
-      ? "bg-[#0E1422] hover:bg-[#1a2533]" 
-      : "bg-[#0E1422] hover:bg-[#1a2533]" 
-  } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer`}
->
-  Create account
-</button>
+            <button
+              type="submit"
+              className={`w-full ${
+                isDarkMode
+                  ? "bg-[#0E1422] hover:bg-[#1a2533]" 
+                  : "bg-[#0E1422] hover:bg-[#1a2533]" 
+              } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer flex items-center justify-center`}
+              disabled={isLoadingSignUp} 
+            >
+              {isLoadingSignUp ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                "Create account"
+              )}
+            </button>
           </form>
 
           <p className={`mt-4 text-center text-sm ${isDarkMode ? "text-gray-400" : "text-custom"}`}>

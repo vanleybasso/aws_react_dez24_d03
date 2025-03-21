@@ -9,6 +9,7 @@ const VerifyEmail: React.FC = () => {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
   const { isDarkMode } = useTheme(); 
 
   const handleVerify = async (e: React.FormEvent) => {
@@ -22,6 +23,10 @@ const VerifyEmail: React.FC = () => {
       setError("Verification code is required");
       return;
     }
+
+    setIsLoading(true); 
+    setError("");
+    setSuccessMessage("");
 
     try {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
@@ -41,6 +46,8 @@ const VerifyEmail: React.FC = () => {
         ? "Invalid code"
         : err.errors[0].message;
       setError(errorMessage);
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -95,15 +102,20 @@ const VerifyEmail: React.FC = () => {
               <p className="text-green-500 text-sm mt-2">{successMessage}</p>
             )}
             <button
-  type="submit"
-  className={`w-full ${
-    isDarkMode
-      ? "bg-[#0E1422] hover:bg-[#1a2533]" 
-      : "bg-[#0E1422] hover:bg-[#1a2533]" 
-  } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer`}
->
-  Verify
-</button>
+              type="submit"
+              className={`w-full ${
+                isDarkMode
+                  ? "bg-[#0E1422] hover:bg-[#1a2533]" 
+                  : "bg-[#0E1422] hover:bg-[#1a2533]" 
+              } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium mt-4 cursor-pointer flex items-center justify-center`}
+              disabled={isLoading} 
+            >
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                "Verify"
+              )}
+            </button>
           </form>
         </div>
       </div>

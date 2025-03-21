@@ -172,3 +172,16 @@ input[type="range"]::-moz-range-thumb {
 .text-custom-blue {
   color: #3B82F6; 
 }
+
+
+input[type="number"] {
+  -moz-appearance: textfield; 
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; 
+  margin: 0;
+}
+
+

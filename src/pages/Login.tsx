@@ -13,7 +13,9 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { isDarkMode } = useTheme(); 
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false); 
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false); 
+  const { isDarkMode } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +41,8 @@ const Login: React.FC = () => {
 
     if (!isValid || !isLoaded) return;
 
+    setIsLoadingLogin(true); 
+
     try {
       const result = await signIn.create({
         identifier: email,
@@ -54,11 +58,15 @@ const Login: React.FC = () => {
     } catch (err: any) {
       console.error(err);
       setError(err.errors?.[0]?.message || "An error occurred.");
+    } finally {
+      setIsLoadingLogin(false); 
     }
   };
 
   const handleGoogleSignIn = async () => {
     if (!isLoaded) return;
+
+    setIsLoadingGoogle(true); 
 
     try {
       await signIn.authenticateWithRedirect({
@@ -68,6 +76,8 @@ const Login: React.FC = () => {
     } catch (err: any) {
       console.error("Erro ao autenticar com Google:", err);
       setError("Erro ao autenticar com Google. Tente novamente.");
+    } finally {
+      setIsLoadingGoogle(false); 
     }
   };
 
@@ -104,20 +114,28 @@ const Login: React.FC = () => {
 
       <div className={`flex justify-center items-center min-h-screen ${isDarkMode ? "bg-black" : "bg-white"}`}>
         <div className="w-full max-w-sm p-6">
-        <button
-  type="button"
-  onClick={handleGoogleSignIn}
-  className={`w-full flex items-center justify-center gap-2 px-4 py-2 border ${
-    isDarkMode ? "border-gray-600 bg-gray-700 text-white hover:bg-gray-600" : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-  } rounded-md shadow-sm text-sm font-medium cursor-pointer`}
->
-  <img
-    src="https://www.svgrepo.com/show/475656/google-color.svg"
-    alt="Google"
-    className="w-4 h-4"
-  />
-  Continue with Google
-</button>
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            className={`w-full flex items-center justify-center gap-2 px-4 py-2 border ${
+              isDarkMode ? "border-gray-600 bg-gray-700 text-white hover:bg-gray-600" : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+            } rounded-md shadow-sm text-sm font-medium cursor-pointer`}
+            disabled={isLoadingGoogle} 
+          >
+            {isLoadingGoogle ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <>
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="w-4 h-4"
+                />
+                Continue with Google
+              </>
+            )}
+          </button>
+
           <div className="my-4 flex items-center justify-center">
             <div className={`w-full h-px ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`}></div>
             <span className={`px-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>OR</span>
@@ -183,15 +201,20 @@ const Login: React.FC = () => {
             </div>
 
             <button
-  type="submit"
-  className={`w-full ${
-    isDarkMode
-      ? "bg-[#0E1422] hover:bg-[#1a2533]" 
-      : "bg-[#0E1422] hover:bg-[#1a2533]" 
-  } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium cursor-pointer`}
->
-  Login
-</button>
+              type="submit"
+              className={`w-full ${
+                isDarkMode
+                  ? "bg-[#0E1422] hover:bg-[#1a2533]"
+                  : "bg-[#0E1422] hover:bg-[#1a2533]"
+              } text-white py-2 rounded-md hover:scale-105 transition-transform duration-200 text-sm font-medium cursor-pointer flex items-center justify-center`}
+              disabled={isLoadingLogin} 
+            >
+              {isLoadingLogin ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                "Login"
+              )}
+            </button>
           </form>
 
           <p className={`mt-4 text-center text-sm ${isDarkMode ? "text-gray-400" : "text-custom"}`}>

@@ -23,13 +23,14 @@ const Checkout: React.FC = () => {
   const [country, setCountry] = useState('Brasil');
   const [zipCodeError, setZipCodeError] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
 
-  
   const shipping = subtotal >= 100 ? "Free" : "No Free";
-  const shippingCost = 0; 
-  const tax = subtotal < 100 ? 10 : 0; 
-  const total = subtotal + tax; 
+  const shippingCost = 0;
+  const tax = subtotal < 100 ? 10 : 0;
+  const total = subtotal + tax;
 
+ 
   const validateForm = () => {
     const isZipCodeValid = zipCode.length === 8 && !zipCodeError;
     const isStreetAddressValid = streetAddress.trim() !== '';
@@ -46,16 +47,19 @@ const Checkout: React.FC = () => {
     );
   };
 
+ 
   useEffect(() => {
     validateForm();
   }, [zipCode, streetAddress, city, state, country, zipCodeError]);
 
+  
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       navigate('/login');
     }
   }, [isLoaded, isSignedIn, navigate]);
 
+  
   const fetchAddress = async (cep: string) => {
     if (cep.length === 8) {
       try {
@@ -88,10 +92,12 @@ const Checkout: React.FC = () => {
     }
   };
 
+  
   const handleEditCart = () => {
     navigate('/cart');
   };
 
+  
   const handlePlaceOrder = async () => {
     if (cartItems.length === 0) {
       navigate('/listing');
@@ -99,6 +105,8 @@ const Checkout: React.FC = () => {
     }
 
     if (!user) return;
+
+    setIsLoading(true); 
 
     const order = {
       userId: user.id,
@@ -131,9 +139,12 @@ const Checkout: React.FC = () => {
       }
     } catch (error) {
       console.error('Error saving order:', error);
+    } finally {
+      setIsLoading(false); 
     }
   };
 
+  
   if (!isLoaded || !isSignedIn) {
     return null;
   }
@@ -166,6 +177,7 @@ const Checkout: React.FC = () => {
       <div className={`flex flex-col lg:flex-row p-4 sm:pl-[174px] gap-8 flex-grow ${
         isDarkMode ? "bg-black" : "bg-white"
       }`}>
+        
         <div className="flex-1">
           <h2 className={`text-left text-lg pl-4 pt-4 sm:pl-0 mt-8 text-base font-semibold ${
             isDarkMode ? "text-white" : "text-gray-700"
@@ -312,6 +324,7 @@ const Checkout: React.FC = () => {
           </div>
         </div>
 
+       
         <div
           className="hidden lg:block"
           style={{
@@ -323,6 +336,7 @@ const Checkout: React.FC = () => {
           }}
         ></div>
 
+       
         <div className={`w-full lg:w-1/3 p-6 h-fit lg:mr-[174px] mt-8 border rounded ${
           isDarkMode ? "border-gray-700 bg-gray-800" : "border-[#E6E7E8] bg-white"
         }`}>
@@ -380,14 +394,18 @@ const Checkout: React.FC = () => {
 
           <button
             onClick={handlePlaceOrder}
-            disabled={!isFormValid}
+            disabled={!isFormValid || isLoading} 
             className={`w-full py-3 rounded mt-6 ${
               isFormValid ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
             } transition-transform duration-200 ${
               isDarkMode ? "bg-[#0E1422] text-white" : "bg-[#0E1422] text-white"
-            }`}
+            } flex items-center justify-center`}
           >
-            Place Order
+            {isLoading ? ( 
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              "Place Order"
+            )}
           </button>
         </div>
       </div>

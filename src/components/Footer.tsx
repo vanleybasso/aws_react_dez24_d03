@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useTheme } from "./ThemeContext"; 
+import { useTheme } from "./ThemeContext";
+import { useUser } from "@clerk/clerk-react"; 
+import { useSelector } from "react-redux"; 
+import { RootState } from "../redux/store"; 
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,7 +12,9 @@ const Footer = () => {
   const [success, setSuccess] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme(); 
+  const { isDarkMode } = useTheme();
+  const { isSignedIn } = useUser(); 
+  const cartItems = useSelector((state: RootState) => state.cart.items); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,17 +61,32 @@ const Footer = () => {
     navigate("/");
   };
 
+  const handleAccountClick = () => {
+    if (!isSignedIn) {
+      navigate("/login"); 
+    } else {
+      navigate("/account-details"); 
+    }
+  };
+
+  const handleCheckoutClick = () => {
+    if (!isSignedIn) {
+      navigate("/login"); 
+    } else if (cartItems.length === 0) {
+      navigate("/listing"); 
+    } else {
+      navigate("/checkout"); 
+    }
+  };
+
   return (
     <footer className={`${isDarkMode ? "bg-black text-white" : "bg-white text-gray-700"}`}>
-      
       <div className={`${isDarkMode ? "bg-gray-800" : "bg-[#F6F6F6]"} py-8`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between">
           <div className="md:w-1/2 md:pl-[40px]">
-            
             <h2 className={`text-xl font-bold mb-2 md:mb-4 ${isDarkMode ? "text-white" : "text-dark"}`}>
               Join Our Newsletter
             </h2>
-            
             <p className={`mb-4 md:mb-6 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
               We love to surprise our subscribers with occasional gifts.
             </p>
@@ -100,19 +120,17 @@ const Footer = () => {
         </div>
       </div>
 
-     
       <div className={`${isDarkMode ? "bg-black" : "bg-white"} py-8`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between md:pl-[50px]">
-          
           <div>
-          <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
-  <img 
-    src={isDarkMode ? "/src/assets/logo-favicon2.svg" : "/src/assets/logo-favicon.svg"} 
-    alt="Logo" 
-    className="h-10 mr-2" 
-  />
-  <span className="text-lg font-semibold">Hype</span>
-</div>
+            <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
+              <img
+                src={isDarkMode ? "/src/assets/logo-favicon2.svg" : "/src/assets/logo-favicon.svg"}
+                alt="Logo"
+                className="h-10 mr-2"
+              />
+              <span className="text-lg font-semibold">Hype</span>
+            </div>
             <p className={`mt-2 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
               Urban fashion, authentic style. The trends <br /> you love, with the attitude you live!
             </p>
@@ -156,7 +174,6 @@ const Footer = () => {
             </div>
           </div>
 
-          
           <div className="grid grid-cols-3 gap-18 mt-6 md:mt-0">
             <div>
               <h3 className={`text-lg font-semibold mb-5 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
@@ -210,14 +227,20 @@ const Footer = () => {
               </h3>
               <ul className={`text-sm space-y-2 ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
                 <li>
-                  <Link to="/account-details" className="hover:text-gray-500 transition-colors duration-200">
+                  <button
+                    onClick={handleAccountClick} 
+                    className="hover:text-gray-500 transition-colors duration-200 text-left w-full cursor-pointer"
+                  >
                     My Account
-                  </Link>
+                  </button>
                 </li>
                 <li>
-                  <Link to="/checkout" className="hover:text-gray-500 transition-colors duration-200">
+                  <button
+                    onClick={handleCheckoutClick} 
+                    className="hover:text-gray-500 transition-colors duration-200 text-left w-full cursor-pointer"
+                  >
                     Checkout
-                  </Link>
+                  </button>
                 </li>
                 <li>
                   <Link to="/cart" className="hover:text-gray-500 transition-colors duration-200">
@@ -228,35 +251,33 @@ const Footer = () => {
             </div>
           </div>
 
-         
           <div className="mt-6 md:mt-0">
             <h3 className={`font-semibold mb-8 text-sm ${isDarkMode ? "text-gray-300" : "text-shop-now"}`}>
               ACCEPTED PAYMENTS
             </h3>
             <div className="flex gap-8">
-  <img
-    src="/src/assets/Mastercard.png"
-    alt="MasterCard"
-    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
-    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
-  />
-  <img
-    src="/src/assets/Amex.png"
-    alt="Amex"
-    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
-    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
-  />
-  <img
-    src="/src/assets/Visa.png"
-    alt="Visa"
-    className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
-    style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
-  />
-</div>
+              <img
+                src="/src/assets/Mastercard.png"
+                alt="MasterCard"
+                className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+                style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+              />
+              <img
+                src="/src/assets/Amex.png"
+                alt="Amex"
+                className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+                style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+              />
+              <img
+                src="/src/assets/Visa.png"
+                alt="Visa"
+                className={`h-6 ${isDarkMode ? "filter brightness-0 invert" : "filter brightness-0 saturate(0) opacity-75"}`}
+                style={!isDarkMode ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(6%) saturate(747%) hue-rotate(182deg) brightness(93%) contrast(86%)" } : {}}
+              />
+            </div>
           </div>
         </div>
 
-        
         <div className={`text-center mt-30 mb-0 text-sm ${isDarkMode ? "text-gray-300" : "text-custom-gray"}`}>
           © {currentYear} Hype. All rights reserved.
         </div>
