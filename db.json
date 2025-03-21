@@ -2086,6 +2086,30 @@
         "state": "RS",
         "country": "Brasil"
       }
+    },
+    {
+      "id": "00e8",
+      "userId": "user_2uDjGU0zGcJAM1tiQtmmuBuxwWp",
+      "items": [
+        {
+          "id": "22",
+          "title": "Navy Double-Breasted Blazer",
+          "price": 180,
+          "imageUrl": "./src/assets/camisa9.png",
+          "selectedColor": "#000080",
+          "selectedSize": "L",
+          "quantity": 5
+        }
+      ],
+      "total": 900,
+      "date": "2025-03-21T16:30:57.634Z",
+      "shippingAddress": {
+        "zipCode": "99050100",
+        "streetAddress": "Rua Princesa Isabel",
+        "city": "Passo Fundo",
+        "state": "RS",
+        "country": "Brasil"
+      }
     }
   ],
   "subscribers": [
@@ -2136,6 +2160,10 @@
     {
       "id": "7c4b",
       "email": "jacan@gmail.com"
+    },
+    {
+      "id": "9607",
+      "email": "carlos@gmail.com"
     }
   ]
 }

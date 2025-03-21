@@ -272,26 +272,30 @@ const Listing = () => {
 
           
           {isLoading ? (
-            <div className="flex justify-center items-center mt-8">
-              <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
-              {currentProducts.map((product) => (
-                <div key={product.id}>
-                  <ProductCard
-                    id={product.id}
-                    imageUrl={product.imageUrl}
-                    altText={product.altText}
-                    title={product.title}
-                    price={product.price}
-                    status={product.status}
-                    onEditClick={isAdmin ? () => handleEditProduct(product.id) : undefined} 
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+  <div className="flex justify-center items-center mt-8">
+    <div 
+      className={`w-8 h-8 border-2 rounded-full animate-spin ${
+        isDarkMode ? "border-white border-t-transparent" : "border-gray-700 border-t-transparent"
+      }`}
+    ></div>
+  </div>
+) : (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
+    {currentProducts.map((product) => (
+      <div key={product.id}>
+        <ProductCard
+          id={product.id}
+          imageUrl={product.imageUrl}
+          altText={product.altText}
+          title={product.title}
+          price={product.price}
+          status={product.status}
+          onEditClick={isAdmin ? () => handleEditProduct(product.id) : undefined} 
+        />
+      </div>
+    ))}
+  </div>
+)}
 
           
           <div className="flex justify-center items-center mt-12">
