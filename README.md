@@ -1,54 +1,75 @@
-# React + TypeScript + Vite
+# 🛍️ Hype
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Hype** is an eCommerce platform for clothing developed as part of the **AWS REACT DEZ24 CHALLENGE 03**. The project allows users to browse products, add items to their cart, complete purchases, and track their orders. Additionally, it features authentication via **Clerk**, dark mode support, and an admin panel for managing products.
 
-Currently, two official plugins are available:
+![Hype Screenshot](Hero.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Technologies Used
 
-## Expanding the ESLint configuration
+- React + Vite
+- TypeScript
+- Tailwind CSS
+- Redux (state management)
+- Clerk (authentication)
+- Axios (HTTP requests)
+- JSON Server (simulated database)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📌 Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 🛒 User
+- ✔ Registration/Login via email/password or Google
+- ✔ Password recovery via Clerk
+- ✔ Product browsing, search, and filtering
+- ✔ Add products to the cart and complete purchases
+- ✔ Order history in the user account
+- ✔ About page with developer information
+- ✔ Dark Mode
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🔧 Admin
+- ✔ Product CRUD (Create, Edit, Delete)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🎨 Layout
+The design of the project was based on the Figma model. You can view the layout on [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## 🚀 How to Run the Project
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/vanleybasso/aws_react_dez24_d03.git
+
+   ```
+2. Access the project directoryo:
+   ```sh
+   cd aws_react_dez24_d03
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Start the JSON Server:
+   ```sh
+   npm run server
+   ```
+5. Start the project:
+   ```sh
+   npm run dev
+   ```
+6. Visit the app:
+   ```
+   localhost:5173
+   ```
+   
+## 📜 Acknowledgments
+
+I would like to thank Compass UOL and the instructors who provided this project, as they were crucial to our professional growth and provided us with a valuable learning experience.
+
+## 🔗 Useful Links
+
+- [GitHub Repository](https://github.com/vanleybasso/aws_react_dez24_d03)
+- [Figma Layout](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0)
+- [LinkedIn](https://www.linkedin.com/in/vanleybasso)
+
+---
+
+I hope you enjoyed the project! 🚀
