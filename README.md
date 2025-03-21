@@ -4,29 +4,29 @@
 
 ![Hype Screenshot](Hero.png)
 
-## 🚀 Tecnologias Usadas
+## 🚀 Technologies Used
 
 - React + Vite
 - TypeScript
 - Tailwind CSS
-- Redux (gestão de estado)
-- Clerk (autenticação)
-- Axios (requisições HTTP)
-- JSON Server (banco de dados simulado)
+- Redux (state management)
+- Clerk (authentication)
+- Axios (HTTP requests)
+- JSON Server (simulated database)
 
-## 📌 Funcionalidades
+## 📌 Features
 
-### 🛒 Usuário
-- ✔ Registro/Login via e-mail/senha ou Google
-- ✔ Recuperação de senha via Clerk
-- ✔ Navegação, busca e filtragem de produtos
-- ✔ Adicionar produtos ao carrinho e finalizar compras
-- ✔ Histórico de pedidos na conta do usuário
-- ✔ Página "Sobre" com informações do desenvolvedor
-- ✔ Modo escuro
+### 🛒 User
+- ✔ Register/Login via email/password or Google
+- ✔ Password recovery via Clerk
+- ✔ Browse, search, and filter products
+- ✔ Add products to the cart and complete purchases
+- ✔ Order history in the user account
+- ✔ "About" page with developer information
+- ✔ Dark mode
 
 ### 🔧 Admin
-- ✔ CRUD de produtos (Criar, Editar, Deletar)
+- ✔ CRUD for products (Create, Edit, Delete)
 
 ### 🔑 Admin Access (Testing)
 To test the admin area, use the following credentials:
@@ -34,7 +34,7 @@ To test the admin area, use the following credentials:
 - **Password:** Admin@01
 
 ## 🎨 Layout
-O design do projeto foi baseado no modelo do Figma. Você pode visualizar o layout no [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
+The project design is based on the Figma template. You can view the layout on [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
 
 ## 🚀 How to Run the Project
 
