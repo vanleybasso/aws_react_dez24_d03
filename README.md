@@ -4,33 +4,37 @@
 
 ![Hype Screenshot](Hero.png)
 
-## 🚀 Technologies Used
+## 🚀 Tecnologias Usadas
 
 - React + Vite
 - TypeScript
 - Tailwind CSS
-- Redux (state management)
-- Clerk (authentication)
-- Axios (HTTP requests)
-- JSON Server (simulated database)
+- Redux (gestão de estado)
+- Clerk (autenticação)
+- Axios (requisições HTTP)
+- JSON Server (banco de dados simulado)
 
-## 📌 Features
+## 📌 Funcionalidades
 
-### 🛒 User
-- ✔ Registration/Login via email/password or Google
-- ✔ Password recovery via Clerk
-- ✔ Product browsing, search, and filtering
-- ✔ Add products to the cart and complete purchases
-- ✔ Order history in the user account
-- ✔ About page with developer information
-- ✔ Dark Mode
+### 🛒 Usuário
+- ✔ Registro/Login via e-mail/senha ou Google
+- ✔ Recuperação de senha via Clerk
+- ✔ Navegação, busca e filtragem de produtos
+- ✔ Adicionar produtos ao carrinho e finalizar compras
+- ✔ Histórico de pedidos na conta do usuário
+- ✔ Página "Sobre" com informações do desenvolvedor
+- ✔ Modo escuro
 
 ### 🔧 Admin
-- ✔ Product CRUD (Create, Edit, Delete)
+- ✔ CRUD de produtos (Criar, Editar, Deletar)
+
+### 🔑 Acesso de Admin (Testes)
+Para testar a área administrativa, utilize as seguintes credenciais:
+- **E-mail:** hypeawsd3@gmail.com
+- **Senha:** Admin@01
 
 ## 🎨 Layout
-The design of the project was based on the Figma model. You can view the layout on [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
-
+O design do projeto foi baseado no modelo do Figma. Você pode visualizar o layout no [Figma](https://www.figma.com/design/5UZJJ8ov2jTbD1QEZoLtMz/Ecommerce-(Community)?node-id=1674-2029&p=f&t=slGHJGYsbtLH2UYK-0).
 
 ## 🚀 How to Run the Project
 
