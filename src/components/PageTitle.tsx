@@ -20,12 +20,12 @@ const PageTitle = () => {
       "/forgot-password": "Forgot Password",
       "/reset-password": "Reset Password",
       "/verify-email": "Verify Email",
+      "/edit-product/:id": "Edit Product", 
+      "/edit-product": "Add Product", 
     };
 
-   
     const currentRoute = Object.keys(routeTitles).find((route) => {
       if (route.includes(":")) {
-        
         const routePattern = new RegExp(`^${route.replace(/:[^/]+/g, '[^/]+')}$`);
         return routePattern.test(location.pathname);
       }

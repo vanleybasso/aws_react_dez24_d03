@@ -13,6 +13,7 @@ const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +25,10 @@ const ForgotPassword: React.FC = () => {
       return;
     }
 
+    setIsLoading(true); 
+    setError("");
+    setSuccess("");
+
     try {
       await signIn.create({
         strategy: "reset_password_email_code",
@@ -31,13 +36,13 @@ const ForgotPassword: React.FC = () => {
       });
 
       setSuccess("We sent a code to your email!");
-      setError("");
-
       localStorage.setItem("reset_email", email);
       navigate("/reset-password");
     } catch (err: any) {
       console.error(err);
       setError(err.errors?.[0]?.message || "Error sending code.");
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -106,15 +111,20 @@ const ForgotPassword: React.FC = () => {
             {success && <p className="text-green-500 text-sm">{success}</p>}
 
             <button
-  type="submit"
-  className={`w-full px-4 py-2 ${
-    isDarkMode
-      ? "bg-[#0E1422] text-white" 
-      : "bg-[#0E1422] text-white" 
-  } rounded-md text-sm cursor-pointer hover:scale-105 transition-transform duration-200`}
->
-  Send code
-</button>
+              type="submit"
+              className={`w-full px-4 py-2 ${
+                isDarkMode
+                  ? "bg-[#0E1422] text-white" 
+                  : "bg-[#0E1422] text-white" 
+              } rounded-md text-sm cursor-pointer hover:scale-105 transition-transform duration-200 flex items-center justify-center`}
+              disabled={isLoading} 
+            >
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                "Send code"
+              )}
+            </button>
           </form>
         </div>
       </div>

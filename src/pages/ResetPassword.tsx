@@ -19,6 +19,7 @@ const ResetPassword: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
 
   const validatePassword = (password: string) => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
@@ -55,6 +56,7 @@ const ResetPassword: React.FC = () => {
     }
 
     setErrors({});
+    setIsLoading(true); 
 
     try {
       const result = await signIn.attemptFirstFactor({
@@ -81,6 +83,8 @@ const ResetPassword: React.FC = () => {
       }
 
       setErrors({ form: customMessage });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -200,9 +204,14 @@ const ResetPassword: React.FC = () => {
                 isDarkMode
                   ? "bg-[#0E1422] hover:bg-[#1a2533]" 
                   : "bg-[#0E1422] hover:bg-[#1a2533]" 
-              } text-white rounded-md text-base font-medium cursor-pointer hover:scale-105 transition-transform duration-200`}
+              } text-white rounded-md text-base font-medium cursor-pointer hover:scale-105 transition-transform duration-200 flex items-center justify-center`}
+              disabled={isLoading} 
             >
-              Reset password
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                "Reset password"
+              )}
             </button>
           </form>
         </div>

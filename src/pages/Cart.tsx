@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from "@clerk/clerk-react";
@@ -15,6 +15,7 @@ const Cart: React.FC = () => {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const dispatch = useDispatch();
   const { isDarkMode } = useTheme();
+  const [isLoading, setIsLoading] = useState(false); 
 
   const shipping = subtotal >= 100 ? "Free" : "No Free";
   const shippingCost = 0;
@@ -30,8 +31,16 @@ const Cart: React.FC = () => {
     if (!isSignedIn) {
       navigate("/login");
     } else {
-      navigate("/checkout");
+      setIsLoading(true); 
+      setTimeout(() => {
+        setIsLoading(false); 
+        navigate("/checkout");
+      }, 2000); 
     }
+  };
+
+  const handleLoginToCheckout = () => {
+    navigate("/login");
   };
 
   const handleIncreaseQuantity = (id: number, currentQuantity: number) => {
@@ -52,7 +61,6 @@ const Cart: React.FC = () => {
     <div className={`min-h-screen flex flex-col ${isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-700"}`}>
       <Header />
 
-      
       <h1
         className={`text-left text-2xl pl-4 pt-6 pb-2 mb-0 flex items-center relative sm:pl-[174px] ${
           isDarkMode ? "bg-gray-800" : "bg-gray-100"
@@ -74,23 +82,20 @@ const Cart: React.FC = () => {
         </div>
       </section>
 
-      
       <main className={`flex flex-col lg:flex-row pl-4 sm:pl-[174px] pr-4 py-10 sm:pr-20 flex-grow ${
         isDarkMode ? "bg-black" : "bg-white"
       }`}>
-        
-        <div className="w-full lg:w-2/3 pr-10 mb-6 lg:mb-0">
+        <div className="w-full lg:w-2/3 lg:pr-10 mb-6 lg:mb-0">
           <h2 className={`text-base font-semibold mb-4 ${isDarkMode ? "text-white" : "text-gray-700"}`}>
             Your cart
           </h2>
 
           <div className={`w-full h-px mb-6 ${isDarkMode ? "bg-gray-700" : "bg-[#E9E9EB]"}`} />
 
-          <div className="space-y-12">
+          <div className="space-y-6">
             {cartItems.map((item) => (
-              <div key={item.id} className="flex items-center">
-              
-                <div className={`w-20 h-20 flex items-center justify-center rounded mr-4 hidden lg:flex ${
+              <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center ">
+                <div className={`w-20 h-20 flex items-center justify-center rounded mb-4 sm:mb-0 sm:mr-4 ${
                   isDarkMode ? "bg-gray-800" : "bg-[#F6F6F6]"
                 }`}>
                   <Link to={`/product/${item.id}`}>
@@ -101,14 +106,13 @@ const Cart: React.FC = () => {
                     />
                   </Link>
                 </div>
-                <div className="flex-1">
-                  
+                <div className="flex-1 w-full sm:w-auto">
                   <Link to={`/product/${item.id}`} className={`font-medium hover:underline ${
                     isDarkMode ? "text-white" : "text-gray-700"
                   }`}>
                     {item.title}
                   </Link>
-                  <p className={`text-sm flex items-center ${
+                  <p className={`text-sm flex items-center mt-2 ${
                     isDarkMode ? "text-gray-300" : "text-gray-500"
                   }`}>
                     Color:{" "}
@@ -122,9 +126,9 @@ const Cart: React.FC = () => {
                     Size: {item.selectedSize}
                   </p>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center mt-4 sm:mt-0 w-full sm:w-auto">
                   <span className={`font-medium mr-6 ${isDarkMode ? "text-white" : "text-gray-700"}`}>
-                    ${item.price.toFixed(2)}
+                    ${Number(item.price).toFixed(2)}
                   </span>
                   <div className={`w-[140px] h-[44px] border flex items-center justify-between px-4 ${
                     isDarkMode ? "border-gray-700" : "border-[#E6E7E8]"
@@ -161,11 +165,10 @@ const Cart: React.FC = () => {
           </div>
         </div>
 
-        
-        <div className={`w-full lg:w-1/3 border rounded p-6 h-fit ${
+        <div className={`w-full lg:w-1/3 border rounded p-6 h-fit mt-6 lg:mt-0 ${
           isDarkMode ? "border-gray-700 bg-gray-800" : "border-[#E6E7E8] bg-white"
         }`}>
-          <h2 className={`text-base font-semibold mb-10 ${isDarkMode ? "text-white" : "text-gray-700"}`}>
+          <h2 className={`text-base font-semibold mb-6 ${isDarkMode ? "text-white" : "text-gray-700"}`}>
             Order Summary
           </h2>
 
@@ -200,19 +203,24 @@ const Cart: React.FC = () => {
           </div>
 
           <button
-  onClick={handleCheckout}
-  className={`w-full py-3 rounded mt-6 cursor-pointer hover:scale-105 transition-transform duration-200 ${
-    isDarkMode
-      ? "bg-[#0E1422] text-white"
-      : "bg-[#0E1422] text-white"
-  }`}
->
-  {isSignedIn ? "Checkout" : "Login to Checkout"}
-</button>
+            onClick={isSignedIn ? handleCheckout : handleLoginToCheckout}
+            disabled={isLoading} 
+            className={`w-full py-3 rounded mt-6 cursor-pointer hover:scale-105 transition-transform duration-200 ${
+              isDarkMode
+                ? "bg-[#0E1422] text-white"
+                : "bg-[#0E1422] text-white"
+            } flex items-center justify-center`}
+          >
+            {isLoading ? ( 
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              isSignedIn ? "Checkout" : "Login to Checkout"
+            )}
+          </button>
 
           <button
             onClick={() => navigate("/listing")}
-            className={`w-full text-center text-[12px] mt-8 underline hover:underline cursor-pointer ${
+            className={`w-full text-center text-[12px] mt-4 underline hover:underline cursor-pointer ${
               isDarkMode ? "text-gray-300" : "text-gray-500"
             }`}
           >
@@ -221,7 +229,6 @@ const Cart: React.FC = () => {
         </div>
       </main>
 
-      
       <div className={`mt-16 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
         <Footer />
       </div>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react"; 
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
@@ -25,7 +27,12 @@ const Listing = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
   const { isDarkMode } = useTheme();
+  const { user } = useUser(); 
+  const navigate = useNavigate();
+
+  const isAdmin = user?.publicMetadata?.role === "admin"; 
 
   const productsPerPage = 9;
 
@@ -73,28 +80,52 @@ const Listing = () => {
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+    setIsLoading(true); 
+    setTimeout(() => {
+      setCurrentPage(pageNumber);
+      setIsLoading(false); 
+    }, 500); 
   };
 
   const nextPage = () => {
     if (currentPage < Math.ceil(filteredProducts.length / productsPerPage)) {
-      setCurrentPage(currentPage + 1);
+      setIsLoading(true); 
+      setTimeout(() => {
+        setCurrentPage(currentPage + 1);
+        setIsLoading(false); 
+      }, 500); 
     }
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setIsLoading(true); 
+      setTimeout(() => {
+        setCurrentPage(currentPage - 1);
+        setIsLoading(false); 
+      }, 500); 
     }
   };
 
   const handleCategoryClick = (category: string) => {
-    if (selectedCategory === category) {
-      setSelectedCategory(null);
-    } else {
-      setSelectedCategory(category);
-    }
-    setCurrentPage(1);
+    setIsLoading(true); 
+    setTimeout(() => {
+      if (selectedCategory === category) {
+        setSelectedCategory(null);
+      } else {
+        setSelectedCategory(category);
+      }
+      setCurrentPage(1);
+      setIsLoading(false); 
+    }, 500); 
+  };
+
+  const handleEditProduct = (id: number) => {
+    navigate(`/edit-product/${id}`);
+  };
+
+  const handleAddProduct = () => {
+    navigate("/edit-product");
   };
 
   return (
@@ -111,7 +142,7 @@ const Listing = () => {
       
       <section className="flex flex-col lg:flex-row p-4 lg:pl-24 lg:pr-24 mt-12 flex-grow">
         
-        <section className={`rounded-lg w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8 ${isDarkMode ? "bg-gray-800" : "bg-white"}`}>
+        <section className={`rounded-lg w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8 ${isDarkMode ? "bg-black" : "bg-white"}`}>
           <div className={`border rounded-lg p-4 ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}>
             <h3 className={`font-bold mb-5 text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Categories</h3>
             {["Perfume", "Trousers", "Shoe", "HandBag", "Hat", "Thermos"].map((category) => (
@@ -185,7 +216,18 @@ const Listing = () => {
 
         
         <section className="flex-1 order-2 lg:order-1">
-          <h3 className={`font-bold text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Applied Filters:</h3>
+          <div className="flex items-center justify-between">
+            <h3 className={`font-bold text-sm ${isDarkMode ? "text-white" : "text-primary-heading"}`}>Applied Filters:</h3>
+            
+            {isAdmin && (
+              <button
+                onClick={handleAddProduct}
+                className="px-6 py-2 bg-custom-button text-white rounded-lg hover:bg-gray-800 hover:scale-105 transition-all duration-300 text-sm cursor-pointer"
+              >
+                Add Product
+              </button>
+            )}
+          </div>
 
           <div className="flex flex-wrap gap-2 mt-3">
             {selectedCategory && (
@@ -220,25 +262,36 @@ const Listing = () => {
             )}
           </div>
 
-          <div className={`mt-7 text-xs ${isDarkMode ? "text-gray-300" : "text-custom"}`}>
-            {filteredProducts.length === 0
-              ? "Showing 0 of 0 results"
-              : `Showing ${indexOfFirstProduct + 1}-${Math.min(indexOfLastProduct, filteredProducts.length)} of ${filteredProducts.length} results`}
+          <div className="flex items-center justify-between mt-7">
+            <div className={`text-xs ${isDarkMode ? "text-gray-300" : "text-custom"}`}>
+              {filteredProducts.length === 0
+                ? "Showing 0 of 0 results"
+                : `Showing ${indexOfFirstProduct + 1}-${Math.min(indexOfLastProduct, filteredProducts.length)} of ${filteredProducts.length} results`}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
-            {currentProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                imageUrl={product.imageUrl}
-                altText={product.altText}
-                title={product.title}
-                price={product.price}
-                status={product.status}
-              />
-            ))}
-          </div>
+          
+          {isLoading ? (
+            <div className="flex justify-center items-center mt-8">
+              <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-70 mt-8 justify-center">
+              {currentProducts.map((product) => (
+                <div key={product.id}>
+                  <ProductCard
+                    id={product.id}
+                    imageUrl={product.imageUrl}
+                    altText={product.altText}
+                    title={product.title}
+                    price={product.price}
+                    status={product.status}
+                    onEditClick={isAdmin ? () => handleEditProduct(product.id) : undefined} 
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
           
           <div className="flex justify-center items-center mt-12">
@@ -257,7 +310,7 @@ const Listing = () => {
                   currentPage === 1 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
                 }`}
                 onClick={prevPage}
-                disabled={currentPage === 1}
+                disabled={currentPage === 1 || isLoading} 
               >
                 <img
                   src="/src/assets/left.png"
@@ -287,7 +340,7 @@ const Listing = () => {
                     : "cursor-pointer"
                 }`}
                 onClick={nextPage}
-                disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage)}
+                disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage) || isLoading} // Desabilita o botão durante o carregamento
               >
                 <img
                   src="/src/assets/rigth.png"
@@ -300,6 +353,7 @@ const Listing = () => {
         </section>
       </section>
 
+      
       <div className="mt-16">
         <Footer />
       </div>

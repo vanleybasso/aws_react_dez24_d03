@@ -9,7 +9,6 @@ interface ImageCarouselProps {
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, altText }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  
   useEffect(() => {
     setCurrentIndex(0);
   }, [images]);
@@ -27,7 +26,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, altText }) => {
   };
 
   return (
-    <div className="relative w-full h-[550px] flex justify-center items-center overflow-hidden">
+    <div className="relative w-full h-[300px] md:h-[550px] flex justify-center items-center overflow-hidden">
       <img
         src={images[currentIndex]}
         alt={altText}
@@ -39,14 +38,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, altText }) => {
         className="absolute top-1/2 left-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200 cursor-pointer"
         onClick={goToPrevious}
       >
-        <ChevronLeft size={32} strokeWidth={2.5} />
+        <ChevronLeft size={24} strokeWidth={2.5} />
       </button>
 
       <button
         className="absolute top-1/2 right-2 transform -translate-y-1/2 text-black p-2 hover:scale-110 transition-transform duration-200 cursor-pointer"
         onClick={goToNext}
       >
-        <ChevronRight size={32} strokeWidth={2.5} />
+        <ChevronRight size={24} strokeWidth={2.5} />
       </button>
 
       <div 

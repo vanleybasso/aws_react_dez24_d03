@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { useTheme } from "../components/ThemeContext"; 
+import { useState } from "react"; 
 
 const NotFound = () => {
   const { isDarkMode } = useTheme(); 
+  const [isLoading, setIsLoading] = useState(false); 
+
+  const handleNavigate = () => {
+    setIsLoading(true); 
+
+    
+    setTimeout(() => {
+      setIsLoading(false); 
+    }, 2000); 
+  };
 
   return (
     <>
@@ -26,13 +37,20 @@ const NotFound = () => {
         <Link
           to="/"
           className={`bg-custom-button text-white py-3 px-8 rounded-md hover:bg-gray-800 transition duration-300 text-lg flex items-center gap-2 hover:scale-105 transition-transform duration-200`}
+          onClick={handleNavigate} 
         >
-          Resgatar meu estilo
-          <img
-            src="/src/assets/Arrow-Right.png" 
-            alt="Ícone de estilo"
-            className="w-6 h-6"
-          />
+          {isLoading ? ( 
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            <>
+              Resgatar meu estilo
+              <img
+                src="/src/assets/Arrow-Right.png" 
+                alt="Ícone de estilo"
+                className="w-6 h-6"
+              />
+            </>
+          )}
         </Link>
       </section>
     </>
